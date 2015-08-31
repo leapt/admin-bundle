@@ -1,17 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter\Type;
+namespace Leapt\AdminBundle\Datalist\Filter\Type;
 
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder;
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilterInterface;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
+use Leapt\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
+use Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Class SearchFilterType
- * @package Snowcap\AdminBundle\Datalist\Filter\Type
+ * @package Leapt\AdminBundle\Datalist\Filter\Type
  */
 class SearchFilterType extends AbstractFilterType
 {
@@ -28,7 +28,7 @@ class SearchFilterType extends AbstractFilterType
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     * @param \Snowcap\AdminBundle\Datalist\Filter\DatalistFilterInterface $filter
+     * @param \Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface $filter
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, DatalistFilterInterface $filter, array $options)
@@ -39,8 +39,8 @@ class SearchFilterType extends AbstractFilterType
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder $builder
-     * @param \Snowcap\AdminBundle\Datalist\Filter\DatalistFilterInterface $filter
+     * @param \Leapt\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder $builder
+     * @param \Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface $filter
      * @param mixed $value
      * @param array $options
      */

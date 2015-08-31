@@ -1,11 +1,11 @@
-{% extends 'SnowcapAdminBundle::modal_base.html.twig' %}
+{% extends 'LeaptAdminBundle::modal_base.html.twig' %}
 
-{% form_theme form 'SnowcapAdminBundle:Form:form_layout.html.twig' %}
+{% form_theme form 'LeaptAdminBundle:Form:form_layout.html.twig' %}
 
 {% set form_class = form_class|default('form_vertical') %}
 {% set extra_form_classes = extra_form_classes|default([]) %}
 
-{% trans_default_domain 'SnowcapAdminBundle' %}
+{% trans_default_domain 'LeaptAdminBundle' %}
 
 {# modal_before block #}
 {% block modal_before %}
@@ -35,7 +35,7 @@
 {% block modal_footer %}
 
     <button type="button" class="btn" data-dismiss="modal">{{ "content.actions.cancel"|trans }}</button>
-    <button type="submit" name="saveMode" class="btn btn-primary" value="{{ constant('Snowcap\\AdminBundle\\Admin\\ContentAdmin::SAVEMODE_NORMAL') }}">
+    <button type="submit" name="saveMode" class="btn btn-primary" value="{{ constant('Leapt\\AdminBundle\\Admin\\ContentAdmin::SAVEMODE_NORMAL') }}">
         {{ "content.actions.save"|trans }}
     </button>
 

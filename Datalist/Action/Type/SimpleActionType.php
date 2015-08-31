@@ -1,15 +1,15 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Action\Type;
+namespace Leapt\AdminBundle\Datalist\Action\Type;
 
-use Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface;
+use Leapt\AdminBundle\Datalist\Action\DatalistActionInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class SimpleActionType
- * @package Snowcap\AdminBundle\Datalist\Action\Type
+ * @package Leapt\AdminBundle\Datalist\Action\Type
  */
 class SimpleActionType extends AbstractActionType
 {
@@ -41,7 +41,7 @@ class SimpleActionType extends AbstractActionType
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface $action
+     * @param \Leapt\AdminBundle\Datalist\Action\DatalistActionInterface $action
      * @param object $item
      * @param array $options
      * @return string

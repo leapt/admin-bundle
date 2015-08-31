@@ -1,4 +1,4 @@
-{% import 'SnowcapAdminBundle:Navigation:macros.html.twig' as macros %}
+{% import 'LeaptAdminBundle:Navigation:macros.html.twig' as macros %}
 
 {# navigation block #}
 {% block navigation %}
@@ -9,7 +9,7 @@
 
                 {# brand block #}
                 {% block brand %}
-                    <a class="brand" href="{{ path('snowcap_admin_default_index') }}">
+                    <a class="brand" href="{{ path('leapt_admin_default_index') }}">
                         {{ "admin"|trans({}, admin_translation_domain()) }}
                     </a>
                 {% endblock brand %}
@@ -38,7 +38,7 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('snowcap_admin_logout') }}">{{ "security.logout"|trans({}, 'SnowcapAdminBundle') }}</a></li>
+                                <li><a href="{{ path('leapt_admin_logout') }}">{{ "security.logout"|trans({}, 'LeaptAdminBundle') }}</a></li>
                             </ul>
                         </li>
                     </ul>

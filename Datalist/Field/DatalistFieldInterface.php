@@ -1,13 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Field;
+namespace Leapt\AdminBundle\Datalist\Field;
 
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
 
+/**
+ * Interface DatalistFieldInterface
+ * @package Leapt\AdminBundle\Datalist\Field
+ */
 interface DatalistFieldInterface
 {
     /**
-     * @return \Snowcap\AdminBundle\Datalist\Field\Type\FieldTypeInterface
+     * @return \Leapt\AdminBundle\Datalist\Field\Type\FieldTypeInterface
      */
     public function getType();
 
@@ -46,7 +50,7 @@ interface DatalistFieldInterface
     public function getData($row);
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      */
     public function setDatalist(DatalistInterface $datalist);
 

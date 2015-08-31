@@ -1,29 +1,29 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Action\Type;
+namespace Leapt\AdminBundle\Datalist\Action\Type;
 
-use Snowcap\AdminBundle\Admin\ContentAdmin;
-use Snowcap\AdminBundle\AdminManager;
-use Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface;
-use Snowcap\AdminBundle\Datalist\ViewContext;
-use Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper;
+use Leapt\AdminBundle\Admin\ContentAdmin;
+use Leapt\AdminBundle\AdminManager;
+use Leapt\AdminBundle\Datalist\Action\DatalistActionInterface;
+use Leapt\AdminBundle\Datalist\ViewContext;
+use Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Class ContentAdminActionType
- * @package Snowcap\AdminBundle\Datalist\Action\Type
+ * @package Leapt\AdminBundle\Datalist\Action\Type
  */
 class ContentAdminActionType extends AbstractActionType
 {
     /**
-     * @var \Snowcap\AdminBundle\AdminManager
+     * @var \Leapt\AdminBundle\AdminManager
      */
     protected $adminManager;
 
     /**
-     * @var \Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper
+     * @var \Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
      */
     protected $routingHelper;
 
@@ -61,7 +61,7 @@ class ContentAdminActionType extends AbstractActionType
             ->setDefined(array('icon'))
             ->setRequired(array('admin', 'action'))
             ->setAllowedTypes('params', 'array')
-            ->setAllowedTypes('admin', array('string', 'Snowcap\AdminBundle\Admin\ContentAdmin'))
+            ->setAllowedTypes('admin', array('string', 'Leapt\AdminBundle\Admin\ContentAdmin'))
             ->setAllowedTypes('action', 'string')
             ->setNormalizer('admin', $adminNormalizer)
         ;
@@ -98,8 +98,8 @@ class ContentAdminActionType extends AbstractActionType
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\ViewContext $viewContext
-     * @param \Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface $action
+     * @param \Leapt\AdminBundle\Datalist\ViewContext $viewContext
+     * @param \Leapt\AdminBundle\Datalist\Action\DatalistActionInterface $action
      * @param $item
      * @param array $options
      */

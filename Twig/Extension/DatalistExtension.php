@@ -1,5 +1,5 @@
 <?php
-namespace Snowcap\AdminBundle\Twig\Extension;
+namespace Leapt\AdminBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -8,12 +8,12 @@ use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
-use Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface;
-use Snowcap\AdminBundle\Datalist\ViewContext;
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilterInterface;
-use Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface;
-use Snowcap\AdminBundle\Twig\TokenParser\DatalistThemeTokenParser;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface;
+use Leapt\AdminBundle\Datalist\ViewContext;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
+use Leapt\AdminBundle\Datalist\Action\DatalistActionInterface;
+use Leapt\AdminBundle\Twig\TokenParser\DatalistThemeTokenParser;
 
 
 class DatalistExtension extends \Twig_Extension implements ContainerAwareInterface
@@ -36,7 +36,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     /**
      * @var string
      */
-    private $defaultTheme = 'SnowcapAdminBundle:Datalist:datalist_grid_layout.html.twig';
+    private $defaultTheme = 'LeaptAdminBundle:Datalist:datalist_grid_layout.html.twig';
 
     /**
      * @var \SplObjectStorage
@@ -92,7 +92,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return string
      */
     public function renderDatalistWidget(DatalistInterface $datalist)
@@ -109,7 +109,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface $field
+     * @param \Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface $field
      * @param mixed $row
      * @return string
      */
@@ -129,7 +129,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return string
      */
     public function renderDatalistSearch(DatalistInterface $datalist)
@@ -148,7 +148,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return string
      */
     public function renderDatalistFilters(DatalistInterface $datalist)
@@ -168,7 +168,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\DatalistFilterInterface $filter
+     * @param \Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface $filter
      * @return string
      */
     public function renderDatalistFilter(DatalistFilterInterface $filter)
@@ -187,7 +187,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface $action
+     * @param \Leapt\AdminBundle\Datalist\Action\DatalistActionInterface $action
      * @param mixed $item
      * @return string
      */
@@ -209,7 +209,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @param array $blockNames
      * @param array $context
      * @return string
@@ -236,7 +236,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return array
      */
     private function getTemplatesForDatalist(DatalistInterface $datalist)
@@ -262,6 +262,6 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
      */
     public function getName()
     {
-        return 'snowcap_admin_datalist';
+        return 'leapt_admin_datalist';
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter;
+namespace Leapt\AdminBundle\Datalist\Filter;
 
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
 
 class DatalistFilter implements DatalistFilterInterface
 {
@@ -59,7 +59,7 @@ class DatalistFilter implements DatalistFilterInterface
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\Filter\Type\FilterTypeInterface
+     * @return \Leapt\AdminBundle\Datalist\Filter\Type\FilterTypeInterface
      */
     public function getType()
     {
@@ -67,7 +67,7 @@ class DatalistFilter implements DatalistFilterInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      */
     public function setDatalist(DatalistInterface $datalist)
     {

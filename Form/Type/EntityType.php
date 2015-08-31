@@ -1,9 +1,9 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
-use Snowcap\AdminBundle\AdminManager;
-use Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper;
+use Leapt\AdminBundle\AdminManager;
+use Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -11,12 +11,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class EntityType
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class EntityType extends AbstractType
 {
     /**
-     * @var \Snowcap\AdminBundle\AdminManager
+     * @var \Leapt\AdminBundle\AdminManager
      */
     private $adminManager;
 
@@ -26,7 +26,7 @@ class EntityType extends AbstractType
     private $routingHelper;
 
     /**
-     * @param \Snowcap\AdminBundle\AdminManager $adminManager
+     * @param \Leapt\AdminBundle\AdminManager $adminManager
      * @param ContentRoutingHelper $routingHelper
      */
     public function __construct(AdminManager $adminManager, ContentRoutingHelper $routingHelper)
@@ -67,7 +67,7 @@ class EntityType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_entity';
+        return 'leapt_admin_entity';
     }
 
     /**

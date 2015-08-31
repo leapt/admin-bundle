@@ -1,14 +1,14 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Field\Type;
+namespace Leapt\AdminBundle\Datalist\Field\Type;
 
-use Snowcap\AdminBundle\Datalist\ViewContext;
-use Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface;
+use Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface;
+use Leapt\AdminBundle\Datalist\ViewContext;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AbstractFieldType
- * @package Snowcap\AdminBundle\Datalist\Field\Type
+ * @package Leapt\AdminBundle\Datalist\Field\Type
  */
 abstract class AbstractFieldType implements FieldTypeInterface
 {
@@ -29,8 +29,8 @@ abstract class AbstractFieldType implements FieldTypeInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\ViewContext $viewContext
-     * @param \Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface $field
+     * @param \Leapt\AdminBundle\Datalist\ViewContext $viewContext
+     * @param \Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface $field
      * @param mixed $row
      * @param array $options
      */

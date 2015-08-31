@@ -1,6 +1,6 @@
-{% extends 'SnowcapAdminBundle:' ~ admin.alias|camelize ~ ':modalForm.html.twig' %}
+{% extends 'LeaptAdminBundle:' ~ admin.alias|camelize ~ ':modalForm.html.twig' %}
 
-{% trans_default_domain 'SnowcapAdminBundle' %}
+{% trans_default_domain 'LeaptAdminBundle' %}
 
 {% set title = admin.entityName(entity) %}
 {% set form_action = admin_content_path(admin, 'modalUpdate', {'id': entity.id}) %}

@@ -1,15 +1,15 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Field;
+namespace Leapt\AdminBundle\Datalist\Field;
 
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
 use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 use Symfony\Component\PropertyAccess\Exception\UnexpectedTypeException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Class DatalistField
- * @package Snowcap\AdminBundle\Datalist\Field
+ * @package Leapt\AdminBundle\Datalist\Field
  */
 class DatalistField implements DatalistFieldInterface
 {
@@ -106,7 +106,7 @@ class DatalistField implements DatalistFieldInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return mixed
      */
     public function setDatalist(DatalistInterface $datalist)
@@ -115,7 +115,7 @@ class DatalistField implements DatalistFieldInterface
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\DatalistInterface
+     * @return \Leapt\AdminBundle\Datalist\DatalistInterface
      */
     public function getDatalist()
     {
@@ -123,7 +123,7 @@ class DatalistField implements DatalistFieldInterface
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\Field\Type\FieldTypeInterface
+     * @return \Leapt\AdminBundle\Datalist\Field\Type\FieldTypeInterface
      */
     public function getType()
     {

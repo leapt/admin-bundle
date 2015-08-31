@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Controller;
+namespace Leapt\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\Security;
 
 /**
  * Class SecurityController
- * @package Snowcap\AdminBundle\Controller
+ * @package Leapt\AdminBundle\Controller
  */
 class SecurityController extends Controller
 {
@@ -31,7 +31,7 @@ class SecurityController extends Controller
         }
 
         return $this->render(
-            'SnowcapAdminBundle:Security:login.html.twig',
+            'LeaptAdminBundle:Security:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $session->get(Security::LAST_USERNAME),

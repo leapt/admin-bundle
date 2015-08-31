@@ -1,5 +1,5 @@
 <?php
-namespace Snowcap\AdminBundle\DependencyInjection;
+namespace Leapt\AdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -16,7 +16,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('snowcap_admin');
+        $rootNode = $treeBuilder->root('leapt_admin');
 
         $rootNode
             ->children()
@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('route_prefix')->defaultValue('/admin')->end()
-                        ->scalarNode('route_name_prefix')->defaultValue('snowcap_admin')->end()
+                        ->scalarNode('route_name_prefix')->defaultValue('leapt_admin')->end()
                     ->end()
                 ->end()
                 ->arrayNode('security')

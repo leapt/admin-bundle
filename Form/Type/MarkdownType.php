@@ -1,12 +1,12 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 
 /**
  * Class MarkdownType
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class MarkdownType extends AbstractType
 {
@@ -15,7 +15,7 @@ class MarkdownType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_markdown';
+        return 'leapt_admin_markdown';
     }
 
     /**

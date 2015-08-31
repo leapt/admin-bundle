@@ -78,7 +78,7 @@
                 </th>
             {% endfor %}
             {% if datalist.actions|length > 0 %}
-                <th class="actions">{{ "content.actions.header"|trans({}, 'SnowcapAdminBundle') }}</th>
+                <th class="actions">{{ "content.actions.header"|trans({}, 'LeaptAdminBundle') }}</th>
             {% endif %}
         </tr>
         </thead>
@@ -110,7 +110,7 @@
             {% if truncate is defined %}{% set value = value|truncate(truncate) %}{% endif %}
             {% if options.escape %}{{ value }}{% else %}{{ value|raw }}{% endif %}
         {% else %}
-            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
         {% endif %}
     </td>
 {% endblock text_field %}
@@ -121,7 +121,7 @@
         {% if value is not null %}
             {{ value|date(options['format'])  }}
         {% else %}
-            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
         {% endif %}
     </td>
 {% endblock datetime_field %}
@@ -162,7 +162,7 @@
             {% if truncate is defined %}{% set value = value|truncate(truncate) %}{% endif %}
             {% if options.escape %}{{ value }}{% else %}{{ value|raw }}{% endif %}
         {% else %}
-            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
         {% endif %}
     </th>
 {% endblock heading_field %}
@@ -173,7 +173,7 @@
         {% if value is not null %}
             <a href="{{ url is defined ? url : value }}">{{ value }}</a>
         {% else %}
-            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
         {% endif %}
     </td>
 {% endblock url_field %}
@@ -182,9 +182,9 @@
 {% block datalist_search %}
     <form class="form-search" method="get" data-admin="form-manager" novalidate>
         <div class="input-append">
-            {{ form_widget(form.search, {'attr': {'placeholder': (placeholder|trans({}, translation_domain))|default('datalist.search.placeholder'|trans({}, "SnowcapAdminBundle")), 'class': 'input-xxlarge search-query'}}) }}
+            {{ form_widget(form.search, {'attr': {'placeholder': (placeholder|trans({}, translation_domain))|default('datalist.search.placeholder'|trans({}, "LeaptAdminBundle")), 'class': 'input-xxlarge search-query'}}) }}
             <div class="add-on with-btn">
-                <button type="submit" class="btn">{{ submit|trans({}, "SnowcapAdminBundle") }}</button>
+                <button type="submit" class="btn">{{ submit|trans({}, "LeaptAdminBundle") }}</button>
             </div>
         </div>
     </form>
@@ -199,8 +199,8 @@
                 {{ datalist_filter(filter) }}{% if datalist.option('filters_on_top') %}&nbsp;{% endif %}
             {% endfor %}
         </div>
-        <button type="submit" class="btn btn-primary">{{ submit|trans({}, "SnowcapAdminBundle") }}</button>
-        <a class="btn" href="{{ url }}">{{ reset|trans({}, "SnowcapAdminBundle") }}</a>
+        <button type="submit" class="btn btn-primary">{{ submit|trans({}, "LeaptAdminBundle") }}</button>
+        <a class="btn" href="{{ url }}">{{ reset|trans({}, "LeaptAdminBundle") }}</a>
     </form>
 {% endblock datalist_filters %}
 

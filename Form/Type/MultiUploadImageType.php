@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class MultiUploadImageType
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class MultiUploadImageType extends AbstractType
 {
@@ -20,7 +20,7 @@ class MultiUploadImageType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_multiupload_image';
+        return 'leapt_admin_multiupload_image';
     }
 
     /**

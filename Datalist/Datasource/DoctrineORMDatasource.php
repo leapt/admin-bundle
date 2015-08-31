@@ -1,14 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Datasource;
+namespace Leapt\AdminBundle\Datalist\Datasource;
 
 use Doctrine\ORM\QueryBuilder;
+use Leapt\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
+use Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
+use Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
+use Leapt\CoreBundle\Paginator\DoctrineORMPaginator;
 
-use Snowcap\CoreBundle\Paginator\DoctrineORMPaginator;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
-
+/**
+ * Class DoctrineORMDatasource
+ * @package Leapt\AdminBundle\Datalist\Datasource
+ */
 class DoctrineORMDatasource extends AbstractDatasource
 {
     /**
@@ -30,7 +33,7 @@ class DoctrineORMDatasource extends AbstractDatasource
     }
 
     /**
-     * @return \Snowcap\CoreBundle\Paginator\DoctrineORMPaginator
+     * @return \Leapt\CoreBundle\Paginator\DoctrineORMPaginator
      */
     public function getPaginator()
     {
@@ -101,7 +104,7 @@ class DoctrineORMDatasource extends AbstractDatasource
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
      * @return \Doctrine\ORM\Query\Expr\Andx|\Doctrine\ORM\Query\Expr\Comparison|\Doctrine\ORM\Query\Expr\Orx
      * @throws \InvalidArgumentException
      */
@@ -121,7 +124,7 @@ class DoctrineORMDatasource extends AbstractDatasource
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\CombinedExpression $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\CombinedExpression $expression
      * @return \Doctrine\ORM\Query\Expr\Andx|\Doctrine\ORM\Query\Expr\Orx
      * @throws \UnexpectedValueException
      */
@@ -146,7 +149,7 @@ class DoctrineORMDatasource extends AbstractDatasource
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ComparisonExpression $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression $expression
      * @return \Doctrine\ORM\Query\Expr\Comparison
      * @throws \UnexpectedValueException
      */

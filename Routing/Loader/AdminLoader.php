@@ -1,21 +1,21 @@
 <?php
 
-namespace Snowcap\AdminBundle\Routing\Loader;
+namespace Leapt\AdminBundle\Routing\Loader;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 
-use Snowcap\AdminBundle\AdminManager;
+use Leapt\AdminBundle\AdminManager;
 
 class AdminLoader implements LoaderInterface {
     /**
-     * @var \Snowcap\AdminBundle\AdminManager
+     * @var \Leapt\AdminBundle\AdminManager
      */
     private $adminManager;
 
     /**
-     * @param \Snowcap\AdminBundle\AdminManager $adminManager
+     * @param \Leapt\AdminBundle\AdminManager $adminManager
      */
     public function __construct(AdminManager $adminManager)
     {
@@ -49,7 +49,7 @@ class AdminLoader implements LoaderInterface {
      */
     public function supports($resource, $type = null)
     {
-        return 'snowcap_admin_extra' === $type;
+        return 'leapt_admin_extra' === $type;
     }
 
     /**

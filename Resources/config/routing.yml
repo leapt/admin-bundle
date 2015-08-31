@@ -1,49 +1,49 @@
-snowcap_admin_default_index:
+leapt_admin_default_index:
     path:     ""
-    defaults: { _controller: SnowcapAdminBundle:Default:index }
+    defaults: { _controller: LeaptAdminBundle:Default:index }
 
-snowcap_admin_reorderablecontent_reorder:
+leapt_admin_reorderablecontent_reorder:
     path:     /reorder/{code}/{locale}
-    defaults: { _controller: SnowcapAdminBundle:ReorderableContent:reorder, locale: null }
+    defaults: { _controller: LeaptAdminBundle:ReorderableContent:reorder, locale: null }
 
-snowcap_admin_markdown:
+leapt_admin_markdown:
     path:     /markdown
-    defaults: { _controller: SnowcapAdminBundle:Default:markdown }
+    defaults: { _controller: LeaptAdminBundle:Default:markdown }
 
-snowcap_admin_switch_locale:
+leapt_admin_switch_locale:
     path:     /switch-locale/{locale}
-    defaults: { _controller: SnowcapAdminBundle:Default:switchLocale }
+    defaults: { _controller: LeaptAdminBundle:Default:switchLocale }
 
-snowcap_admin_wysiwyg_browser:
+leapt_admin_wysiwyg_browser:
     path:     /wysiwyg/browser
-    defaults: { _controller: SnowcapAdminBundle:Wysiwyg:browser }
+    defaults: { _controller: LeaptAdminBundle:Wysiwyg:browser }
 
-snowcap_admin_cataloguetranslation_index:
+leapt_admin_cataloguetranslation_index:
     path:     /catalogue-translation/{catalogue}/{locale}
-    defaults: { _controller: SnowcapAdminBundle:CatalogueTranslation:index, catalogue: messages, locale: null }
+    defaults: { _controller: LeaptAdminBundle:CatalogueTranslation:index, catalogue: messages, locale: null }
 
-snowcap_admin_widget_delete_item:
+leapt_admin_widget_delete_item:
     path:     /widget/delete-item
-    defaults: { _controller: SnowcapAdminBundle:Widget:deleteItem }
+    defaults: { _controller: LeaptAdminBundle:Widget:deleteItem }
 
-snowcap_admin_widget_content_changed:
+leapt_admin_widget_content_changed:
     path:     /widget/content-changed
-    defaults: { _controller: SnowcapAdminBundle:Widget:contentChanged }
+    defaults: { _controller: LeaptAdminBundle:Widget:contentChanged }
 
-snowcap_admin_upload:
+leapt_admin_upload:
     path:     /upload
-    defaults: { _controller: SnowcapAdminBundle:Upload:upload }
+    defaults: { _controller: LeaptAdminBundle:Upload:upload }
 
-snowcap_admin_login:
+leapt_admin_login:
     path:     /login
-    defaults:  { _controller: SnowcapAdminBundle:Security:login }
+    defaults:  { _controller: LeaptAdminBundle:Security:login }
 
-snowcap_admin_login_check:
+leapt_admin_login_check:
     path:     /login_check
 
-snowcap_admin_logout:
+leapt_admin_logout:
     path:     /logout
 
-snowcap_admin_extra:
+leapt_admin_extra:
     resource: .
-    type: snowcap_admin_extra
+    type: leapt_admin_extra

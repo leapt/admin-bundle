@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 
@@ -8,7 +8,7 @@ use Symfony\Component\Form\AbstractType;
  * Represent an Url field type for the multi upload form type
  *
  * Class MultiUploadUrlType
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class MultiUploadUrlType extends AbstractType
 {
@@ -19,7 +19,7 @@ class MultiUploadUrlType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_multiupload_url';
+        return 'leapt_admin_multiupload_url';
     }
 
     /**

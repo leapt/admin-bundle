@@ -1,4 +1,4 @@
-{% import 'SnowcapBootstrapBundle::macros.html.twig' as bootstrap %}
+{% import 'LeaptBootstrapBundle::macros.html.twig' as bootstrap %}
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 	<head>
@@ -9,11 +9,11 @@
         {# stylesheets block #}
         {% block stylesheets %}
             {% stylesheets
-                'bundles/snowcapadmin/vendor/bootstrap/less/bootstrap.less'
-                'bundles/snowcapadmin/less/main.less'
-                'bundles/snowcapadmin/vendor/bootstrap/less/responsive.less'
+                'bundles/leaptadmin/vendor/bootstrap/less/bootstrap.less'
+                'bundles/leaptadmin/less/main.less'
+                'bundles/leaptadmin/vendor/bootstrap/less/responsive.less'
                 filter="lessphp,cssrewrite"
-                output='cache/assetic/css/snowcapadmin.css'
+                output='cache/assetic/css/leaptadmin.css'
             %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -23,11 +23,11 @@
 	</head>
 	<body>
         {% block main_nav %}
-            {{ render(controller('SnowcapAdminBundle:Navigation:main')) }}
+            {{ render(controller('LeaptAdminBundle:Navigation:main')) }}
         {% endblock main_nav %}
         <div class="container">
             {% block alerts %}
-                {% include 'SnowcapAdminBundle:Widget:alerts.html.twig' %}
+                {% include 'LeaptAdminBundle:Widget:alerts.html.twig' %}
             {% endblock alerts %}
 
             {% block body %}{% endblock body %}
@@ -35,34 +35,34 @@
         <div class="modal fade" id="modal" style="display: none"></div>
         {% block javascripts %}
             <script type="text/javascript">
-                var CKEDITOR_BASEPATH = '{{ app.request.basePath ~ '/bundles/snowcapadmin/vendor/ckeditor/' }}';
-                var SNOWCAP_ADMIN_CONTENT_CHANGE_URL = '{{ path('snowcap_admin_widget_content_changed') }}';
+                var CKEDITOR_BASEPATH = '{{ app.request.basePath ~ '/bundles/leaptadmin/vendor/ckeditor/' }}';
+                var LEAPT_ADMIN_CONTENT_CHANGE_URL = '{{ path('leapt_admin_widget_content_changed') }}';
             </script>
             {% javascripts
-                'bundles/snowcapadmin/vendor/jquery.js'
-                'bundles/snowcapadmin/vendor/underscore.js'
-                'bundles/snowcapadmin/vendor/backbone.js'
-                'bundles/snowcapcore/js/snowcap-core.js'
-                'bundles/snowcapcore/js/snowcap-core.form.js'
-                'bundles/snowcapadmin/vendor/bootstrap/js/bootstrap-affix.js'
-                'bundles/snowcapadmin/vendor/bootstrap/js/bootstrap-modal.js'
-                'bundles/snowcapadmin/vendor/bootstrap/js/bootstrap-tooltip.js'
-                'bundles/snowcapadmin/vendor/bootstrap/js/bootstrap-typeahead.js'
-                'bundles/snowcapadmin/vendor/bootstrap/js/bootstrap-dropdown.js'
-                'bundles/snowcapadmin/vendor/bootstrap/js/bootstrap-tab.js'
-                'bundles/snowcapadmin/js/all.js'
-                'bundles/snowcapbootstrap/js/snowcap-bootstrap.js'
-                'bundles/snowcapadmin/vendor/ckeditor/ckeditor.js'
-                'bundles/snowcapadmin/vendor/autosize/jquery.autosize-min.js'
-                'bundles/snowcapadmin/vendor/jquery.ui.widget.js'
-                'bundles/snowcapadmin/vendor/jquery-file-upload/jquery.iframe-transport.js'
-                'bundles/snowcapadmin/vendor/jquery-file-upload/jquery.fileupload.js'
-                'bundles/snowcapadmin/js/all.js'
-                'bundles/snowcapadmin/js/ckeditor.js'
-                'bundles/snowcapadmin/js/snowcap-admin.js'
-                'bundles/snowcapadmin/js/snowcap-admin.ui.js'
-                'bundles/snowcapadmin/js/snowcap-admin.form.js'
-                output='cache/assetic/js/snowcapadmin.js'
+                'bundles/leaptadmin/vendor/jquery.js'
+                'bundles/leaptadmin/vendor/underscore.js'
+                'bundles/leaptadmin/vendor/backbone.js'
+                'bundles/leaptcore/js/leapt-core.js'
+                'bundles/leaptcore/js/leapt-core.form.js'
+                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-affix.js'
+                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-modal.js'
+                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-tooltip.js'
+                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-typeahead.js'
+                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-dropdown.js'
+                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-tab.js'
+                'bundles/leaptadmin/js/all.js'
+                'bundles/leaptbootstrap/js/leapt-bootstrap.js'
+                'bundles/leaptadmin/vendor/ckeditor/ckeditor.js'
+                'bundles/leaptadmin/vendor/autosize/jquery.autosize-min.js'
+                'bundles/leaptadmin/vendor/jquery.ui.widget.js'
+                'bundles/leaptadmin/vendor/jquery-file-upload/jquery.iframe-transport.js'
+                'bundles/leaptadmin/vendor/jquery-file-upload/jquery.fileupload.js'
+                'bundles/leaptadmin/js/all.js'
+                'bundles/leaptadmin/js/ckeditor.js'
+                'bundles/leaptadmin/js/leapt-admin.js'
+                'bundles/leaptadmin/js/leapt-admin.ui.js'
+                'bundles/leaptadmin/js/leapt-admin.form.js'
+                output='cache/assetic/js/leaptadmin.js'
             %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}

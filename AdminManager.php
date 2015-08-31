@@ -1,8 +1,8 @@
 <?php
 
-namespace Snowcap\AdminBundle;
+namespace Leapt\AdminBundle;
 
-use Snowcap\AdminBundle\Admin\AdminInterface;
+use Leapt\AdminBundle\Admin\AdminInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -22,7 +22,7 @@ class AdminManager
 
     /**
      * @param string $alias
-     * @param \Snowcap\AdminBundle\Admin\AdminInterface $admin
+     * @param \Leapt\AdminBundle\Admin\AdminInterface $admin
      */
     public function registerAdmin($alias, AdminInterface $admin, array $options)
     {
@@ -38,7 +38,7 @@ class AdminManager
 
     /**
      * @param $alias
-     * @return \Snowcap\AdminBundle\Admin\AdminInterface
+     * @return \Leapt\AdminBundle\Admin\AdminInterface
      * @throws \InvalidArgumentException
      */
     public function getAdmin($alias)
@@ -65,7 +65,7 @@ class AdminManager
     {
         $class = get_class($entity);
         foreach($this->admins as $adminCode => $admin) {
-            if($admin instanceof \Snowcap\AdminBundle\Admin\ContentAdmin && $class === $admin->getEntityClass()) {
+            if($admin instanceof \Leapt\AdminBundle\Admin\ContentAdmin && $class === $admin->getEntityClass()) {
                 return $admin;
             }
         }

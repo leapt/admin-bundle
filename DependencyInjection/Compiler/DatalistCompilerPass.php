@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\DependencyInjection\Compiler;
+namespace Leapt\AdminBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -19,13 +19,13 @@ class DatalistCompilerPass implements CompilerPassInterface
      */
     function process(ContainerBuilder $container)
     {
-        if (false === $container->hasDefinition('snowcap_admin.datalist_factory')) {
+        if (false === $container->hasDefinition('leapt_admin.datalist_factory')) {
             return;
         }
-        $definition = $container->getDefinition('snowcap_admin.datalist_factory');
+        $definition = $container->getDefinition('leapt_admin.datalist_factory');
 
         // Datalist types
-        foreach ($container->findTaggedServiceIds('snowcap_admin.datalist_type') as $serviceId => $tag) {
+        foreach ($container->findTaggedServiceIds('leapt_admin.datalist_type') as $serviceId => $tag) {
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;
@@ -33,7 +33,7 @@ class DatalistCompilerPass implements CompilerPassInterface
         }
 
         // Field types
-        foreach ($container->findTaggedServiceIds('snowcap_admin.datalist_fieldtype') as $serviceId => $tag) {
+        foreach ($container->findTaggedServiceIds('leapt_admin.datalist_fieldtype') as $serviceId => $tag) {
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;
@@ -41,7 +41,7 @@ class DatalistCompilerPass implements CompilerPassInterface
         }
 
         // Filter types
-        foreach ($container->findTaggedServiceIds('snowcap_admin.datalist_filtertype') as $serviceId => $tag) {
+        foreach ($container->findTaggedServiceIds('leapt_admin.datalist_filtertype') as $serviceId => $tag) {
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;
@@ -49,7 +49,7 @@ class DatalistCompilerPass implements CompilerPassInterface
         }
 
         // Action types
-        foreach ($container->findTaggedServiceIds('snowcap_admin.datalist_actiontype') as $serviceId => $tag) {
+        foreach ($container->findTaggedServiceIds('leapt_admin.datalist_actiontype') as $serviceId => $tag) {
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;

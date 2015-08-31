@@ -1,13 +1,13 @@
 <?php
 
-namespace Snowcap\AdminBundle\Twig\Extension;
+namespace Leapt\AdminBundle\Twig\Extension;
 
 use Symfony\Component\Translation\TranslatorInterface;
 
-use Snowcap\AdminBundle\AdminManager;
-use Snowcap\AdminBundle\Admin\AdminInterface;
-use Snowcap\AdminBundle\Admin\ContentAdmin;
-use Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper;
+use Leapt\AdminBundle\AdminManager;
+use Leapt\AdminBundle\Admin\AdminInterface;
+use Leapt\AdminBundle\Admin\ContentAdmin;
+use Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper;
 
 /**
  * Global, general-purpose admin extension
@@ -15,12 +15,12 @@ use Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper;
 class AdminExtension extends \Twig_Extension
 {
     /**
-     * @var \Snowcap\AdminBundle\AdminManager
+     * @var \Leapt\AdminBundle\AdminManager
      */
     private $adminManager;
 
     /**
-     * @var \Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper
+     * @var \Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
      */
     private $contentRoutingHelper;
 
@@ -30,7 +30,7 @@ class AdminExtension extends \Twig_Extension
     private $translator;
 
     /**
-     * @param \Snowcap\AdminBundle\AdminManager $adminManager
+     * @param \Leapt\AdminBundle\AdminManager $adminManager
      */
     public function __construct(
         AdminManager $adminManager,
@@ -58,7 +58,7 @@ class AdminExtension extends \Twig_Extension
 
     /**
      * @param $code
-     * @return \Snowcap\AdminBundle\Admin\AdminInterface
+     * @return \Leapt\AdminBundle\Admin\AdminInterface
      */
     public function getAdminByCode($code)
     {
@@ -67,7 +67,7 @@ class AdminExtension extends \Twig_Extension
 
     /**
      * @param $namespace
-     * @return \Snowcap\AdminBundle\Admin\ContentAdmin
+     * @return \Leapt\AdminBundle\Admin\ContentAdmin
      */
     public function getAdminForEntityName($namespace)
     {
@@ -78,7 +78,7 @@ class AdminExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Admin\ContentAdmin $admin
+     * @param \Leapt\AdminBundle\Admin\ContentAdmin $admin
      * @param string $action
      * @param array $params
      * @return string
@@ -93,7 +93,7 @@ class AdminExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Admin\ContentAdmin $admin
+     * @param \Leapt\AdminBundle\Admin\ContentAdmin $admin
      * @param bool $plural
      * @return string
      */
@@ -118,6 +118,6 @@ class AdminExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'snowcap_admin';
+        return 'leapt_admin';
     }
 }

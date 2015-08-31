@@ -1,21 +1,21 @@
 <?php
 
-namespace Snowcap\AdminBundle\EventListener;
+namespace Leapt\AdminBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-use Snowcap\AdminBundle\Logger\Logger;
-use Snowcap\AdminBundle\Event\AdminEvents;
-use Snowcap\AdminBundle\Event\ContentAdminEvent;
+use Leapt\AdminBundle\Logger\Logger;
+use Leapt\AdminBundle\Event\AdminEvents;
+use Leapt\AdminBundle\Event\ContentAdminEvent;
 
 class LoggerListener implements EventSubscriberInterface{
     /**
-     * @var \Snowcap\AdminBundle\Logger\Logger
+     * @var \Leapt\AdminBundle\Logger\Logger
      */
     private $logger;
 
     /**
-     * @param \Snowcap\AdminBundle\Logger\Logger $logger
+     * @param \Leapt\AdminBundle\Logger\Logger $logger
      */
     public function __construct(Logger $logger)
     {

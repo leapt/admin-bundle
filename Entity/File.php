@@ -1,17 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Entity;
+namespace Leapt\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Snowcap\CoreBundle\Doctrine\Mapping as SnowcapCore;
+use Leapt\CoreBundle\Doctrine\Mapping as LeaptCore;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Snowcap\AdminBundle\Entity
+ * Leapt\AdminBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="snowcap_admin_file")
+ * @ORM\Table(name="leapt_admin_file")
  */
 class File {
     /**
@@ -49,7 +49,7 @@ class File {
      *
      * @Assert\File(maxSize="6000000")
      * @Assert\NotBlank()
-     * @SnowcapCore\File(path="uploads/images", mappedBy="path", filename="name")
+     * @LeaptCore\File(path="uploads/images", mappedBy="path", filename="name")
      */
     public $file;
 

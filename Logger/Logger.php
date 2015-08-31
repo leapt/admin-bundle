@@ -1,21 +1,21 @@
 <?php
 
-namespace Snowcap\AdminBundle\Logger;
+namespace Leapt\AdminBundle\Logger;
 
 use Doctrine\ORM\EntityManager;
-use Snowcap\AdminBundle\AdminManager;
-use Snowcap\AdminBundle\Entity\Log;
+use Leapt\AdminBundle\AdminManager;
+use Leapt\AdminBundle\Entity\Log;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Class Logger
- * @package Snowcap\AdminBundle\Logger
+ * @package Leapt\AdminBundle\Logger
  */
 class Logger
 {
     /**
-     * @var \Snowcap\AdminBundle\AdminManager
+     * @var \Leapt\AdminBundle\AdminManager
      */
     protected $admin;
 
@@ -88,7 +88,7 @@ class Logger
     /**
      * @param string $type
      * @param string $action
-     * @return \Snowcap\AdminBundle\Entity\Log
+     * @return \Leapt\AdminBundle\Entity\Log
      */
     public function initLog($type, $action)
     {

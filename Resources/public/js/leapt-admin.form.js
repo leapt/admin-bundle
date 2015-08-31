@@ -1,10 +1,10 @@
-SnowcapAdmin.Form = (function ($) {
+LeaptAdmin.Form = (function ($) {
     /**
      * Form Collection view
      * Used to manage Symfony form collection type
      *
      */
-    var Collection = SnowcapCore.Form.Collection.extend({
+    var Collection = LeaptCore.Form.Collection.extend({
         events: {
             'click .add-element': 'addItem', // Legacy
             'click *[data-admin=form-collection-add]': 'addItem',
@@ -16,7 +16,7 @@ SnowcapAdmin.Form = (function ($) {
          *
          */
         initialize: function () {
-            SnowcapCore.Form.Collection.prototype.initialize.apply(this);
+            LeaptCore.Form.Collection.prototype.initialize.apply(this);
         },
         /**
          * Remove a collection item
@@ -35,7 +35,7 @@ SnowcapAdmin.Form = (function ($) {
             }
 
             if (this.options.confirmDelete) {
-                var modal = new SnowcapBootstrap.Modal({'url': this.options.confirmDeleteUrl});
+                var modal = new LeaptBootstrap.Modal({'url': this.options.confirmDeleteUrl});
                 modal.on('modal:confirm', _.bind(function () {
                     this.fadeAndRemoveItem($collectionItem);
                 }, this));
@@ -77,7 +77,7 @@ SnowcapAdmin.Form = (function ($) {
 
     /**
      * Form Autocomplete view
-     * Used to handle snowcap_admin_autocomplete form type
+     * Used to handle leapt_admin_autocomplete form type
      *
      */
     var TextAutocomplete = Backbone.View.extend({
@@ -139,7 +139,7 @@ SnowcapAdmin.Form = (function ($) {
 
     /**
      * Form Autocomplete view
-     * Used to handle snowcap_admin_autocomplete form type
+     * Used to handle leapt_admin_autocomplete form type
      *
      */
         var Autocomplete = TextAutocomplete.extend({
@@ -277,7 +277,7 @@ SnowcapAdmin.Form = (function ($) {
         add: function (event) {
             event.preventDefault();
             var $trigger = $(event.currentTarget);
-            var contentModal = new SnowcapAdmin.Ui.Modal({url: $trigger.attr('href')});
+            var contentModal = new LeaptAdmin.Ui.Modal({url: $trigger.attr('href')});
             contentModal.on('ui:modal:success', _.bind(function (data) {
                 var
                     option = $('<option>'),
@@ -386,10 +386,10 @@ SnowcapAdmin.Form = (function ($) {
             });
 
             switch (this.$el.data('type')) {
-                case 'snowcap_admin_multiupload_url':
+                case 'leapt_admin_multiupload_url':
                     $link.text(url);
                     break;
-                case 'snowcap_admin_multiupload_image':
+                case 'leapt_admin_multiupload_image':
                     $file.find('img').attr('src', function () {
                         var src = this.src.split('?'); // managing basic asset versions
                         return src[0] + url + (src[1] ?  '?' + src[1] : '');
@@ -547,7 +547,7 @@ SnowcapAdmin.Form = (function ($) {
         },
         onEntityAddClick: function (event) {
             event.preventDefault();
-            var contentModal = new SnowcapAdmin.Ui.Modal({url: event.currentTarget.href});
+            var contentModal = new LeaptAdmin.Ui.Modal({url: event.currentTarget.href});
             contentModal.on('ui:modal:success', this.onModalSuccess, this);
         },
         onModalSuccess: function (data) {
@@ -647,9 +647,9 @@ SnowcapAdmin.Form = (function ($) {
         });
     };
 
-    var Manager = SnowcapCore.Form.Manager.extend({
+    var Manager = LeaptCore.Form.Manager.extend({
         initialize: function() {
-            SnowcapCore.Form.Manager.prototype.initialize.apply(this);
+            LeaptCore.Form.Manager.prototype.initialize.apply(this);
             this.$('.catalogue-translation textarea').autosize();
             this.addErrorClasses();
             $('a:not([href^=#])').not('[data-admin]').on('click', _.bind(this.onExternalLinkClick, this));
@@ -671,7 +671,7 @@ SnowcapAdmin.Form = (function ($) {
                 if(this.hasChanged) {
                     event.preventDefault();
                     var modal = $('#modal');
-                    $.get(SNOWCAP_ADMIN_CONTENT_CHANGE_URL, function (data) {
+                    $.get(LEAPT_ADMIN_CONTENT_CHANGE_URL, function (data) {
                         modal.html(data);
                         modal.find('.cancel').click(function(){
                             modal.html('');
@@ -719,11 +719,11 @@ SnowcapAdmin.Form = (function ($) {
 jQuery(document).ready(function () {
     $('[data-admin=form-manager]').each(function (offset, container) {
         if (!$(container).data('widget')) {
-            var manager = new SnowcapAdmin.Form.Manager({el: container});
-            _.each(SnowcapAdmin.Form.factories, function(factory) {
+            var manager = new LeaptAdmin.Form.Manager({el: container});
+            _.each(LeaptAdmin.Form.factories, function(factory) {
                 manager.registerFactory(factory);
             });
-            SnowcapAdmin.Form.instances.managers.push(manager);
+            LeaptAdmin.Form.instances.managers.push(manager);
             $(container).data('widget', manager);
 
         }

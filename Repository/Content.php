@@ -1,5 +1,5 @@
 <?php
-namespace Snowcap\AdminBundle\Repository;
+namespace Leapt\AdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

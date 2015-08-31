@@ -1,10 +1,13 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist;
+namespace Leapt\AdminBundle\Datalist;
 
-use Snowcap\AdminBundle\Datalist\Type\DatalistTypeInterface;
-
-abstract class Config {
+/**
+ * Class Config
+ * @package Leapt\AdminBundle\Datalist
+ */
+abstract class Config
+{
     /**
      * @var string
      */
@@ -22,7 +25,7 @@ abstract class Config {
 
     /**
      * @param $name
-     * @param Type\DatalistTypeInterface $type
+     * @param TypeInterface $type
      * @param array $options
      */
     public function __construct($name, TypeInterface $type, array $options = array())
@@ -77,7 +80,7 @@ abstract class Config {
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\TypeInterface
+     * @return \Leapt\AdminBundle\Datalist\TypeInterface
      */
     public function getType()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter;
+namespace Leapt\AdminBundle\Datalist\Filter;
 
-use Snowcap\AdminBundle\Datalist\Config;
+use Leapt\AdminBundle\Datalist\Config;
 
 class DatalistFilterConfig extends Config {
 

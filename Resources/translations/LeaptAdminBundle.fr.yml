@@ -135,7 +135,7 @@ dashboard:
     introduction: |
         Bienvenue sur le module d'administration du site.<br/>
         Cette interface vous permet de créer, modifier ou supprimer du contenu.<br/>
-        Pour toute question ou problème, vous pouvez créer un ticket sur la <a href="http://redmine.snowcap.be">plateforme de tickets Snowcap</a>,<br/>ou vous pouvez nous contacter à <a href="mailto:shoot@snowcap.be">shoot@snowcap.be</a>
+        Pour toute question ou problème, vous pouvez créer un ticket sur la <a href="http://redmine.leapt.be">plateforme de tickets Leapt</a>,<br/>ou vous pouvez nous contacter à <a href="mailto:shoot@leapt.be">shoot@leapt.be</a>
 
 logger:
     title: Activités récentes

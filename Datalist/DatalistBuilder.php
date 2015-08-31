@@ -1,20 +1,20 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist;
+namespace Leapt\AdminBundle\Datalist;
 
-use Snowcap\AdminBundle\Datalist\Action\DatalistAction;
-use Snowcap\AdminBundle\Datalist\Action\DatalistActionConfig;
-use Snowcap\AdminBundle\Datalist\Field\DatalistField;
-use Snowcap\AdminBundle\Datalist\Field\DatalistFieldConfig;
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilter;
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilterConfig;
-use Snowcap\AdminBundle\Datalist\Type\DatalistTypeInterface;
+use Leapt\AdminBundle\Datalist\Action\DatalistAction;
+use Leapt\AdminBundle\Datalist\Action\DatalistActionConfig;
+use Leapt\AdminBundle\Datalist\Field\DatalistField;
+use Leapt\AdminBundle\Datalist\Field\DatalistFieldConfig;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilter;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilterConfig;
+use Leapt\AdminBundle\Datalist\Type\DatalistTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormFactory;
 
 /**
  * Class DatalistBuilder
- * @package Snowcap\AdminBundle\Datalist
+ * @package Leapt\AdminBundle\Datalist
  */
 class DatalistBuilder extends DatalistConfig
 {
@@ -211,7 +211,7 @@ class DatalistBuilder extends DatalistConfig
     /**
      * @param string $fieldName
      * @param array $fieldConfig
-     * @return \Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface
+     * @return \Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface
      */
     private function createField($fieldName, array $fieldConfig)
     {

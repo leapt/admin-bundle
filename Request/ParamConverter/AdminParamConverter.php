@@ -1,23 +1,23 @@
 <?php
 
-namespace Snowcap\AdminBundle\Request\ParamConverter;
+namespace Leapt\AdminBundle\Request\ParamConverter;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
-use Snowcap\CoreBundle\Navigation\NavigationRegistry;
+use Leapt\CoreBundle\Navigation\NavigationRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-use Snowcap\AdminBundle\AdminManager;
+use Leapt\AdminBundle\AdminManager;
 
 class AdminParamConverter implements ParamConverterInterface {
     /**
-     * @var \Snowcap\AdminBundle\AdminManager
+     * @var \Leapt\AdminBundle\AdminManager
      */
     private $adminManager;
 
     /**
-     * @var \Snowcap\CoreBundle\Navigation\NavigationRegistry
+     * @var \Leapt\CoreBundle\Navigation\NavigationRegistry
      */
     private $registry;
 
@@ -61,6 +61,6 @@ class AdminParamConverter implements ParamConverterInterface {
      */
     public function supports(ParamConverter $configuration)
     {
-        return in_array('Snowcap\AdminBundle\Admin\AdminInterface', class_implements($configuration->getClass()));
+        return in_array('Leapt\AdminBundle\Admin\AdminInterface', class_implements($configuration->getClass()));
     }
 }

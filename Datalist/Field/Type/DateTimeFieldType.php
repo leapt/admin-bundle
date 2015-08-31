@@ -1,12 +1,12 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Field\Type;
+namespace Leapt\AdminBundle\Datalist\Field\Type;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class DateTimeFieldType
- * @package Snowcap\AdminBundle\Datalist\Field\Type
+ * @package Leapt\AdminBundle\Datalist\Field\Type
  */
 class DateTimeFieldType extends AbstractFieldType
 {

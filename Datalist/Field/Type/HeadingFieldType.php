@@ -1,10 +1,10 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Field\Type;
+namespace Leapt\AdminBundle\Datalist\Field\Type;
 
 /**
  * Class HeadingFieldType
- * @package Snowcap\AdminBundle\Datalist\Field\Type
+ * @package Leapt\AdminBundle\Datalist\Field\Type
  */
 class HeadingFieldType extends TextFieldType
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
-use Snowcap\AdminBundle\AdminManager;
-use Snowcap\AdminBundle\Admin\ContentAdmin;
-use Snowcap\AdminBundle\Form\DataTransformer\EntityToIdTransformer;
-use Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper;
+use Leapt\AdminBundle\AdminManager;
+use Leapt\AdminBundle\Admin\ContentAdmin;
+use Leapt\AdminBundle\Form\DataTransformer\EntityToIdTransformer;
+use Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\EventListener\ResizeFormListener;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,12 +19,12 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Class AutocompleteType
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class AutocompleteType extends AbstractType
 {
     /**
-     * @var \Snowcap\AdminBundle\AdminManager
+     * @var \Leapt\AdminBundle\AdminManager
      */
     private $adminManager;
 
@@ -34,8 +34,8 @@ class AutocompleteType extends AbstractType
     private $routingHelper;
 
     /**
-     * @param \Snowcap\AdminBundle\AdminManager $adminManager
-     * @param \Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper $routingHelper
+     * @param \Leapt\AdminBundle\AdminManager $adminManager
+     * @param \Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper $routingHelper
      */
     public function __construct(AdminManager $adminManager, ContentRoutingHelper $routingHelper)
     {
@@ -139,7 +139,7 @@ class AutocompleteType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_autocomplete';
+        return 'leapt_admin_autocomplete';
     }
 
     /**

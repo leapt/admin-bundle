@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\DependencyInjection\Compiler;
+namespace Leapt\AdminBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -13,12 +13,12 @@ class AdminCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (false === $container->hasDefinition('snowcap_admin')) {
+        if (false === $container->hasDefinition('leapt_admin')) {
             return;
         }
 
-        $definition = $container->getDefinition('snowcap_admin');
-        foreach ($container->findTaggedServiceIds('snowcap_admin.admin') as $serviceId => $tag) {
+        $definition = $container->getDefinition('leapt_admin');
+        foreach ($container->findTaggedServiceIds('leapt_admin.admin') as $serviceId => $tag) {
             $adminTag = $tag[0];
 
             $alias = isset($adminTag['alias'])

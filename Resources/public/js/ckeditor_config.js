@@ -38,7 +38,7 @@ CKEDITOR.editorConfig = function( config )
 
     // Use this below if you want to provide custom templates
     // see an example in Resources/public/vendor/ckeditor/plugins/templates/templates/default.js
-    //config.templates_files = ['/bundles/snowcapadmin/ckeditor/plugins/templates/templates/default.js', '/bundles/yourprojectadmin/ckeditor/templates.js'];
+    //config.templates_files = ['/bundles/leaptadmin/ckeditor/plugins/templates/templates/default.js', '/bundles/yourprojectadmin/ckeditor/templates.js'];
     //config.templates = 'default';
 
 

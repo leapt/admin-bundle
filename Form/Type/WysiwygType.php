@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
@@ -9,7 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class WysiwygType
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class WysiwygType extends AbstractType
 {
@@ -18,7 +18,7 @@ class WysiwygType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_wysiwyg';
+        return 'leapt_admin_wysiwyg';
     }
 
     /**
@@ -28,7 +28,7 @@ class WysiwygType extends AbstractType
     {
         $resolver
             ->setDefaults(array(
-                'wysiwyg_config' => '/bundles/snowcapadmin/js/ckeditor_config.js'
+                'wysiwyg_config' => '/bundles/leaptadmin/js/ckeditor_config.js'
             ))
             ->setAllowedTypes('wysiwyg_config', 'string');
     }

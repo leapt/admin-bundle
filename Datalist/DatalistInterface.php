@@ -1,15 +1,18 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist;
+namespace Leapt\AdminBundle\Datalist;
 
+use Leapt\AdminBundle\Datalist\Action\DatalistActionInterface;
+use Leapt\AdminBundle\Datalist\Datasource\DatasourceInterface;
+use Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
+use Leapt\AdminBundle\Datalist\Type\DatalistTypeInterface;
 use Symfony\Component\Form\FormInterface;
 
-use Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface;
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilterInterface;
-use Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface;
-use Snowcap\AdminBundle\Datalist\Datasource\DatasourceInterface;
-use Snowcap\AdminBundle\Datalist\Type\DatalistTypeInterface;
-
+/**
+ * Interface DatalistInterface
+ * @package Leapt\AdminBundle\Datalist
+ */
 interface DatalistInterface extends \IteratorAggregate
 {
     /**

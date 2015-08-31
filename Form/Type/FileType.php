@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * Used in the wysiwyg file browser
  *
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class FileType extends AbstractType
 {
@@ -20,7 +20,7 @@ class FileType extends AbstractType
      */
     public function getName()
     {
-        return 'admin_snowcap_file';
+        return 'admin_leapt_file';
     }
 
     /**
@@ -41,6 +41,6 @@ class FileType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Snowcap\AdminBundle\Entity\File'));
+        $resolver->setDefaults(array('data_class' => 'Leapt\AdminBundle\Entity\File'));
     }
 }

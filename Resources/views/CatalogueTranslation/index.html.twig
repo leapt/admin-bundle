@@ -20,13 +20,13 @@
         </li>
     {% endif %}
 {% endmacro %}
-{% extends "SnowcapAdminBundle::base.html.twig" %}
+{% extends "LeaptAdminBundle::base.html.twig" %}
 {% block body %}
 
-<a data-toggle="modal" href="#catalog-translation-help-modal" class="btn btn-info pull-right"><i class="icon-question-sign icon-white"></i>&nbsp;{{ 'cataloguetranslation.help.button' | trans({}, 'SnowcapAdminBundle') }}</a>
+<a data-toggle="modal" href="#catalog-translation-help-modal" class="btn btn-info pull-right"><i class="icon-question-sign icon-white"></i>&nbsp;{{ 'cataloguetranslation.help.button' | trans({}, 'LeaptAdminBundle') }}</a>
 
 <div class="page-header">
-        <h2>{{ 'cataloguetranslation.title' | trans({}, 'SnowcapAdminBundle') }}</h2>
+        <h2>{{ 'cataloguetranslation.title' | trans({}, 'LeaptAdminBundle') }}</h2>
     </div>
 
     <div class="row">
@@ -38,7 +38,7 @@
                         {% if activeCatalogueName == catalogue and activeCatalogueLocale == language %}
                             {{ language }}<br/>
                         {% else %}
-                            <a href=" {{ path('snowcap_admin_cataloguetranslation_index', { 'catalogue': catalogue, 'locale': language})}}">{{ language }}</a><br/>
+                            <a href=" {{ path('leapt_admin_cataloguetranslation_index', { 'catalogue': catalogue, 'locale': language})}}">{{ language }}</a><br/>
                         {% endif %}
                     {% endfor %}
                 {% endfor %}
@@ -52,13 +52,13 @@
             {% for key, element in activeCatalogue %}
                 {{ _self.element(key, element, 3, null, fallbackCatalogue[key]|default(null))}}
             {% else %}
-                {{ 'cataloguetranslation.novalues' | trans({}, 'SnowcapAdminBundle') }}
+                {{ 'cataloguetranslation.novalues' | trans({}, 'LeaptAdminBundle') }}
             {% endfor %}
 
             {% if activeCatalogue is iterable and (activeCatalogue | length) > 0 %}
                 <div class="form-actions">
                     <input type="hidden" name="activeCatalogueLocale" value="{{ activeCatalogueLocale }}" />
-                    <input type="submit" class="btn" value="{{ 'cataloguetranslation.submit' | trans({}, 'SnowcapAdminBundle') }}" />
+                    <input type="submit" class="btn" value="{{ 'cataloguetranslation.submit' | trans({}, 'LeaptAdminBundle') }}" />
                 </div>
             {% endif %}
 
@@ -71,24 +71,24 @@
 
         <div class="modal-header">
             <button class="close" data-dismiss="modal">×</button>
-            <h3>{{ 'cataloguetranslation.help.title' | trans({}, 'SnowcapAdminBundle') }}</h3>
+            <h3>{{ 'cataloguetranslation.help.title' | trans({}, 'LeaptAdminBundle') }}</h3>
         </div>
         <div class="modal-body">
 
-            <p>{{ ('cataloguetranslation.help.introduction') | trans({}, 'SnowcapAdminBundle') | raw}}</p>
+            <p>{{ ('cataloguetranslation.help.introduction') | trans({}, 'LeaptAdminBundle') | raw}}</p>
 
             {% set helptopics = ['dynamic', 'plural'] %}
             {% for helptopic in helptopics %}
 
-            <h4>{{ ('cataloguetranslation.help.' ~ helptopic ~ '.title') | trans({}, 'SnowcapAdminBundle') }}</h4>
+            <h4>{{ ('cataloguetranslation.help.' ~ helptopic ~ '.title') | trans({}, 'LeaptAdminBundle') }}</h4>
 
-            {{ ('cataloguetranslation.help.' ~ helptopic ~ '.description') | trans({}, 'SnowcapAdminBundle') | raw}}
+            {{ ('cataloguetranslation.help.' ~ helptopic ~ '.description') | trans({}, 'LeaptAdminBundle') | raw}}
 
             <br/><br/>
 
-            <h5>{{ 'cataloguetranslation.help.example' | trans({}, 'SnowcapAdminBundle') }}</h5>
+            <h5>{{ 'cataloguetranslation.help.example' | trans({}, 'LeaptAdminBundle') }}</h5>
             <div class="alert alert-info">
-                {{ ('cataloguetranslation.help.' ~ helptopic ~ '.example') | trans({}, 'SnowcapAdminBundle') | raw }}
+                {{ ('cataloguetranslation.help.' ~ helptopic ~ '.example') | trans({}, 'LeaptAdminBundle') | raw }}
             </div>
 
             <br/>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Exception;
+namespace Leapt\AdminBundle\Exception;
 
 
 class ValidationException extends \Exception

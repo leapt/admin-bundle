@@ -1,9 +1,13 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Action;
+namespace Leapt\AdminBundle\Datalist\Action;
 
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
 
+/**
+ * Class DatalistAction
+ * @package Leapt\AdminBundle\Datalist\Action
+ */
 class DatalistAction implements DatalistActionInterface
 {
     /**
@@ -59,7 +63,7 @@ class DatalistAction implements DatalistActionInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return mixed
      */
     public function setDatalist(DatalistInterface $datalist)
@@ -68,7 +72,7 @@ class DatalistAction implements DatalistActionInterface
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\DatalistInterface
+     * @return \Leapt\AdminBundle\Datalist\DatalistInterface
      */
     public function getDatalist()
     {
@@ -76,7 +80,7 @@ class DatalistAction implements DatalistActionInterface
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\Field\Type\FieldTypeInterface
+     * @return \Leapt\AdminBundle\Datalist\Field\Type\FieldTypeInterface
      */
     public function getType()
     {

@@ -1,6 +1,6 @@
-{% extends 'SnowcapAdminBundle::base.html.twig' %}
+{% extends 'LeaptAdminBundle::base.html.twig' %}
 
-{% trans_default_domain 'SnowcapAdminBundle' %}
+{% trans_default_domain 'LeaptAdminBundle' %}
 
 {% block body %}
 
@@ -11,7 +11,7 @@
                 {{ error.message }}
             </div>
         {% endif %}
-        <form action="{{ path('snowcap_admin_login_check') }}" method="post" class="form">
+        <form action="{{ path('leapt_admin_login_check') }}" method="post" class="form">
             <div class="control-group">
                 <div class="controls">
                     <input type="text" id="username" name="_username" class="input-block-level" value="{{ last_username }}" placeholder="{{ "security.login.username"|trans }}"/>
@@ -20,7 +20,7 @@
             <div class="control-group">
                 <div class="controls"><input type="password" id="password" class="input-block-level" name="_password" placeholder="{{ "security.login.password"|trans }}"/></div>
             </div>
-            <input type="hidden" name="_target_path" value="{{ path('snowcap_admin_default_index') }}" />
+            <input type="hidden" name="_target_path" value="{{ path('leapt_admin_default_index') }}" />
             <div class="control-group">
                 <div class="controls">
                     <button type="submit" class="btn btn-primary text-right">{{ "security.login.login"|trans }} <i class="icon-lock icon-white"></i></button>

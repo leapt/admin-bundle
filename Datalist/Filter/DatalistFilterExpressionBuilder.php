@@ -1,9 +1,9 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter;
+namespace Leapt\AdminBundle\Datalist\Filter;
 
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
+use Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
+use Leapt\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
 
 class DatalistFilterExpressionBuilder {
     /**

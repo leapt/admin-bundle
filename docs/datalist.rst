@@ -1,7 +1,7 @@
 Working with Datalists
 ======================
 
-SnowcapAdminBundle is bundled with a powerful Datalist component. Datalists are reprensentation of flat lists of items, and with SnowcapAdminBundle, you can:
+LeaptAdminBundle is bundled with a powerful Datalist component. Datalists are reprensentation of flat lists of items, and with LeaptAdminBundle, you can:
 
 * Create good-looking datalists
 * Add actions to your datalists
@@ -19,7 +19,7 @@ The Datalist API shares many similarities with Symfony's form API.
 
     public function customAction()
     {
-        $datalistFactory = $this->get('snowcap_admin.datalist_factory');
+        $datalistFactory = $this->get('leapt_admin.datalist_factory');
         $datalist = $datalistFactory
             ->createBuilder('datalist')
             ->addField('name', 'text')
@@ -50,7 +50,7 @@ To display your Datalist in your template:
 Datalist Types
 --------------
 
-Datalist types are used to build Datalist instances. SnowcapAdminBundle provides only one built-in type : the _datalist_ Datalist Type. If you want to create a datalist "by hand", you will probably end up using this type. You can also easily create your own datalist type.
+Datalist types are used to build Datalist instances. LeaptAdminBundle provides only one built-in type : the _datalist_ Datalist Type. If you want to create a datalist "by hand", you will probably end up using this type. You can also easily create your own datalist type.
 
 Datalist Datalist Type (datalist)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -184,7 +184,7 @@ You can extend an existing one if you want to change only a part of it :
 
     {# src/Acme/AdminBundle/Resources/views/Datalist/datalist_custom_layout.html.twig #}
 
-    {% extends 'SnowcapAdminBundle:Datalist:datalist_grid_layout.html.twig' %}
+    {% extends 'LeaptAdminBundle:Datalist:datalist_grid_layout.html.twig' %}
 
     {% block datalist %}
         {% if datalist.option('search') %}
@@ -230,7 +230,7 @@ You can extend an existing one if you want to change only a part of it :
             {% if value is not null %}
                 {{ value|raw }}
             {% else %}
-                <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+                <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
             {% endif %}
         </p>
     {% endblock text_field %}

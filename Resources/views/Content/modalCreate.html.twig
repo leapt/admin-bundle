@@ -1,6 +1,6 @@
-{% extends 'SnowcapAdminBundle:' ~ admin.alias|camelize ~ ':modalForm.html.twig' %}
+{% extends 'LeaptAdminBundle:' ~ admin.alias|camelize ~ ':modalForm.html.twig' %}
 
-{% trans_default_domain 'SnowcapAdminBundle' %}
+{% trans_default_domain 'LeaptAdminBundle' %}
 
 {% set title = "content.create.title"|trans({'%content_name%': admin_label(admin)}) %}
 {% set form_action = admin_content_path(admin, 'modalCreate') %}

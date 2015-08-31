@@ -1,16 +1,16 @@
 <?php
 
-namespace Snowcap\AdminBundle\Routing\Helper;
+namespace Leapt\AdminBundle\Routing\Helper;
 
-use Snowcap\AdminBundle\Admin\AdminInterface;
-use Snowcap\CoreBundle\Util\StringUtil;
+use Leapt\AdminBundle\Admin\AdminInterface;
+use Leapt\CoreBundle\Util\StringUtil;
 use Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class ContentRoutingHelper
- * @package Snowcap\AdminBundle\Routing\Helper
+ * @package Leapt\AdminBundle\Routing\Helper
  */
 class ContentRoutingHelper
 {
@@ -59,7 +59,7 @@ class ContentRoutingHelper
      * This method will first attempt to find a custom Route (like "YourCustomAdminBundle:Section:index")
      * and if it does not work
      *
-     * @param \Snowcap\AdminBundle\Admin\AdminInterface $admin
+     * @param \Leapt\AdminBundle\Admin\AdminInterface $admin
      * @param string $action
      * @param array $params
      * @param bool $defaultRoute
@@ -92,7 +92,7 @@ class ContentRoutingHelper
             $controller = $this->parser->parse($controller);
         }
         catch(\InvalidArgumentException $e) {
-            $controller = $this->parser->parse('SnowcapAdminBundle:Content:' . $action);
+            $controller = $this->parser->parse('LeaptAdminBundle:Content:' . $action);
         }
 
         $defaults = array_merge(
@@ -103,7 +103,7 @@ class ContentRoutingHelper
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Admin\AdminInterface $admin
+     * @param \Leapt\AdminBundle\Admin\AdminInterface $admin
      * @param string $action
      * @param array $params
      * @return string

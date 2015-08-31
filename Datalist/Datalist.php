@@ -1,19 +1,19 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist;
+namespace Leapt\AdminBundle\Datalist;
 
-use Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface;
-use Snowcap\AdminBundle\Datalist\Datasource\DatasourceInterface;
-use Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface;
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder;
-use Snowcap\AdminBundle\Datalist\Filter\DatalistFilterInterface;
+use Leapt\AdminBundle\Datalist\Action\DatalistActionInterface;
+use Leapt\AdminBundle\Datalist\Datasource\DatasourceInterface;
+use Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder;
+use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class Datalist
- * @package Snowcap\AdminBundle\Datalist
+ * @package Leapt\AdminBundle\Datalist
  */
 class Datalist implements DatalistInterface, \Countable
 {
@@ -157,7 +157,7 @@ class Datalist implements DatalistInterface, \Countable
     protected function getField($name)
     {
         foreach ($this->fields as $field) {
-            /** @var \Snowcap\AdminBundle\Datalist\Field\DatalistField $field */
+            /** @var \Leapt\AdminBundle\Datalist\Field\DatalistField $field */
             if ($name === $field->getName()) {
                 return $field;
             }
@@ -240,7 +240,7 @@ class Datalist implements DatalistInterface, \Countable
     }
 
     /**
-     * @return \Snowcap\CoreBundle\Paginator\PaginatorInterface
+     * @return \Leapt\CoreBundle\Paginator\PaginatorInterface
      */
     public function getPaginator()
     {

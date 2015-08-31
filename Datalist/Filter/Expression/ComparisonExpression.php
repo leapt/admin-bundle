@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter\Expression;
+namespace Leapt\AdminBundle\Datalist\Filter\Expression;
 
 class ComparisonExpression implements ExpressionInterface {
     const OPERATOR_EQ = 'eq';

@@ -1,8 +1,8 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
-use Snowcap\AdminBundle\Form\EventListener\MultiUploadSubscriber;
+use Leapt\AdminBundle\Form\EventListener\MultiUploadSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class MultiUploadType
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class MultiUploadType extends AbstractType
 {
@@ -53,7 +53,7 @@ class MultiUploadType extends AbstractType
             ->setRequired(array('dst_dir'))
             ->setAllowedTypes('dst_dir', array('string', 'callable'))
             ->setDefaults(array(
-                'type' => 'snowcap_admin_multiupload_url',
+                'type' => 'leapt_admin_multiupload_url',
             )
         );
     }
@@ -65,7 +65,7 @@ class MultiUploadType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_multiupload';
+        return 'leapt_admin_multiupload';
     }
 
     /**

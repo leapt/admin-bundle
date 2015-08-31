@@ -1,15 +1,15 @@
 <?php
 
-namespace Snowcap\AdminBundle\Security;
+namespace Leapt\AdminBundle\Security;
 
 use Doctrine\ORM\EntityManager;
-use Snowcap\AdminBundle\Entity\User;
+use Leapt\AdminBundle\Entity\User;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
  * Class UserManager
- * @package Snowcap\AdminBundle\Security
+ * @package Leapt\AdminBundle\Security
  */
 class UserManager
 {
@@ -35,9 +35,9 @@ class UserManager
      */
     public function __construct($userClass, EncoderFactoryInterface $encoderFactory, EntityManager $em)
     {
-        $parentClassName = 'Snowcap\AdminBundle\Entity\User';
+        $parentClassName = 'Leapt\AdminBundle\Entity\User';
         if (null === $userClass) {
-            throw new \InvalidArgumentException('Please provide a valid user_class in your snowcap_admin.security config.');
+            throw new \InvalidArgumentException('Please provide a valid user_class in your leapt_admin.security config.');
         } elseif (!class_exists($userClass) || !in_array($parentClassName, class_parents($userClass))) {
             throw new \InvalidArgumentException(sprintf('Your user class does not exist or does not extend %s', $parentClassName));
         }
@@ -52,7 +52,7 @@ class UserManager
      * @param string $password
      * @param array $roles
      * @param array $extraFields
-     * @return \Snowcap\AdminBundle\Entity\User
+     * @return \Leapt\AdminBundle\Entity\User
      */
     public function createUser($userName, $email, $password, array $roles, array $extraFields = array())
     {

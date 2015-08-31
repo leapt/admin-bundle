@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Twig\Node;
+namespace Leapt\AdminBundle\Twig\Node;
 
 /**
  * @author Fabien Potencier <fabien@symfony.com>
@@ -27,7 +27,7 @@ class DatalistThemeNode extends \Twig_Node
     {
         $compiler
             ->addDebugInfo($this)
-            ->write('$this->env->getExtension(\'snowcap_admin_datalist\')->setTheme(')
+            ->write('$this->env->getExtension(\'leapt_admin_datalist\')->setTheme(')
             ->subcompile($this->getNode('datalist'))
             ->raw(', ')
             ->subcompile($this->getNode('resources'))

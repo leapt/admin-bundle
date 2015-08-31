@@ -10,7 +10,7 @@ You can modify the default_locale for the admin in your config.yml file:
 
     # app/config/config.yml
 
-    snowcap_admin:
+    leapt_admin:
         default_locale: "nl"
         route_prefix: "/admin"
 
@@ -25,13 +25,13 @@ Enabling the translation interface
     For this module to work, your translations should not reside in ``app/Resources/transalations`` but rather in 
     your Bundle Resources directory.
     
-SnowcapAdminBundle offers a simple translation interface. To enable it, you must first update your configuration file:
+LeaptAdminBundle offers a simple translation interface. To enable it, you must first update your configuration file:
 
 .. code-block:: yaml
 
     # app/config/config.yml
     
-    snowcap_admin:
+    leapt_admin:
         translation_catalogues: [Acme\DemoBundle\messages, Acme\DemoBundle\validators]
         
 You must then add a link in your admin navigation template (you will need to override the default one if 
@@ -42,7 +42,7 @@ you haven't done it yet), so that the interface is accessible:
     # src/Acme/AdminBundle/Resources/views/Navigation/main.html.twig
     
     <li>
-        <a href="{{ path('snowcap_admin_cataloguetranslation_index')}}">
-            {{ 'navigation.interfacecontent'|trans({}, 'SnowcapAdminBundle') }}
+        <a href="{{ path('leapt_admin_cataloguetranslation_index')}}">
+            {{ 'navigation.interfacecontent'|trans({}, 'LeaptAdminBundle') }}
         </a>
     </li>

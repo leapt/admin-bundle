@@ -1,10 +1,10 @@
 <?php
 
-namespace Snowcap\AdminBundle\Event;
+namespace Leapt\AdminBundle\Event;
 
 final class AdminEvents
 {
-    const CONTENT_CREATE = 'snowcap_admin.content_create';
-    const CONTENT_UPDATE = 'snowcap_admin.content_update';
-    const CONTENT_DELETE = 'snowcap_admin.content_delete';
+    const CONTENT_CREATE = 'leapt_admin.content_create';
+    const CONTENT_UPDATE = 'leapt_admin.content_update';
+    const CONTENT_DELETE = 'leapt_admin.content_delete';
 }

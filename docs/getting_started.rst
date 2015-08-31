@@ -1,7 +1,7 @@
-Getting started with SnowcapAdminBundle
+Getting started with LeaptAdminBundle
 =======================================
 
-SnowcapAdminBundle provides a few useful features for your backoffice applications. The goal of this bundle is to provide a
+LeaptAdminBundle provides a few useful features for your backoffice applications. The goal of this bundle is to provide a
 series of tools and helpers to facilitate your work, but also to get out of your way when you want to add totally custom
 features.
 
@@ -26,7 +26,7 @@ Installation
 
 Installation is a 7 step process:
 
-1. Download SnowcapAdminBundle using composer
+1. Download LeaptAdminBundle using composer
 2. Enable the Bundle and its dependencies
 3. Create your admin bundle
 4. Enable the admin routing
@@ -34,10 +34,10 @@ Installation is a 7 step process:
 6. Configure security
 7. Additional configuration steps
 
-Step 1: Download SnowcapAdminBundle using composer
+Step 1: Download LeaptAdminBundle using composer
 --------------------------------------------------
 
-Add SnowcapAdminBundle in your composer.json:
+Add LeaptAdminBundle in your composer.json:
 
 For Symfony < 2.7
 ~~~~~~~~~~~~~~~~~
@@ -46,7 +46,7 @@ For Symfony < 2.7
 
     {
         "require": {
-            "snowcap/admin-bundle": "~1.0"
+            "leapt/admin-bundle": "~1.0"
         }
     }
 
@@ -57,7 +57,7 @@ For Symfony >= 2.7
 
     {
         "require": {
-            "snowcap/admin-bundle": "~2.0"
+            "leapt/admin-bundle": "~2.0"
         }
     }
 
@@ -66,10 +66,10 @@ Now tell composer to download the bundle by running the command:
 
 .. code-block:: bash
 
-    php composer.phar update snowcap/admin-bundle
+    php composer.phar update leapt/admin-bundle
 
 
-Composer will install the bundle to your project's `vendor/snowcap` directory.
+Composer will install the bundle to your project's `vendor/leapt` directory.
 
 Step 2: Enable the bundle
 -------------------------
@@ -85,11 +85,11 @@ Enable the bundle in the kernel:
     {
         $bundles = array(
             // ...
-            new Snowcap\AdminBundle\SnowcapAdminBundle(),
+            new Leapt\AdminBundle\LeaptAdminBundle(),
             // Required dependencies
-            new Snowcap\CoreBundle\SnowcapCoreBundle(),
-            new Snowcap\BootstrapBundle\SnowcapBootstrapBundle(),
-            new Snowcap\ImBundle\SnowcapImBundle(),
+            new Leapt\CoreBundle\LeaptCoreBundle(),
+            new Leapt\BootstrapBundle\LeaptBootstrapBundle(),
+            new Leapt\ImBundle\LeaptImBundle(),
         );
     }
 
@@ -97,13 +97,13 @@ Enable the bundle in the kernel:
 Step 3: Create your Admin Bundle
 --------------------------------
 
-In order to be able to use the Snowcap Admin Bundle, you need to create your own Admin Bundle in your project.
+In order to be able to use the Leapt Admin Bundle, you need to create your own Admin Bundle in your project.
 
 .. code-block:: bash
 
     php ./app/console generate:bundle
 
-Your bundle must extend SnowcapAdminBundle in order for it to work.
+Your bundle must extend LeaptAdminBundle in order for it to work.
 
 .. code-block:: php
 
@@ -112,7 +112,7 @@ Your bundle must extend SnowcapAdminBundle in order for it to work.
 
     public function getParent()
     {
-        return 'SnowcapAdminBundle';
+        return 'LeaptAdminBundle';
     }
 
 
@@ -123,15 +123,15 @@ Step 4: Enable admin routing
 
     # app/config/routing.yml
 
-    snowcap_admin:
-        resource: "@SnowcapAdminBundle/Resources/config/routing.yml"
+    leapt_admin:
+        resource: "@LeaptAdminBundle/Resources/config/routing.yml"
         prefix: /admin
 
 
 Step 5: Configure Assetic
 -------------------------
 
-SnowcapAdminBundle uses assetic in order to speed up the display of the admin pages. You must add SnowcapAdminBundle to the list of configured assetic bundles. Additionally, the lessphp and cssrewrite filters must be enabled for the AdminBundle to work.
+LeaptAdminBundle uses assetic in order to speed up the display of the admin pages. You must add LeaptAdminBundle to the list of configured assetic bundles. Additionally, the lessphp and cssrewrite filters must be enabled for the AdminBundle to work.
 
 .. code-block:: yaml
 
@@ -140,7 +140,7 @@ SnowcapAdminBundle uses assetic in order to speed up the display of the admin pa
     assetic:
         debug:          "%kernel.debug%"
         use_controller: false
-        bundles: ["AcmeAdminBundle", "SnowcapAdminBundle"]
+        bundles: ["AcmeAdminBundle", "LeaptAdminBundle"]
         filters:
             cssrewrite: ~
             lessphp: ~
@@ -151,7 +151,7 @@ Step 6: Configure security
 
 The AdminBundle requires at least an active firewall.
 
-You can use whichever authentication mechanism you like. In order to make your life easier, SnowcapAdminBundle provides a base user class, and a few other extras to be used with Doctrine's entity user provider and standard login form authentication.
+You can use whichever authentication mechanism you like. In order to make your life easier, LeaptAdminBundle provides a base user class, and a few other extras to be used with Doctrine's entity user provider and standard login form authentication.
 
 First, create a user class in your AdminBundle's entity directory:
 
@@ -164,7 +164,7 @@ First, create a user class in your AdminBundle's entity directory:
 
     use Doctrine\ORM\Mapping as ORM;
 
-    use Snowcap\AdminBundle\Entity\User;
+    use Leapt\AdminBundle\Entity\User;
 
     /**
      * @ORM\Entity
@@ -181,13 +181,13 @@ You can then change your security.yml config file:
 
     # app/config/security.yml
 
-    snowcap_admin:
+    leapt_admin:
         security:
             user_class: Acme\AdminBundle\Entity\AdminUser
 
     security:
         encoders:
-            Snowcap\AdminBundle\Entity\User: sha512
+            Leapt\AdminBundle\Entity\User: sha512
 
         providers:
             admin_users:
@@ -201,10 +201,10 @@ You can then change your security.yml config file:
                 provider: admin_users
                 anonymous: ~
                 form_login:
-                    login_path:  snowcap_admin_login
-                    check_path:  snowcap_admin_login_check
+                    login_path:  leapt_admin_login
+                    check_path:  leapt_admin_login_check
                 logout:
-                    path: snowcap_admin_logout
+                    path: leapt_admin_logout
 
         access_control:
             - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -221,7 +221,7 @@ When this is done, you can create admin users through the command line:
 
 .. code-block:: bash
 
-    php ./app/console snowcap:admin:generate:user
+    php ./app/console leapt:admin:generate:user
 
 Make sure to give to your user at least one admin role as configured in your security.yml file.
 
@@ -232,20 +232,20 @@ Step 7: Additional configuration steps
 
 **Enable translations**
 
-SnowcapAdminBundle stores its own translation messages under the "SnowcapAdminBundle" translation domain. Other interface messages, such as the title in the navbar, form and datalist labels, are specific to your project, and are translated through a distinct translation domain. By default, this translation domain is "admin", but you can change it in your project config:
+LeaptAdminBundle stores its own translation messages under the "LeaptAdminBundle" translation domain. Other interface messages, such as the title in the navbar, form and datalist labels, are specific to your project, and are translated through a distinct translation domain. By default, this translation domain is "admin", but you can change it in your project config:
 
 .. code-block:: yaml
 
     # app/config/config.yml
 
-    snowcap_admin:
+    leapt_admin:
         default_translation_domain: backoffice
 
 
 Your first admin class
 ----------------------
 
-One of the main features of SnowcapAdminBundle is to allow you to create CRUD interfaces that manage entities. We call those CRUD interfaces "Content Admins".
+One of the main features of LeaptAdminBundle is to allow you to create CRUD interfaces that manage entities. We call those CRUD interfaces "Content Admins".
 
 Creating a Content Admin can be done in 2 steps:
 
@@ -258,7 +258,7 @@ Create a Content Admin class
 The first step is to create an Admin class that extends the abstract ContentAdmin class. You will have to implement at least four methods:
 
 * _getForm_ must return a Symfony/Component/Form/FormInterface instance
-* _getDatalist_ must return a Snowcap/AdminBundle/Datalist/DatalistInterface instance
+* _getDatalist_ must return a Leapt/AdminBundle/Datalist/DatalistInterface instance
 * _getEntityName_ receives an entity as sole argument and must return a textual representation of that entity (its name or its title for instance)
 * _getEntityClass_ must return the fully qualified class name of the managed entity
 
@@ -269,7 +269,7 @@ The first step is to create an Admin class that extends the abstract ContentAdmi
 
     namespace Acme\AdminBundle\Admin;
 
-    use Snowcap\AdminBundle\Admin\ContentAdmin
+    use Leapt\AdminBundle\Admin\ContentAdmin
 
     class ArtistAdmin extends ContentAdmin
     {
@@ -290,7 +290,7 @@ The first step is to create an Admin class that extends the abstract ContentAdmi
         /**
          * Return the main admin list for this content
          *
-         * @return \Snowcap\AdminBundle\Datalist\DatalistInterface
+         * @return \Leapt\AdminBundle\Datalist\DatalistInterface
          */
         public function getDatalist()
         {
@@ -331,9 +331,9 @@ Simply edit your Admin Bundle services.yml file and declare your Admin Class as 
     # src/Acme/AdminBundle/Resources/config/services.yml
 
     class: Acme\AdminBundle\Admin\ArtistAdmin
-        parent: snowcap_admin.admin_content
+        parent: leapt_admin.admin_content
         tags:
-            - { name: snowcap_admin.admin, alias: artist, label: Artist|Artists }
+            - { name: leapt_admin.admin, alias: artist, label: Artist|Artists }
 
 
 That's it, your admin class is ready to use. You can test it at http://yourbaseurl/admin/artist

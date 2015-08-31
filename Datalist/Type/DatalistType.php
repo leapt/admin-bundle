@@ -1,10 +1,10 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Type;
+namespace Leapt\AdminBundle\Datalist\Type;
 
 /**
  * Class DatalistType
- * @package Snowcap\AdminBundle\Datalist\Type
+ * @package Leapt\AdminBundle\Datalist\Type
  */
 class DatalistType extends AbstractDatalistType
 {

@@ -57,35 +57,35 @@ fieldset {
 /**
 * Inline widget
 */
-.type_snowcap_admin_inline .selected {
+.type_leapt_admin_inline .selected {
     list-style-type: none;
     margin: 10px 0;
 }
 
-.type_snowcap_admin_inline .selected li {
+.type_leapt_admin_inline .selected li {
     position: relative;
     display: block;
     padding: 5px;
     text-decoration: none;
 }
-.type_snowcap_admin_inline .selected li a {
+.type_leapt_admin_inline .selected li a {
     text-decoration: none;
     color: #333;
 }
-.type_snowcap_admin_inline .selected li:first-child {
+.type_leapt_admin_inline .selected li:first-child {
     margin-left: 0;
 }
 
-.type_snowcap_admin_inline .selected li:hover {
+.type_leapt_admin_inline .selected li:hover {
     background-color: #0088cc;
 }
 
-.type_snowcap_admin_inline .selected li:hover p,
-.type_snowcap_admin_inline .selected li:hover h4 {
+.type_leapt_admin_inline .selected li:hover p,
+.type_leapt_admin_inline .selected li:hover h4 {
     color: #fff;
 }
 
-.type_snowcap_admin_inline .selected li .close {
+.type_leapt_admin_inline .selected li .close {
     position: absolute;
     top: 2px;
     right: 4px;

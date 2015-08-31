@@ -1,7 +1,11 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist;
+namespace Leapt\AdminBundle\Datalist;
 
+/**
+ * Class ViewContext
+ * @package Leapt\AdminBundle\Datalist
+ */
 class ViewContext implements \ArrayAccess
 {
     /**

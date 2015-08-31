@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter\Expression;
+namespace Leapt\AdminBundle\Datalist\Filter\Expression;
 
 class CombinedExpression implements ExpressionInterface {
     const OPERATOR_AND = 'and';

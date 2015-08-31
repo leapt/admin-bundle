@@ -1,11 +1,14 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Datasource;
+namespace Leapt\AdminBundle\Datalist\Datasource;
 
+use Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
-
+/**
+ * Class AbstractDatasource
+ * @package Leapt\AdminBundle\Datalist\Datasource
+ */
 abstract class AbstractDatasource implements DatasourceInterface
 {
     /**
@@ -44,7 +47,7 @@ abstract class AbstractDatasource implements DatasourceInterface
     protected $iterator;
 
     /**
-     * @var \Snowcap\CoreBundle\Paginator\PaginatorInterface
+     * @var \Leapt\CoreBundle\Paginator\PaginatorInterface
      */
     protected $paginator;
 
@@ -85,7 +88,7 @@ abstract class AbstractDatasource implements DatasourceInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
      */
     public function setSearchExpression(ExpressionInterface $expression)
     {
@@ -93,7 +96,7 @@ abstract class AbstractDatasource implements DatasourceInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
      */
     public function setFilterExpression(ExpressionInterface $expression)
     {

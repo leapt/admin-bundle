@@ -1,13 +1,13 @@
 <?php
 
-namespace Snowcap\AdminBundle\Controller;
+namespace Leapt\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class CatalogueTranslationController
- * @package Snowcap\AdminBundle\Controller
+ * @package Leapt\AdminBundle\Controller
  */
 class CatalogueTranslationController extends BaseController
 {
@@ -33,7 +33,7 @@ class CatalogueTranslationController extends BaseController
         $locales = $this->container->getParameter('locales');
         $fallbackLocale = $locales[0];
 
-        $catalogueReferences = $this->container->getParameter('snowcap_admin.translation_catalogues');
+        $catalogueReferences = $this->container->getParameter('leapt_admin.translation_catalogues');
 
         /** Getting all source catalogues */
         $catalogues = array();
@@ -74,7 +74,7 @@ class CatalogueTranslationController extends BaseController
                 $this->getGeneratedCataloguePath($catalogue, $activeLocale),
                 $yaml->dump($diff)
             );
-            $this->get('snowcap_admin.logger')->logCatalogTranslation($catalogue, $activeLocale, $logdiff);
+            $this->get('leapt_admin.logger')->logCatalogTranslation($catalogue, $activeLocale, $logdiff);
             $this->clearTranslationsCache();
             $this->setFlash('success','cataloguetranslation.success');
         }
@@ -83,7 +83,7 @@ class CatalogueTranslationController extends BaseController
         /** merging after the post to prevent persisting source values in the generated one */
         $activeCatalogue = $this->mergeSourceAndGenerated($catalogue, $activeCatalogue, $activeLocale);
 
-        return $this->render('SnowcapAdminBundle:CatalogueTranslation:index.html.twig', array(
+        return $this->render('LeaptAdminBundle:CatalogueTranslation:index.html.twig', array(
             'activeCatalogue' => $activeCatalogue,
             'activeCatalogueName' => $catalogue,
             'activeCatalogueLocale' => $activeLocale,

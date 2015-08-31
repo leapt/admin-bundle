@@ -1,5 +1,6 @@
 <?php
-namespace Snowcap\AdminBundle\Controller;
+
+namespace Leapt\AdminBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -19,7 +20,7 @@ class NavigationController extends BaseController
      */
     public function mainAction() {
         return array(
-            'admins' => $this->get('snowcap_admin')->getAdmins(),
+            'admins' => $this->get('leapt_admin')->getAdmins(),
         );
     }
 }

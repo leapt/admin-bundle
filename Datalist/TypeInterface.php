@@ -1,12 +1,12 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist;
+namespace Leapt\AdminBundle\Datalist;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Interface TypeInterface
- * @package Snowcap\AdminBundle\Datalist
+ * @package Leapt\AdminBundle\Datalist
  */
 interface TypeInterface
 {

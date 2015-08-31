@@ -1,17 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist;
+namespace Leapt\AdminBundle\Datalist;
 
-use Snowcap\AdminBundle\Datalist\Action\Type\ActionTypeInterface;
-use Snowcap\AdminBundle\Datalist\Field\Type\FieldTypeInterface;
-use Snowcap\AdminBundle\Datalist\Filter\Type\FilterTypeInterface;
-use Snowcap\AdminBundle\Datalist\Type\DatalistTypeInterface;
+use Leapt\AdminBundle\Datalist\Action\Type\ActionTypeInterface;
+use Leapt\AdminBundle\Datalist\Field\Type\FieldTypeInterface;
+use Leapt\AdminBundle\Datalist\Filter\Type\FilterTypeInterface;
+use Leapt\AdminBundle\Datalist\Type\DatalistTypeInterface;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class DatalistFactory
- * @package Snowcap\AdminBundle\Datalist
+ * @package Leapt\AdminBundle\Datalist
  */
 class DatalistFactory
 {
@@ -150,7 +150,7 @@ class DatalistFactory
 
     /**
      * @param string $alias
-     * @param \Snowcap\AdminBundle\Datalist\Field\Type\FieldTypeInterface $fieldType
+     * @param \Leapt\AdminBundle\Datalist\Field\Type\FieldTypeInterface $fieldType
      */
     public function registerFieldType($alias, FieldTypeInterface $fieldType)
     {

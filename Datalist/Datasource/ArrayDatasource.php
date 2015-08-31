@@ -1,14 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Datasource;
+namespace Leapt\AdminBundle\Datalist\Datasource;
 
+use Leapt\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
+use Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
+use Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
+use Leapt\CoreBundle\Paginator\ArrayPaginator;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
-use Snowcap\CoreBundle\Paginator\ArrayPaginator;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
-
+/**
+ * Class ArrayDatasource
+ * @package Leapt\AdminBundle\Datalist\Datasource
+ */
 class ArrayDatasource extends AbstractDatasource
 {
     /**
@@ -30,7 +33,7 @@ class ArrayDatasource extends AbstractDatasource
     }
 
     /**
-     * @return \Snowcap\CoreBundle\Paginator\ArrayPaginator
+     * @return \Leapt\CoreBundle\Paginator\ArrayPaginator
      */
     public function getPaginator()
     {
@@ -90,7 +93,7 @@ class ArrayDatasource extends AbstractDatasource
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
      * @return callable
      * @throws \InvalidArgumentException
      */
@@ -110,7 +113,7 @@ class ArrayDatasource extends AbstractDatasource
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\CombinedExpression $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\CombinedExpression $expression
      * @return callable
      * @throws \UnexpectedValueException
      */
@@ -152,7 +155,7 @@ class ArrayDatasource extends AbstractDatasource
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ComparisonExpression $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression $expression
      * @return callable
      * @throws \UnexpectedValueException
      */

@@ -1,13 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Action;
+namespace Leapt\AdminBundle\Datalist\Action;
 
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
 
+/**
+ * Interface DatalistActionInterface
+ * @package Leapt\AdminBundle\Datalist\Action
+ */
 interface DatalistActionInterface
 {
     /**
-     * @return \Snowcap\AdminBundle\Datalist\Action\Type\ActionTypeInterface
+     * @return \Leapt\AdminBundle\Datalist\Action\Type\ActionTypeInterface
      */
     public function getType();
 
@@ -34,7 +38,7 @@ interface DatalistActionInterface
     public function getOption($name, $default = null);
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      */
     public function setDatalist(DatalistInterface $datalist);
 

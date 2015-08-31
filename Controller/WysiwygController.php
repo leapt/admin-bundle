@@ -1,16 +1,15 @@
 <?php
 
-namespace Snowcap\AdminBundle\Controller;
+namespace Leapt\AdminBundle\Controller;
 
+use Leapt\AdminBundle\Datalist\Datalist;
+use Leapt\AdminBundle\Datalist\Datasource\DoctrineORMDatasource;
+use Leapt\AdminBundle\Entity\File;
+use Leapt\AdminBundle\Form\Type\FileType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Snowcap\AdminBundle\Datalist\Datalist;
-use Snowcap\AdminBundle\Datalist\Datasource\DoctrineORMDatasource;
 use Symfony\Component\HttpFoundation\Request;
-
-use Snowcap\AdminBundle\Form\Type\FileType;
-use Snowcap\AdminBundle\Entity\File;
 
 /**
  * Provides controller to manage wysiwyg related content
@@ -34,14 +33,14 @@ class WysiwygController extends BaseController
         $uploadForm = $this->createForm(new FileType(), $file);
         $extraParameters = array();
 
-        /** @var $datalistBuilder \Snowcap\AdminBundle\Datalist\DatalistBuilder */
+        /** @var $datalistBuilder \Leapt\AdminBundle\Datalist\DatalistBuilder */
         $datalistBuilder = $this
-            ->get('snowcap_admin.datalist_factory')
+            ->get('leapt_admin.datalist_factory')
             ->createBuilder(
                 'datalist',
                 array(
                     'translation_domain' => 'admin',
-                    'data_class' => 'Snowcap\AdminBundle\Entity\File'
+                    'data_class' => 'Leapt\AdminBundle\Entity\File'
                 )
             );
         /** @var $datalist Datalist */
@@ -55,7 +54,7 @@ class WysiwygController extends BaseController
         /** @var $em \Doctrine\ORM\EntityManager */
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->createQueryBuilder();
-        $queryBuilder->select('f')->from('SnowcapAdminBundle:File', 'f');
+        $queryBuilder->select('f')->from('LeaptAdminBundle:File', 'f');
 
         $datasource = new DoctrineORMDatasource($queryBuilder);
         $datalist->setDatasource($datasource);
@@ -63,7 +62,7 @@ class WysiwygController extends BaseController
 
         if ('POST' === $request->getMethod()) {
             // Manage upload post
-            if ($request->get('admin_snowcap_file') !== null) {
+            if ($request->get('admin_leapt_file') !== null) {
                 $uploadForm->handleRequest($request);
                 if ($uploadForm->isValid()) {
                     $em->persist($file);

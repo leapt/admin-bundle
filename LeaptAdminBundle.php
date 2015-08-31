@@ -1,14 +1,14 @@
 <?php
 
-namespace Snowcap\AdminBundle;
+namespace Leapt\AdminBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Leapt\AdminBundle\DependencyInjection\Compiler\AdminCompilerPass;
+use Leapt\AdminBundle\DependencyInjection\Compiler\DatalistCompilerPass;
+use Leapt\AdminBundle\DependencyInjection\Compiler\ImCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Snowcap\AdminBundle\DependencyInjection\Compiler\AdminCompilerPass;
-use Snowcap\AdminBundle\DependencyInjection\Compiler\DatalistCompilerPass;
-use Snowcap\AdminBundle\DependencyInjection\Compiler\ImCompilerPass;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SnowcapAdminBundle extends Bundle
+class LeaptAdminBundle extends Bundle
 {
     /**
      * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container

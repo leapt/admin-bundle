@@ -1,8 +1,8 @@
 <?php
 
-namespace Snowcap\AdminBundle\Twig\TokenParser;
+namespace Leapt\AdminBundle\Twig\TokenParser;
 
-use Snowcap\AdminBundle\Twig\Node\DatalistThemeNode;
+use Leapt\AdminBundle\Twig\Node\DatalistThemeNode;
 
 /**
  * Token Parser for the 'form_theme' tag.

@@ -1,14 +1,14 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Action\Type;
+namespace Leapt\AdminBundle\Datalist\Action\Type;
 
-use Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface;
-use Snowcap\AdminBundle\Datalist\ViewContext;
+use Leapt\AdminBundle\Datalist\Action\DatalistActionInterface;
+use Leapt\AdminBundle\Datalist\ViewContext;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AbstractActionType
- * @package Snowcap\AdminBundle\Datalist\Action\Type
+ * @package Leapt\AdminBundle\Datalist\Action\Type
  */
 abstract class AbstractActionType implements ActionTypeInterface
 {
@@ -27,8 +27,8 @@ abstract class AbstractActionType implements ActionTypeInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\ViewContext $viewContext
-     * @param \Snowcap\AdminBundle\Datalist\Action\DatalistActionInterface $action
+     * @param \Leapt\AdminBundle\Datalist\ViewContext $viewContext
+     * @param \Leapt\AdminBundle\Datalist\Action\DatalistActionInterface $action
      * @param mixed $item
      * @param array $options
      */

@@ -1,16 +1,16 @@
 <?php
 
-namespace Snowcap\AdminBundle\Entity;
+namespace Leapt\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Snowcap\CoreBundle\Doctrine\Mapping as SnowcapCore;
+use Leapt\CoreBundle\Doctrine\Mapping as LeaptCore;
 
 /**
- * Snowcap\AdminBundle\Entity
+ * Leapt\AdminBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="snowcap_admin_log")
+ * @ORM\Table(name="leapt_admin_log")
  */
 class Log {
     CONST TYPE_CATALOG_TRANSLATION = 'catalog_translation';

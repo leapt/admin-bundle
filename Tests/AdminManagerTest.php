@@ -1,8 +1,8 @@
 <?php
 
-namespace Snowcap\AdminBundle\Tests;
+namespace Leapt\AdminBundle\Tests;
 
-use Snowcap\AdminBundle\AdminManager;
+use Leapt\AdminBundle\AdminManager;
 
 class AdminManagerTest extends \PHPUnit_Framework_TestCase {
     /**
@@ -12,9 +12,9 @@ class AdminManagerTest extends \PHPUnit_Framework_TestCase {
     public function testRegisterAdmin()
     {
         $adminManager = new AdminManager();
-        $admin = $this->getMock('Snowcap\AdminBundle\Admin\AdminInterface');
+        $admin = $this->getMock('Leapt\AdminBundle\Admin\AdminInterface');
         $adminManager->registerAdmin('foo', $admin);
 
-        $this->assertInstanceOf('Snowcap\AdminBundle\Admin\AdminInterface', $adminManager->getAdmin('foo'));
+        $this->assertInstanceOf('Leapt\AdminBundle\Admin\AdminInterface', $adminManager->getAdmin('foo'));
     }
 }

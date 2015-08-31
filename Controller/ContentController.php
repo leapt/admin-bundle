@@ -1,12 +1,12 @@
 <?php
 
-namespace Snowcap\AdminBundle\Controller;
+namespace Leapt\AdminBundle\Controller;
 
-use Snowcap\AdminBundle\Admin\AdminInterface;
-use Snowcap\AdminBundle\Admin\ContentAdmin;
-use Snowcap\AdminBundle\Datalist\Datasource\DoctrineORMDatasource;
-use Snowcap\AdminBundle\Exception\ValidationException;
-use Snowcap\CoreBundle\Util\StringUtil;
+use Leapt\AdminBundle\Admin\AdminInterface;
+use Leapt\AdminBundle\Admin\ContentAdmin;
+use Leapt\AdminBundle\Datalist\Datasource\DoctrineORMDatasource;
+use Leapt\AdminBundle\Exception\ValidationException;
+use Leapt\CoreBundle\Util\StringUtil;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +39,7 @@ class ContentController extends BaseController
         $datalist->setDatasource($datasource);
         $datalist->bind($request);
 
-        return $this->render('SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':index.html.twig', array(
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':index.html.twig', array(
             'admin' => $admin,
             'datalist' => $datalist
         ));
@@ -57,7 +57,7 @@ class ContentController extends BaseController
         $entity = $admin->findEntity($request->attributes->get('id'));
         $this->secure($admin, 'ADMIN_CONTENT_VIEW', $entity);
 
-        return $this->render('SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':view.html.twig', array(
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':view.html.twig', array(
             'admin' => $admin,
             'entity' => $entity
         ));
@@ -91,7 +91,7 @@ class ContentController extends BaseController
             }
         }
 
-        return $this->render('SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':create.html.twig', array(
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':create.html.twig', array(
             'admin' => $admin,
             'entity' => $entity,
             'form' => $form->createView(),
@@ -129,7 +129,7 @@ class ContentController extends BaseController
         }
 
         $responseData = array(
-            'content' =>   $this->renderView('SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalCreate.html.twig', array(
+            'content' =>   $this->renderView('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalCreate.html.twig', array(
                 'admin' => $admin,
                 'entity' => $entity,
                 'form' => $form->createView(),
@@ -170,7 +170,7 @@ class ContentController extends BaseController
             }
         }
 
-        return $this->render('SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':update.html.twig', array(
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':update.html.twig', array(
             'admin' => $admin,
             'entity' => $entity,
             'form' => $form->createView(),
@@ -216,7 +216,7 @@ class ContentController extends BaseController
         }
 
         $responseData = array(
-            'content' => $this->renderView('SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalUpdate.html.twig', array(
+            'content' => $this->renderView('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalUpdate.html.twig', array(
                 'admin' => $admin,
                 'entity' => $entity,
                 'form' => $form->createView(),
@@ -257,7 +257,7 @@ class ContentController extends BaseController
 
         if (null === $entity) {
             $content = $this->renderView(
-                'SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalError.html.twig'
+                'LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalError.html.twig'
             );
         } else {
             if($request->isMethod('post')) {
@@ -280,7 +280,7 @@ class ContentController extends BaseController
             }
 
             $content = $this->renderView(
-                'SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalDelete.html.twig',
+                'LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalDelete.html.twig',
                 array(
                     'admin' => $admin,
                     'entity' => $entity,
@@ -319,7 +319,7 @@ class ContentController extends BaseController
         }
 
         return $this->render(
-            'SnowcapAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalDelete.html.twig',
+            'LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalDelete.html.twig',
             array(
                 'admin' => $admin,
                 'entity' => $entity,
@@ -353,11 +353,12 @@ class ContentController extends BaseController
     /**
      * Save a content entity
      *
-     * @param \Snowcap\AdminBundle\Admin\ContentAdmin $admin
+     * @param \Symfony\Component\HttpFoundation\Request
+     * @param \Leapt\AdminBundle\Admin\ContentAdmin $admin
      * @param \Symfony\Component\Form\Form $form
      * @param object $entity
-     * @throws \Exception
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws ValidationException
      */
     protected function save(Request $request, ContentAdmin $admin, Form $form, $entity)
     {
@@ -397,13 +398,13 @@ class ContentController extends BaseController
      * @param object $entity
      * @param string $domain
      */
-    protected function buildEntityFlash($type, $message, ContentAdmin $admin, $entity, $domain='SnowcapAdminBundle')
+    protected function buildEntityFlash($type, $message, ContentAdmin $admin, $entity, $domain = 'LeaptAdminBundle')
     {
         $this->get('session')->getFlashBag()->add($type, $this->get('translator')->trans(
             $message,
             array(
                 '%type%' => $this->get('translator')->transChoice(
-                    $admin->getOption('label'), 1, array(), $this->get('snowcap_admin')->getDefaultTranslationDomain()
+                    $admin->getOption('label'), 1, array(), $this->get('leapt_admin')->getDefaultTranslationDomain()
                 ),
                 '%name%' => $admin->getEntityName($entity)
             ),
@@ -422,14 +423,14 @@ class ContentController extends BaseController
      * @return array
      * @deprecated Use buildEntityFlash instead
      */
-    protected function buildModalEntityFlash($type, $message, ContentAdmin $admin, $entity, $domain='SnowcapAdminBundle')
+    protected function buildModalEntityFlash($type, $message, ContentAdmin $admin, $entity, $domain = 'LeaptAdminBundle')
     {
         return array(
             $type => array($this->get('translator')->trans(
                 $message,
                 array(
                     '%type%' => $this->get('translator')->transChoice(
-                        $admin->getOption('label'), 1, array(), $this->get('snowcap_admin')->getDefaultTranslationDomain()
+                        $admin->getOption('label'), 1, array(), $this->get('leapt_admin')->getDefaultTranslationDomain()
                     ),
                     '%name%' => $admin->getEntityName($entity))
                 ),
@@ -439,11 +440,11 @@ class ContentController extends BaseController
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper
+     * @return \Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
      */
     protected function getRoutingHelper()
     {
-        return $this->get('snowcap_admin.routing_helper_content');
+        return $this->get('leapt_admin.routing_helper_content');
     }
 
     /**

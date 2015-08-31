@@ -1,11 +1,15 @@
 <?php
 
-namespace Snowcap\AdminBundle\Admin;
+namespace Leapt\AdminBundle\Admin;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Interface AdminInterface
+ * @package Leapt\AdminBundle\Admin
+ */
 interface AdminInterface
 {
     /**

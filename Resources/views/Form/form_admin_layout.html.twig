@@ -1,31 +1,31 @@
-{% extends 'SnowcapBootstrapBundle:Form:form_bootstrap_layout.html.twig' %}
+{% extends 'LeaptBootstrapBundle:Form:form_bootstrap_layout.html.twig' %}
 
 {# entity widget #}
-{% block snowcap_admin_entity_widget %}
+{% block leapt_admin_entity_widget %}
     <div class="form-inline" data-admin="form-type-entity">
         {{ block('choice_widget') }}
         {% if allow_add %}
             &nbsp;<a href="{{ add_url }}" class="btn" data-admin="form-type-entity-add">{{ add_label|trans({}, translation_domain) }}</a>
         {% endif %}
     </div>
-{% endblock snowcap_admin_entity_widget %}
+{% endblock leapt_admin_entity_widget %}
 
 {# autocomplete widget #}
-{% block snowcap_admin_autocomplete_widget %}
+{% block leapt_admin_autocomplete_widget %}
     {% if compound %}
-        {{ block('snowcap_admin_autocomplete_multiple_widget') }}
+        {{ block('leapt_admin_autocomplete_multiple_widget') }}
     {% else %}
-        {{ block('snowcap_admin_autocomplete_single_widget') }}
+        {{ block('leapt_admin_autocomplete_single_widget') }}
     {% endif %}
-{% endblock snowcap_admin_autocomplete_widget %}
+{% endblock leapt_admin_autocomplete_widget %}
 
-{% block snowcap_admin_autocomplete_single_widget %}
+{% block leapt_admin_autocomplete_single_widget %}
 {% spaceless %}
     <div class="form-autocomplete form-autocomplete-single" data-admin="form-autocomplete" data-options-mode="single" data-options-url="{{ list_url }}">
         {{ form_widget(form, {'type': 'hidden'}) }}
         {% set text_widget %}
             <div class="text-input">
-                <input type="text"{% if text_value is not empty %} value="{{ text_value }}"{% endif %}  {{ block('snowcap_admin_autocomplete_widget_attributes') }}/>
+                <input type="text"{% if text_value is not empty %} value="{{ text_value }}"{% endif %}  {{ block('leapt_admin_autocomplete_widget_attributes') }}/>
             </div>
         {% endset %}
         {% if allow_add %}
@@ -42,9 +42,9 @@
         {% endif %}
     </div>
 {% endspaceless %}
-{% endblock snowcap_admin_autocomplete_single_widget %}
+{% endblock leapt_admin_autocomplete_single_widget %}
 
-{% block snowcap_admin_autocomplete_multiple_widget %}
+{% block leapt_admin_autocomplete_multiple_widget %}
     {% spaceless %}
         <div class="form-autocomplete form-autocomplete-multiple" data-admin="form-autocomplete" data-options-mode="multiple" data-options-url="{{ list_url }}" data-prototype="{{ form_row(prototype)|e }}">
             {% for child in form %}
@@ -59,7 +59,7 @@
             </ul>
             {% set text_widget %}
                 {% set attr = attr|merge({'class': (attr.class|default('') ~ ' token-input')|trim }) %}
-                <input type="text" {{ block('snowcap_admin_autocomplete_widget_attributes') }}/>
+                <input type="text" {{ block('leapt_admin_autocomplete_widget_attributes') }}/>
             {% endset %}
             {% if allow_add %}
                 <div class="input-append">
@@ -75,35 +75,35 @@
             {% endif %}
         </div>
     {% endspaceless %}
-{% endblock snowcap_admin_autocomplete_multiple_widget %}
+{% endblock leapt_admin_autocomplete_multiple_widget %}
 
-{% block snowcap_admin_autocomplete_widget_attributes %}
+{% block leapt_admin_autocomplete_widget_attributes %}
     {% spaceless %}
         id="_{{ id }}" name="_{{ full_name }}" autocomplete="off"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
         {% for attrname, attrvalue in attr %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
     {% endspaceless %}
-{% endblock snowcap_admin_autocomplete_widget_attributes %}
+{% endblock leapt_admin_autocomplete_widget_attributes %}
 
 {# slug widget #}
-{% block snowcap_admin_slug_widget %}
+{% block leapt_admin_slug_widget %}
     {% set attr = attr|merge({ 'data-admin': 'form-slugger', 'data-target': target, 'data-modal': '#modal-' ~ id }) %}
     <div class="input-append">
         {{ block('form_widget') }}
         <span class="add-on"><a href="#locked"><i class="icon-pencil icon"></i></a></span>
     </div>
-    {% from 'SnowcapBootstrapBundle::macros.html.twig' import modal %}
-    {{ modal('modal-' ~ id, 'slug_alert.title'|trans({}, 'SnowcapAdminBundle'), 'slug_alert.message'|trans({}, 'SnowcapAdminBundle')) }}
-{% endblock snowcap_admin_slug_widget %}
+    {% from 'LeaptBootstrapBundle::macros.html.twig' import modal %}
+    {{ modal('modal-' ~ id, 'slug_alert.title'|trans({}, 'LeaptAdminBundle'), 'slug_alert.message'|trans({}, 'LeaptAdminBundle')) }}
+{% endblock leapt_admin_slug_widget %}
 
 {# markdown widget #}
-{% block snowcap_admin_markdown_widget %}
+{% block leapt_admin_markdown_widget %}
 {% spaceless %}
     {% set attr = attr|merge({'class': attr.class|default('widget-markdown')}) %}
     <div class="tabbable tabs-below">
 
         <div class="tab-content">
             <div class="tab-pane active" id="textarea-{{ id }}">
-                <textarea {{ block('widget_attributes') }} data-url="{{ path('snowcap_admin_markdown') }}" rows="10">{{ value }}</textarea>
+                <textarea {{ block('widget_attributes') }} data-url="{{ path('leapt_admin_markdown') }}" rows="10">{{ value }}</textarea>
             </div>
             <div class="tab-pane" id="preview-{{ id }}">
                 <div class="markdown-previewer">&nbsp;</div>
@@ -118,7 +118,7 @@
 {% endblock %}
 
 {# wysiwyg widget #}
-{% block snowcap_admin_wysiwyg_widget %}
+{% block leapt_admin_wysiwyg_widget %}
     {% set attr = attr|merge({'data-admin': 'form-wysiwyg-editor', 'data-wysiwyg': wysiwyg_config}) %}
     {{ block('textarea_widget') }}
 {% endblock %}
@@ -155,7 +155,7 @@
     {% endif %}
 {% endblock text_widget %}
 
-{% block snowcap_admin_multiupload_widget %}
+{% block leapt_admin_multiupload_widget %}
     {% spaceless %}
         {% set attr = attr|merge({'data-multi-upload': true, 'class': 'form-multiupload control-group' }) %}
         {% if prototype is defined %}
@@ -174,19 +174,19 @@
                             </div>
 
                             <label for="multiupload-file-uploader">{{ add_label|trans({}, translation_domain) }}</label>
-                            <input type="file" name="files[]" id="multiupload-file-uploader" data-url="{{ path('snowcap_admin_upload') }}" multiple="">
+                            <input type="file" name="files[]" id="multiupload-file-uploader" data-url="{{ path('leapt_admin_upload') }}" multiple="">
                         </div>
                     </li>
                 {% endif %}
             </ul>
         </div>
     {% endspaceless %}
-{% endblock snowcap_admin_multiupload_widget %}
+{% endblock leapt_admin_multiupload_widget %}
 
-{% block snowcap_admin_multiupload_url_widget %}
+{% block leapt_admin_multiupload_url_widget %}
     {% spaceless %}
         <li class="multiupload-file-preview">
-            <button class="btn btn-mini remove">{{ 'multiupload_widget.remove'|trans({}, 'SnowcapAdminBundle') }}</button>&nbsp;
+            <button class="btn btn-mini remove">{{ 'multiupload_widget.remove'|trans({}, 'LeaptAdminBundle') }}</button>&nbsp;
 
             <a href="{{ asset(value) }}" target="_blank">
                 {{ value }}
@@ -195,12 +195,12 @@
             {{ block('hidden_widget') }}
         </li>
     {% endspaceless %}
-{% endblock snowcap_admin_multiupload_url_widget %}
+{% endblock leapt_admin_multiupload_url_widget %}
 
-{% block snowcap_admin_multiupload_image_widget %}
+{% block leapt_admin_multiupload_image_widget %}
     {% spaceless %}
         <li class="multiupload-file-preview">
-            <button class="btn btn-mini remove remove-image">{{ 'multiupload_widget.remove'|trans({}, 'SnowcapAdminBundle') }}</button>
+            <button class="btn btn-mini remove remove-image">{{ 'multiupload_widget.remove'|trans({}, 'LeaptAdminBundle') }}</button>
 
             <a href="{{ asset(value) }}" target="_blank">
                 <img src="{{ asset(value)|imresize(im_resize) }}" alt="{{ value }}" />
@@ -209,4 +209,4 @@
             {{ block('hidden_widget') }}
         </li>
     {% endspaceless %}
-{% endblock snowcap_admin_multiupload_image_widget %}
+{% endblock leapt_admin_multiupload_image_widget %}

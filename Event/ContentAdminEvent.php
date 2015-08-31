@@ -1,10 +1,10 @@
 <?php
 
-namespace Snowcap\AdminBundle\Event;
+namespace Leapt\AdminBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
-use Snowcap\AdminBundle\Admin\ContentAdmin;
+use Leapt\AdminBundle\Admin\ContentAdmin;
 
 class ContentAdminEvent extends Event
 {
@@ -29,7 +29,7 @@ class ContentAdminEvent extends Event
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Admin\ContentAdmin
+     * @return \Leapt\AdminBundle\Admin\ContentAdmin
      */
     public function getAdmin()
     {

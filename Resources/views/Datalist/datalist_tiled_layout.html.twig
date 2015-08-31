@@ -1,4 +1,4 @@
-{% extends 'SnowcapAdminBundle:Datalist:datalist_grid_layout.html.twig' %}
+{% extends 'LeaptAdminBundle:Datalist:datalist_grid_layout.html.twig' %}
 
 {# datalist grid block #}
 {% block datalist %}
@@ -59,7 +59,7 @@
         {% if value is not null %}
             {% if options.escape %}{{ value }}{% else %}{{ value|raw }}{% endif %}
         {% else %}
-            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
         {% endif %}
     </p>
 {% endblock text_field %}
@@ -70,7 +70,7 @@
         {% if value is not null %}
             {{ value|date(options['format'])  }}
         {% else %}
-            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
         {% endif %}
     </div>
 {% endblock datetime_field %}
@@ -97,7 +97,7 @@
         {% if value is not null %}
             <a href="{{ url is defined ? url : value }}">{{ value }}</a>
         {% else %}
-            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "SnowcapAdminBundle") }}</span>
+            <span class="empty-value">{{ "datalist.empty_value"|trans({}, "LeaptAdminBundle") }}</span>
         {% endif %}
     </p>
 {% endblock url_field %}

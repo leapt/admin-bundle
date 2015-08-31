@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Extension;
+namespace Leapt\AdminBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class CollectionTypeExtension
- * @package Snowcap\AdminBundle\Form\Extension
+ * @package Leapt\AdminBundle\Form\Extension
  */
 class CollectionTypeExtension extends AbstractTypeExtension
 {
@@ -43,7 +43,7 @@ class CollectionTypeExtension extends AbstractTypeExtension
         $resolver
             ->setDefaults(array(
                 'confirm_delete' => false,
-                'confirm_delete_url' => $this->router->generate('snowcap_admin_widget_delete_item')
+                'confirm_delete_url' => $this->router->generate('leapt_admin_widget_delete_item')
             ));
     }
 

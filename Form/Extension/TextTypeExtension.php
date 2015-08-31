@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Extension;
+namespace Leapt\AdminBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class TextTypeExtension
- * @package Snowcap\AdminBundle\Form\Extension
+ * @package Leapt\AdminBundle\Form\Extension
  */
 class TextTypeExtension extends AbstractTypeExtension
 {

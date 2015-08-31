@@ -1,15 +1,15 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Type;
+namespace Leapt\AdminBundle\Datalist\Type;
 
-use Snowcap\AdminBundle\Datalist\DatalistBuilder;
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
-use Snowcap\AdminBundle\Datalist\ViewContext;
+use Leapt\AdminBundle\Datalist\DatalistBuilder;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\ViewContext;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AbstractDatalistType
- * @package Snowcap\AdminBundle\Datalist\Type
+ * @package Leapt\AdminBundle\Datalist\Type
  */
 abstract class AbstractDatalistType implements DatalistTypeInterface
 {
@@ -38,7 +38,7 @@ abstract class AbstractDatalistType implements DatalistTypeInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistBuilder $builder
+     * @param \Leapt\AdminBundle\Datalist\DatalistBuilder $builder
      * @param array $options
      * @return mixed|void
      */
@@ -48,8 +48,8 @@ abstract class AbstractDatalistType implements DatalistTypeInterface
     }
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\ViewContext $viewContext
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\ViewContext $viewContext
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @param array $options
      */
     public function buildViewContext(ViewContext $viewContext, DatalistInterface $datalist, array $options)

@@ -1,12 +1,12 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter\Type;
+namespace Leapt\AdminBundle\Datalist\Filter\Type;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AbstractFilterType
- * @package Snowcap\AdminBundle\Datalist\Filter\Type
+ * @package Leapt\AdminBundle\Datalist\Filter\Type
  */
 abstract class AbstractFilterType implements FilterTypeInterface
 {

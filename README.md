@@ -1,7 +1,7 @@
-SnowcapAdminBundle
-==================
+LeaptAdminBundle
+================
 
-The SnowcapAdminBundle provides backfoffice capabilities for your Symfony2 application.
+The LeaptAdminBundle provides backoffice capabilities for your Symfony2 application.
 
 Features include:
 
@@ -10,11 +10,6 @@ Features include:
 - Form type extensions (autocomplete, advanced file field, ...)
 - Translation interface
 - And much more
-
-**Warning:** This bundle is still pretty much WIP. If you are looking for an admin bundle with a lof of community attention,
-you should probably look at [SonataAdminBundle](https://github.com/sonata-project/SonataAdminBundle).
-
-[![Build Status](https://secure.travis-ci.org/snowcap/SnowcapAdminBundle.png?branch=master)](http://travis-ci.org/snowcap/SnowcapAdminBundle)
 
 Documentation
 -------------
@@ -36,12 +31,14 @@ This bundle is under the MIT license. See the complete license in the bundle:
 About
 -----
 
-SnowcapAdminBundle is a [Snowcap](https://github.com/snowcap) initiative.
+LeaptAdminBundle is a [Leapt](https://github.com/leapt) initiative.
+
+It is based on a fork of the SnowcapAdminBundle: https://github.com/snowcap/SnowcapAdminBundle
 
 Reporting an issue or a feature request
 ---------------------------------------
 
-Issues and feature requests are tracked in the [Github issue tracker](https://github.com/snowcap/SnowcapAdminBundle/issues).
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/leapt/admin-bundle/issues).
 
 When reporting a bug, it may be a good idea to reproduce it in a basic project
 built using the [Symfony Standard Edition](https://github.com/symfony/symfony-standard)

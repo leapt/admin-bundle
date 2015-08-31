@@ -1,9 +1,10 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Field;
+namespace Leapt\AdminBundle\Datalist\Field;
 
-use Snowcap\AdminBundle\Datalist\Config;
+use Leapt\AdminBundle\Datalist\Config;
 
-class DatalistFieldConfig extends Config {
+class DatalistFieldConfig extends Config
+{
 
 }

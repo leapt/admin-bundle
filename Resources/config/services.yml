@@ -1,212 +1,212 @@
 parameters:
-    snowcap_admin.logger_entity.class: Snowcap\AdminBundle\Entity\Log
-    snowcap_admin.security.user_class: ~
-    snowcap_admin.translation_catalogues: ~
-    snowcap_admin.multiupload.tmp_dir: ~
+    leapt_admin.logger_entity.class: Leapt\AdminBundle\Entity\Log
+    leapt_admin.security.user_class: ~
+    leapt_admin.translation_catalogues: ~
+    leapt_admin.multiupload.tmp_dir: ~
 
 services:
     # Main admin class
-    snowcap_admin:
-        class: Snowcap\AdminBundle\AdminManager
+    leapt_admin:
+        class: Leapt\AdminBundle\AdminManager
 
     # Base admin services
-    snowcap_admin.admin_abstract:
-        class: Snowcap\AdminBundle\Admin\AbstractAdmin
+    leapt_admin.admin_abstract:
+        class: Leapt\AdminBundle\Admin\AbstractAdmin
         abstract: true
         calls:
             - [ setContainer, [@service_container]]
 
-    snowcap_admin.admin_content:
-        class: Snowcap\AdminBundle\Admin\ContentAdmin
+    leapt_admin.admin_content:
+        class: Leapt\AdminBundle\Admin\ContentAdmin
         abstract: true
-        parent: snowcap_admin.admin_abstract
+        parent: leapt_admin.admin_abstract
 
     # Routing
-    snowcap_admin.routing_loader:
-        class: Snowcap\AdminBundle\Routing\Loader\AdminLoader
-        arguments: [@snowcap_admin]
+    leapt_admin.routing_loader:
+        class: Leapt\AdminBundle\Routing\Loader\AdminLoader
+        arguments: [@leapt_admin]
         tags:
             - { name: routing.loader }
 
-    snowcap_admin.routing_helper_content:
-        class: Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper
+    leapt_admin.routing_helper_content:
+        class: Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
         arguments: [@router, @controller_name_converter, "", ""]
 
     # Param converters
-    snowcap_admin.param_converter:
-        class: Snowcap\AdminBundle\Request\ParamConverter\AdminParamConverter
-        arguments: [@snowcap_admin, @snowcap_core.navigation]
+    leapt_admin.param_converter:
+        class: Leapt\AdminBundle\Request\ParamConverter\AdminParamConverter
+        arguments: [@leapt_admin, @leapt_core.navigation]
         tags:
             - { name: request.param_converter }
 
     # Event listeners
-    snowcap_admin.listener_logger:
-        class: Snowcap\AdminBundle\EventListener\LoggerListener
-        arguments: [@snowcap_admin.logger]
+    leapt_admin.listener_logger:
+        class: Leapt\AdminBundle\EventListener\LoggerListener
+        arguments: [@leapt_admin.logger]
         tags:
             - { name: kernel.event_subscriber }
 
     # Twig extensions and loaders
-    snowcap_admin.twig_admin:
-        class: Snowcap\AdminBundle\Twig\Extension\AdminExtension
-        arguments: [@snowcap_admin, @snowcap_admin.routing_helper_content, @translator]
+    leapt_admin.twig_admin:
+        class: Leapt\AdminBundle\Twig\Extension\AdminExtension
+        arguments: [@leapt_admin, @leapt_admin.routing_helper_content, @translator]
         tags:
             -  { name: twig.extension }
 
-    snowcap_admin.twig_datalist:
-        class: Snowcap\AdminBundle\Twig\Extension\DatalistExtension
+    leapt_admin.twig_datalist:
+        class: Leapt\AdminBundle\Twig\Extension\DatalistExtension
         arguments: [@form.factory]
         calls:
             - [ setContainer, [@service_container]]
         tags:
             -  { name: twig.extension }
-    snowcap_admin.twig_loader:
-        class: Snowcap\AdminBundle\Twig\Loader\AdminLoader
+    leapt_admin.twig_loader:
+        class: Leapt\AdminBundle\Twig\Loader\AdminLoader
         arguments: [@templating.locator, @templating.name_parser]
         tags:
             - { name: twig.loader }
 
     # Form types
-    snowcap_admin.form_type_slug:
-        class: Snowcap\AdminBundle\Form\Type\SlugType
+    leapt_admin.form_type_slug:
+        class: Leapt\AdminBundle\Form\Type\SlugType
         tags:
-            -  { name: form.type, alias: snowcap_admin_slug }
+            -  { name: form.type, alias: leapt_admin_slug }
 
-    snowcap_admin.form_type_markdown:
-        class: Snowcap\AdminBundle\Form\Type\MarkdownType
+    leapt_admin.form_type_markdown:
+        class: Leapt\AdminBundle\Form\Type\MarkdownType
         tags:
-            -  { name: form.type, alias: snowcap_admin_markdown }
+            -  { name: form.type, alias: leapt_admin_markdown }
 
-    snowcap_admin.form_type_wysiwyg:
-        class: Snowcap\AdminBundle\Form\Type\WysiwygType
+    leapt_admin.form_type_wysiwyg:
+        class: Leapt\AdminBundle\Form\Type\WysiwygType
         tags:
-            -  { name: form.type, alias: snowcap_admin_wysiwyg }
+            -  { name: form.type, alias: leapt_admin_wysiwyg }
 
-    snowcap_admin.form_type_entity:
-        class: Snowcap\AdminBundle\Form\Type\EntityType
-        arguments: [@snowcap_admin, @snowcap_admin.routing_helper_content]
+    leapt_admin.form_type_entity:
+        class: Leapt\AdminBundle\Form\Type\EntityType
+        arguments: [@leapt_admin, @leapt_admin.routing_helper_content]
         tags:
-            - { name: form.type, alias: snowcap_admin_entity }
+            - { name: form.type, alias: leapt_admin_entity }
 
-    snowcap_admin.form_type_autocomplete:
-        class: Snowcap\AdminBundle\Form\Type\AutocompleteType
-        arguments: [@snowcap_admin, @snowcap_admin.routing_helper_content]
+    leapt_admin.form_type_autocomplete:
+        class: Leapt\AdminBundle\Form\Type\AutocompleteType
+        arguments: [@leapt_admin, @leapt_admin.routing_helper_content]
         tags:
-            -  { name: form.type, alias: snowcap_admin_autocomplete }
+            -  { name: form.type, alias: leapt_admin_autocomplete }
 
-    snowcap_admin.form_type_multiupload:
-        class: Snowcap\AdminBundle\Form\Type\MultiUploadType
+    leapt_admin.form_type_multiupload:
+        class: Leapt\AdminBundle\Form\Type\MultiUploadType
         arguments: [%kernel.root_dir%]
         tags:
-            -  { name: form.type, alias: snowcap_admin_multiupload }
+            -  { name: form.type, alias: leapt_admin_multiupload }
 
-    snowcap_admin.form_type_multiupload_url:
-        class: Snowcap\AdminBundle\Form\Type\MultiUploadUrlType
+    leapt_admin.form_type_multiupload_url:
+        class: Leapt\AdminBundle\Form\Type\MultiUploadUrlType
         tags:
-            -  { name: form.type, alias: snowcap_admin_multiupload_url }
+            -  { name: form.type, alias: leapt_admin_multiupload_url }
 
-    snowcap_admin.form_type_multiupload_image:
-        class: Snowcap\AdminBundle\Form\Type\MultiUploadImageType
+    leapt_admin.form_type_multiupload_image:
+        class: Leapt\AdminBundle\Form\Type\MultiUploadImageType
         tags:
-            -  { name: form.type, alias: snowcap_admin_multiupload_image }
+            -  { name: form.type, alias: leapt_admin_multiupload_image }
 
     # Form type extensions
-    snowcap_admin.form_extension_collection:
-        class: Snowcap\AdminBundle\Form\Extension\CollectionTypeExtension
+    leapt_admin.form_extension_collection:
+        class: Leapt\AdminBundle\Form\Extension\CollectionTypeExtension
         arguments: [@router]
         tags:
             - { name: form.type_extension, alias: collection }
-    snowcap_admin.form_extension_text:
-        class: Snowcap\AdminBundle\Form\Extension\TextTypeExtension
+    leapt_admin.form_extension_text:
+        class: Leapt\AdminBundle\Form\Extension\TextTypeExtension
         tags:
             - { name: form.type_extension, alias: text }
 
     # Datalists
-    snowcap_admin.datalist_factory:
-        class: Snowcap\AdminBundle\Datalist\DatalistFactory
+    leapt_admin.datalist_factory:
+        class: Leapt\AdminBundle\Datalist\DatalistFactory
         arguments: [@form.factory]
 
-    snowcap_admin.datalist_type.datalist:
-        class: Snowcap\AdminBundle\Datalist\Type\DatalistType
+    leapt_admin.datalist_type.datalist:
+        class: Leapt\AdminBundle\Datalist\Type\DatalistType
         tags:
-            - { name: snowcap_admin.datalist_type, alias: datalist }
+            - { name: leapt_admin.datalist_type, alias: datalist }
 
-    snowcap_admin.datalist_field_datetime:
-        class: Snowcap\AdminBundle\Datalist\Field\Type\DateTimeFieldType
+    leapt_admin.datalist_field_datetime:
+        class: Leapt\AdminBundle\Datalist\Field\Type\DateTimeFieldType
         tags:
-            - { name: snowcap_admin.datalist_fieldtype, alias: datetime }
+            - { name: leapt_admin.datalist_fieldtype, alias: datetime }
 
-    snowcap_admin.datalist_field_heading:
-        class: Snowcap\AdminBundle\Datalist\Field\Type\HeadingFieldType
+    leapt_admin.datalist_field_heading:
+        class: Leapt\AdminBundle\Datalist\Field\Type\HeadingFieldType
         tags:
-            - { name: snowcap_admin.datalist_fieldtype, alias: heading }
+            - { name: leapt_admin.datalist_fieldtype, alias: heading }
 
-    snowcap_admin.datalist_field_image:
-        class: Snowcap\AdminBundle\Datalist\Field\Type\ImageFieldType
+    leapt_admin.datalist_field_image:
+        class: Leapt\AdminBundle\Datalist\Field\Type\ImageFieldType
         tags:
-            - { name: snowcap_admin.datalist_fieldtype, alias: image }
+            - { name: leapt_admin.datalist_fieldtype, alias: image }
 
-    snowcap_admin.datalist_field_label:
-        class: Snowcap\AdminBundle\Datalist\Field\Type\LabelFieldType
+    leapt_admin.datalist_field_label:
+        class: Leapt\AdminBundle\Datalist\Field\Type\LabelFieldType
         tags:
-            - { name: snowcap_admin.datalist_fieldtype, alias: label }
+            - { name: leapt_admin.datalist_fieldtype, alias: label }
 
-    snowcap_admin.datalist_field_boolean:
-        class: Snowcap\AdminBundle\Datalist\Field\Type\BooleanFieldType
+    leapt_admin.datalist_field_boolean:
+        class: Leapt\AdminBundle\Datalist\Field\Type\BooleanFieldType
         tags:
-            - { name: snowcap_admin.datalist_fieldtype, alias: boolean }
+            - { name: leapt_admin.datalist_fieldtype, alias: boolean }
 
-    snowcap_admin.datalist_field_text:
-        class: Snowcap\AdminBundle\Datalist\Field\Type\TextFieldType
+    leapt_admin.datalist_field_text:
+        class: Leapt\AdminBundle\Datalist\Field\Type\TextFieldType
         tags:
-            - { name: snowcap_admin.datalist_fieldtype, alias: text }
+            - { name: leapt_admin.datalist_fieldtype, alias: text }
 
-    snowcap_admin.datalist_field_url:
-        class: Snowcap\AdminBundle\Datalist\Field\Type\UrlFieldType
-        parent: snowcap_admin.datalist_field_text
+    leapt_admin.datalist_field_url:
+        class: Leapt\AdminBundle\Datalist\Field\Type\UrlFieldType
+        parent: leapt_admin.datalist_field_text
         tags:
-            - { name: snowcap_admin.datalist_fieldtype, alias: url }
+            - { name: leapt_admin.datalist_fieldtype, alias: url }
 
-    snowcap_admin.datalist_filter_choice:
-        class: Snowcap\AdminBundle\Datalist\Filter\Type\ChoiceFilterType
+    leapt_admin.datalist_filter_choice:
+        class: Leapt\AdminBundle\Datalist\Filter\Type\ChoiceFilterType
         tags:
-            - { name: snowcap_admin.datalist_filtertype, alias: choice }
+            - { name: leapt_admin.datalist_filtertype, alias: choice }
 
-    snowcap_admin.datalist_filter_entity:
-        class: Snowcap\AdminBundle\Datalist\Filter\Type\EntityFilterType
+    leapt_admin.datalist_filter_entity:
+        class: Leapt\AdminBundle\Datalist\Filter\Type\EntityFilterType
         tags:
-            - { name: snowcap_admin.datalist_filtertype, alias: entity }
+            - { name: leapt_admin.datalist_filtertype, alias: entity }
 
-    snowcap_admin.datalist_filter_search:
-        class: Snowcap\AdminBundle\Datalist\Filter\Type\SearchFilterType
+    leapt_admin.datalist_filter_search:
+        class: Leapt\AdminBundle\Datalist\Filter\Type\SearchFilterType
         tags:
-            - { name: snowcap_admin.datalist_filtertype, alias: search }
+            - { name: leapt_admin.datalist_filtertype, alias: search }
 
-    snowcap_admin.datalist_action_simple:
-        class: Snowcap\AdminBundle\Datalist\Action\Type\SimpleActionType
+    leapt_admin.datalist_action_simple:
+        class: Leapt\AdminBundle\Datalist\Action\Type\SimpleActionType
         arguments: [@router]
         tags:
-            - { name: snowcap_admin.datalist_actiontype, alias: simple }
+            - { name: leapt_admin.datalist_actiontype, alias: simple }
 
-    snowcap_admin.datalist_action_content_admin:
-        class: Snowcap\AdminBundle\Datalist\Action\Type\ContentAdminActionType
-        arguments: [@snowcap_admin, @snowcap_admin.routing_helper_content]
+    leapt_admin.datalist_action_content_admin:
+        class: Leapt\AdminBundle\Datalist\Action\Type\ContentAdminActionType
+        arguments: [@leapt_admin, @leapt_admin.routing_helper_content]
         tags:
-            - { name: snowcap_admin.datalist_actiontype, alias: content_admin }
+            - { name: leapt_admin.datalist_actiontype, alias: content_admin }
 
     # Admin logger
-    snowcap_admin.logger:
-        class: Snowcap\AdminBundle\Logger\Logger
-        arguments: [@snowcap_admin, @doctrine.orm.entity_manager, @security.token_storage, @security.authorization_checker, %snowcap_admin.logger_entity.class%]
+    leapt_admin.logger:
+        class: Leapt\AdminBundle\Logger\Logger
+        arguments: [@leapt_admin, @doctrine.orm.entity_manager, @security.token_storage, @security.authorization_checker, %leapt_admin.logger_entity.class%]
 
     # Security
-    snowcap_admin.security.user_manager:
-        class: Snowcap\AdminBundle\Security\UserManager
-        arguments: [%snowcap_admin.security.user_class%, @security.encoder_factory, @doctrine.orm.entity_manager]
+    leapt_admin.security.user_manager:
+        class: Leapt\AdminBundle\Security\UserManager
+        arguments: [%leapt_admin.security.user_class%, @security.encoder_factory, @doctrine.orm.entity_manager]
 
-    snowcap_admin.content_voter:
-        class: Snowcap\AdminBundle\Security\Voter\ContentAdminVoter
+    leapt_admin.content_voter:
+        class: Leapt\AdminBundle\Security\Voter\ContentAdminVoter
         public: false
-        arguments: [@snowcap_admin]
+        arguments: [@leapt_admin]
         tags:
             - { name: security.voter }

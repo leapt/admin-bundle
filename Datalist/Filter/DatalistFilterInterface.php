@@ -1,16 +1,16 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Filter;
+namespace Leapt\AdminBundle\Datalist\Filter;
 
 interface DatalistFilterInterface
 {
     /**
-     * @return \Snowcap\AdminBundle\Datalist\Filter\Type\FilterTypeInterface
+     * @return \Leapt\AdminBundle\Datalist\Filter\Type\FilterTypeInterface
      */
     public function getType();
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\DatalistInterface
+     * @return \Leapt\AdminBundle\Datalist\DatalistInterface
      */
     public function getDatalist();
 

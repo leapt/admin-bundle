@@ -1,13 +1,17 @@
 <?php
 
-namespace Snowcap\AdminBundle\Admin;
+namespace Leapt\AdminBundle\Admin;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class AbstractAdmin
+ * @package Leapt\AdminBundle\Admin
+ */
 abstract class AbstractAdmin implements AdminInterface, ContainerAwareInterface
 {
     /**
@@ -120,11 +124,11 @@ abstract class AbstractAdmin implements AdminInterface, ContainerAwareInterface
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Datalist\DatalistFactory
+     * @return \Leapt\AdminBundle\Datalist\DatalistFactory
      */
     public function getDatalistFactory()
     {
-        return $this->container->get('snowcap_admin.datalist_factory');
+        return $this->container->get('leapt_admin.datalist_factory');
     }
 
     /**
@@ -169,11 +173,11 @@ abstract class AbstractAdmin implements AdminInterface, ContainerAwareInterface
     }
 
     /**
-     * @return \Snowcap\AdminBundle\Routing\Helper\ContentRoutingHelper
+     * @return \Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
      */
     public function getRoutingHelper()
     {
-        return $this->container->get('snowcap_admin.routing_helper_content');
+        return $this->container->get('leapt_admin.routing_helper_content');
     }
 
 }

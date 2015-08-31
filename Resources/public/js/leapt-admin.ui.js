@@ -1,15 +1,15 @@
-SnowcapAdmin.Ui = (function() {
+LeaptAdmin.Ui = (function() {
     /**
      * Admin modal form view
      *
      */
-    var Modal = SnowcapBootstrap.Modal.extend({
+    var Modal = LeaptBootstrap.Modal.extend({
         initialize: function() {
-            SnowcapBootstrap.Modal.prototype.initialize.apply(this);
+            LeaptBootstrap.Modal.prototype.initialize.apply(this);
             this.off('ui:modal:render');
-            this.on('ui:modal:render', _.partial(SnowcapAdmin.Form.factories.collectionFactory, this.$el));
-            this.on('ui:modal:render', _.partial(SnowcapAdmin.Form.factories.textAutocompleteFactory, this.$el));
-            this.on('ui:modal:render', _.partial(SnowcapAdmin.Form.factories.autocompleteFactory, this.$el));
+            this.on('ui:modal:render', _.partial(LeaptAdmin.Form.factories.collectionFactory, this.$el));
+            this.on('ui:modal:render', _.partial(LeaptAdmin.Form.factories.textAutocompleteFactory, this.$el));
+            this.on('ui:modal:render', _.partial(LeaptAdmin.Form.factories.autocompleteFactory, this.$el));
             this.on('ui:modal:render', this.checkAlerts);
             this.on('ui:modal:success', this.success);
         },
@@ -40,7 +40,7 @@ SnowcapAdmin.Ui = (function() {
                 options.modalClass = $modalTrigger.data('options-modal-class');
             }
             options.backdrop = $modalTrigger.data('options-modal-backdrop');
-            new SnowcapAdmin.Ui.Modal(options);
+            new LeaptAdmin.Ui.Modal(options);
         });
     };
 
@@ -101,9 +101,9 @@ SnowcapAdmin.Ui = (function() {
         return this.each(function () {
             var
                 $this = $(this),
-                alerts = $this.data('snowcap_admin_ui_alerts');
+                alerts = $this.data('leapt_admin_ui_alerts');
             if (!alerts) {
-                $this.data('snowcap_admin_ui_alerts', alerts = new Alerts({el: $this}));
+                $this.data('leapt_admin_ui_alerts', alerts = new Alerts({el: $this}));
             }
             if('undefined' !== typeof method) {
                 alerts[method].apply(alerts, args);
@@ -119,7 +119,7 @@ SnowcapAdmin.Ui = (function() {
 
 (function($) {
 
-    SnowcapAdmin.Ui.modalFactory();
+    LeaptAdmin.Ui.modalFactory();
     $('[data-admin=ui-alerts]').admin_ui_alerts();
 
 })(jQuery);

@@ -1,13 +1,13 @@
 <?php
-namespace Snowcap\AdminBundle\Admin;
 
+namespace Leapt\AdminBundle\Admin;
+
+use Leapt\AdminBundle\Event\AdminEvents;
+use Leapt\AdminBundle\Event\ContentAdminEvent;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\RouteCollection;
-
-use Snowcap\AdminBundle\Event\AdminEvents;
-use Snowcap\AdminBundle\Event\ContentAdminEvent;
 
 /**
  * Content admin class
@@ -188,7 +188,7 @@ abstract class ContentAdmin extends AbstractAdmin
     /**
      * Return the main admin list for this content
      *
-     * @return \Snowcap\AdminBundle\Datalist\DatalistInterface
+     * @return \Leapt\AdminBundle\Datalist\DatalistInterface
      */
     abstract public function getDatalist();
 

@@ -1,10 +1,14 @@
 <?php
 
-namespace Snowcap\AdminBundle\Controller;
+namespace Leapt\AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class UploadController
+ * @package Leapt\AdminBundle\Controller
+ */
 class UploadController extends BaseController
 {
     /**
@@ -15,7 +19,7 @@ class UploadController extends BaseController
     public function uploadAction(Request $request)
     {
         $rootDir = $this->get('kernel')->getRootDir() . '/../web';
-        $tmpDir = '/' . ltrim($this->get('service_container')->getParameter('snowcap_admin.multiupload.tmp_dir'), '/');
+        $tmpDir = '/' . ltrim($this->get('service_container')->getParameter('leapt_admin.multiupload.tmp_dir'), '/');
         $dstDir = $rootDir . $tmpDir;
 
         if (null === $files = $request->files->get('files')) {

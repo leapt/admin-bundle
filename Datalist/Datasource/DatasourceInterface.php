@@ -1,14 +1,18 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Datasource;
+namespace Leapt\AdminBundle\Datalist\Datasource;
 
-use Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
+use Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface;
 
+/**
+ * Interface DatasourceInterface
+ * @package Leapt\AdminBundle\Datalist\Datasource
+ */
 interface DatasourceInterface extends \IteratorAggregate, \Countable
 {
     /**
      * @param int $limitPerPage
-     * @param int $limitRange
+     * @param int $rangeLimit
      *
      * @return DatasourceInterface
      */
@@ -20,19 +24,19 @@ interface DatasourceInterface extends \IteratorAggregate, \Countable
     public function setPage($page);
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
      * @return mixed
      */
     public function setSearchExpression(ExpressionInterface $expression);
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
+     * @param \Leapt\AdminBundle\Datalist\Filter\Expression\ExpressionInterface $expression
      * @return mixed
      */
     public function setFilterExpression(ExpressionInterface $expression);
 
     /**
-     * @return \Snowcap\CoreBundle\Paginator\PaginatorInterface
+     * @return \Leapt\CoreBundle\Paginator\PaginatorInterface
      */
     public function getPaginator();
 

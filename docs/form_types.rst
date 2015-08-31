@@ -4,7 +4,7 @@ Custom Form types
 TextAutocomplete
 ----------------
 
-JavaScript plugin Typeahead is included in SnowcapAdminBundle. Therefore you can create an autocomplete that returns only text by passing an extra parameter to text type named *list_url*.
+JavaScript plugin Typeahead is included in LeaptAdminBundle. Therefore you can create an autocomplete that returns only text by passing an extra parameter to text type named *list_url*.
 This url must have a GET parameter having *__query__* value by default, so that Typeahead can replace *__query__* with the real text query.
 
 .. code-block:: php
@@ -104,7 +104,7 @@ Example
          */
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
-            $builder->add('tag', 'snowcap_admin_autocomplete', array(
+            $builder->add('tag', 'leapt_admin_autocomplete', array(
                 'label'    => 'my_form.tag',
                 'admin'    => 'tag',
                 'where'    => 'e.name LIKE :query',

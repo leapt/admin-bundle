@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Twig\Loader;
+namespace Leapt\AdminBundle\Twig\Loader;
 
 use Symfony\Bundle\TwigBundle\Loader\FilesystemLoader;
 

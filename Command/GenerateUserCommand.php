@@ -1,23 +1,25 @@
 <?php
 
-namespace Snowcap\AdminBundle\Command;
+namespace Leapt\AdminBundle\Command;
 
-use Snowcap\AdminBundle\Security\UserManager;
+use Leapt\AdminBundle\Security\UserManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\DialogHelper;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-use Snowcap\AdminBundle\Entity\User as AdminUser;
-
+/**
+ * Class GenerateUserCommand
+ * @package Leapt\AdminBundle\Command
+ */
 class GenerateUserCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('snowcap:admin:generate:user')
+            ->setName('leapt:admin:generate:user')
             ->setDescription('Create a new user in the database')
             ->setDefinition(array(
                     new InputArgument('username', InputArgument::OPTIONAL),
@@ -26,19 +28,19 @@ class GenerateUserCommand extends ContainerAwareCommand
                     new InputOption('roles', 'r', InputOption::VALUE_OPTIONAL)
                 ))
             ->setHelp(<<<EOT
-The <info>snowcap:admin:generate:user</info> command creates a user:
+The <info>leapt:admin:generate:user</info> command creates a user:
 
-  <info>php app/console snowcap:admin:generate:user matthieu</info>
+  <info>php app/console leapt:admin:generate:user matthieu</info>
 
 This interactive shell will ask you for an email and then a password.
 
 You can alternatively specify the email and password as the second and third arguments:
 
-  <info>php app/console snowcap:admin:generate:user matthieu matthieu@example.com mypassword</info>
+  <info>php app/console leapt:admin:generate:user matthieu matthieu@example.com mypassword</info>
 
 You can create a super admin via the roles flag:
 
-  <info>php app/console snowcap:admin:generate:user admin --roles=ADMIN,SUPER_ADMIN</info>
+  <info>php app/console leapt:admin:generate:user admin --roles=ADMIN,SUPER_ADMIN</info>
 EOT
             );
     }
@@ -138,6 +140,6 @@ EOT
      */
     private function getUserManager()
     {
-        return $this->getContainer()->get('snowcap_admin.security.user_manager');
+        return $this->getContainer()->get('leapt_admin.security.user_manager');
     }
 }

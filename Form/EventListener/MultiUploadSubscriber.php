@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\EventListener;
+namespace Leapt\AdminBundle\Form\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvents;

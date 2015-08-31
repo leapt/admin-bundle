@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\Type;
+namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Class SlugType
  *
- * @package Snowcap\AdminBundle\Form\Type
+ * @package Leapt\AdminBundle\Form\Type
  */
 class SlugType extends AbstractType
 {
@@ -19,7 +19,7 @@ class SlugType extends AbstractType
      */
     public function getName()
     {
-        return 'snowcap_admin_slug';
+        return 'leapt_admin_slug';
     }
 
     /**

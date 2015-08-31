@@ -1,14 +1,18 @@
 <?php
 
-namespace Snowcap\AdminBundle\Controller;
+namespace Leapt\AdminBundle\Controller;
 
-use Snowcap\CoreBundle\Paginator\Paginator;
+use Leapt\CoreBundle\Paginator\Paginator;
 
+/**
+ * Class LogController
+ * @package Leapt\AdminBundle\Controller
+ */
 class LogController extends BaseController
 {
     public function listAction()
     {
-        $logsQuery = $this->getDoctrine()->getRepository('SnowcapAdminBundle:Log')
+        $logsQuery = $this->getDoctrine()->getRepository('LeaptAdminBundle:Log')
             ->createQueryBuilder('l')
             ->orderBy('l.createdAt','DESC')
             ->getQuery();
@@ -18,7 +22,7 @@ class LogController extends BaseController
             ->setPage($this->getRequest()->get('page'))
             ->setLimitPerPage(25);
 
-        return $this->render('SnowcapAdminBundle:Log:list.html.twig', array(
+        return $this->render('LeaptAdminBundle:Log:list.html.twig', array(
             'paginator' => $paginator,
         ));
     }

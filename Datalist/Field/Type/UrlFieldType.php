@@ -1,9 +1,9 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Field\Type;
+namespace Leapt\AdminBundle\Datalist\Field\Type;
 
-use Snowcap\AdminBundle\Datalist\Field\DatalistFieldInterface;
-use Snowcap\AdminBundle\Datalist\ViewContext;
+use Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface;
+use Leapt\AdminBundle\Datalist\ViewContext;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

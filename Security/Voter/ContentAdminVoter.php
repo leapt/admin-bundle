@@ -1,8 +1,8 @@
 <?php
 
-namespace Snowcap\AdminBundle\Security\Voter;
+namespace Leapt\AdminBundle\Security\Voter;
 
-use Snowcap\AdminBundle\AdminManager;
+use Leapt\AdminBundle\AdminManager;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 

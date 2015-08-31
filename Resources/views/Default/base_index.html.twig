@@ -1,4 +1,4 @@
-{% extends "SnowcapAdminBundle::base.html.twig" %}
+{% extends "LeaptAdminBundle::base.html.twig" %}
 
 {# body block #}
 {% block body %}
@@ -6,19 +6,19 @@
     {# pageheader block #}
     {% block pageheader %}
         <div class="page-header">
-            <h2>{{ "dashboard.title"|trans({}, 'SnowcapAdminBundle') }}</h2>
+            <h2>{{ "dashboard.title"|trans({}, 'LeaptAdminBundle') }}</h2>
         </div>
     {% endblock pageheader %}
 
     {# intro block #}
     {% block intro %}
-        <p>{{ "dashboard.introduction"|trans({}, 'SnowcapAdminBundle')|raw }}</p>
+        <p>{{ "dashboard.introduction"|trans({}, 'LeaptAdminBundle')|raw }}</p>
     {% endblock intro %}
 
     {# widgets block #}
     {% block widgets %}
 
-        {# {% render 'SnowcapAdminBundle:Log:list' %} #}
+        {# {% render 'LeaptAdminBundle:Log:list' %} #}
 
     {% endblock widgets %}
 

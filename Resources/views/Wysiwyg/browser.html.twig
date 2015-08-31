@@ -1,18 +1,18 @@
-{% extends "SnowcapAdminBundle::base.html.twig" %}
+{% extends "LeaptAdminBundle::base.html.twig" %}
 
-{% import 'SnowcapBootstrapBundle::macros.html.twig' as bootstrap %}
+{% import 'LeaptBootstrapBundle::macros.html.twig' as bootstrap %}
 
-{% datalist_theme datalist 'SnowcapAdminBundle:Datalist:datalist_tiled_layout.html.twig' %}
+{% datalist_theme datalist 'LeaptAdminBundle:Datalist:datalist_tiled_layout.html.twig' %}
 
 {% block main_nav %}{% endblock main_nav %}
 
 {% block body %}
-    {% include 'SnowcapAdminBundle:Wysiwyg:upload.html.twig' with {'form': uploadForm } %}
-    <h2>{{ "wysiwyg.browse.title"|trans({}, 'SnowcapAdminBundle') }}</h2>
+    {% include 'LeaptAdminBundle:Wysiwyg:upload.html.twig' with {'form': uploadForm } %}
+    <h2>{{ "wysiwyg.browse.title"|trans({}, 'LeaptAdminBundle') }}</h2>
     <hr/>
     <div class="wysiwyg-browser">
         {% if datalist is empty %}
-            {{ bootstrap.alert("wysiwyg.browse.empty"|trans({}, 'SnowcapAdminBundle')) }}
+            {{ bootstrap.alert("wysiwyg.browse.empty"|trans({}, 'LeaptAdminBundle')) }}
         {% endif %}
 
         {{ datalist_widget(datalist) }}

@@ -1,28 +1,28 @@
 <?php
 
-namespace Snowcap\AdminBundle\Datalist\Type;
+namespace Leapt\AdminBundle\Datalist\Type;
 
-use Snowcap\AdminBundle\Datalist\DatalistBuilder;
-use Snowcap\AdminBundle\Datalist\DatalistInterface;
-use Snowcap\AdminBundle\Datalist\TypeInterface;
-use Snowcap\AdminBundle\Datalist\ViewContext;
+use Leapt\AdminBundle\Datalist\DatalistBuilder;
+use Leapt\AdminBundle\Datalist\DatalistInterface;
+use Leapt\AdminBundle\Datalist\TypeInterface;
+use Leapt\AdminBundle\Datalist\ViewContext;
 
 /**
  * Interface DatalistTypeInterface
- * @package Snowcap\AdminBundle\Datalist\Type
+ * @package Leapt\AdminBundle\Datalist\Type
  */
 interface DatalistTypeInterface extends TypeInterface
 {
     /**
-     * @param \Snowcap\AdminBundle\Datalist\DatalistBuilder $builder
+     * @param \Leapt\AdminBundle\Datalist\DatalistBuilder $builder
      * @param array $options
      * @return mixed
      */
     public function buildDatalist(DatalistBuilder $builder, array $options);
 
     /**
-     * @param \Snowcap\AdminBundle\Datalist\ViewContext $viewContext
-     * @param \Snowcap\AdminBundle\Datalist\DatalistInterface $datalist
+     * @param \Leapt\AdminBundle\Datalist\ViewContext $viewContext
+     * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @param array $options
      */
     public function buildViewContext(ViewContext $viewContext, DatalistInterface $datalist, array $options);

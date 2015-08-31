@@ -1,5 +1,6 @@
 <?php
-namespace Snowcap\AdminBundle\Controller;
+
+namespace Leapt\AdminBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;

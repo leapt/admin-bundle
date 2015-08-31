@@ -1,11 +1,11 @@
 <?php
 
-namespace Snowcap\AdminBundle\Form\DataTransformer;
+namespace Leapt\AdminBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use Snowcap\AdminBundle\Admin\ContentAdmin;
+use Leapt\AdminBundle\Admin\ContentAdmin;
 
 class EntityToIdTransformer implements DataTransformerInterface
 {
