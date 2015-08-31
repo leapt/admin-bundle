@@ -2,12 +2,11 @@
 
 namespace Leapt\AdminBundle\Twig\Extension;
 
-use Symfony\Component\Translation\TranslatorInterface;
-
 use Leapt\AdminBundle\AdminManager;
 use Leapt\AdminBundle\Admin\AdminInterface;
 use Leapt\AdminBundle\Admin\ContentAdmin;
 use Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Global, general-purpose admin extension
@@ -31,12 +30,14 @@ class AdminExtension extends \Twig_Extension
 
     /**
      * @param \Leapt\AdminBundle\AdminManager $adminManager
+     * @param \Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper $contentRoutingHelper
+     * @param \Symfony\Component\Translation\TranslatorInterface $translator
      */
     public function __construct(
         AdminManager $adminManager,
         ContentRoutingHelper $contentRoutingHelper,
         TranslatorInterface $translator
-    ){
+    ) {
         $this->adminManager = $adminManager;
         $this->contentRoutingHelper = $contentRoutingHelper;
         $this->translator = $translator;
@@ -47,13 +48,13 @@ class AdminExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return array(
-            'get_admin_for_entity_name' => new \Twig_Function_Method($this, 'getAdminForEntityName'),
-            'admin' => new \Twig_Function_Method($this, 'getAdminByCode'),
-            'admin_label' => new \Twig_Function_Method($this, 'getAdminLabel'),
-            'admin_content_path' => new \Twig_Function_Method($this, 'getAdminContentPath'),
-            'admin_translation_domain' => new \Twig_Function_Method($this, 'getDefaultTranslationDomain'),
-        );
+        return [
+            new \Twig_SimpleFunction('get_admin_for_entity_name', [$this, 'getAdminForEntityName']),
+            new \Twig_SimpleFunction('admin', [$this, 'getAdminByCode']),
+            new \Twig_SimpleFunction('admin_label', [$this, 'getAdminLabel']),
+            new \Twig_SimpleFunction('admin_content_path', [$this, 'getAdminContentPath']),
+            new \Twig_SimpleFunction('admin_translation_domain', [$this, 'getDefaultTranslationDomain']),
+        ];
     }
 
     /**
@@ -93,7 +94,7 @@ class AdminExtension extends \Twig_Extension
     }
 
     /**
-     * @param \Leapt\AdminBundle\Admin\ContentAdmin $admin
+     * @param \Leapt\AdminBundle\Admin\AdminInterface $admin
      * @param bool $plural
      * @return string
      */
