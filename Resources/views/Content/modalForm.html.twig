@@ -9,12 +9,12 @@
 
 {# modal_before block #}
 {% block modal_before %}
-<form
-    action="{{ form_action }}"
-    method="post" {{ form_enctype(form) }}
-    novalidate="novalidate"
-    class="{{ ([form_class]|merge(extra_form_classes))|join(' ') }}"
->
+{{ form_start(form, { 'attr': {
+    'method': 'POST',
+    'action': form_action,
+    'novalidate': 'novalidate',
+    'class': ([form_class]|merge(extra_form_classes))|join(' ')
+} }) }}
 {% endblock modal_before %}
 
 {# modal_title block #}
@@ -42,4 +42,4 @@
 {% endblock modal_footer %}
 
 {# modal_after block #}
-{% block modal_after %}</form>{% endblock modal_after %}
+{% block modal_after %}{{ form_end(form) }}{% endblock modal_after %}

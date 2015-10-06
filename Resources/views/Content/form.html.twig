@@ -21,13 +21,13 @@
     {# main block #}
     {% block form %}
 
-        <form
-            action="{{ form_action }}"
-            method="post" {{ form_enctype(form) }}
-            novalidate="novalidate"
-            class="{{ ([form_class]|merge(extra_form_classes))|join(' ') }}"
-            data-admin="form-manager"
-        >
+        {{ form_start(form, { 'attr': {
+            'method': 'POST',
+            'action': form_action,
+            'novalidate': 'novalidate',
+            'data-admin': 'form-manager',
+            'class': ([form_class]|merge(extra_form_classes))|join(' ')
+        } }) }}
 
             {# formfields block #}
             {% block form_fields %}{% endblock form_fields %}
@@ -51,7 +51,7 @@
                 </div>
             {% endblock form_actions %}
 
-        </form>
+        {{ form_end(form) }}
     {% endblock form %}
 
     {# postform block - to be provided by child templates  #}
