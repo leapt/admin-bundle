@@ -24,7 +24,7 @@ class EntityFilterType extends AbstractFilterType
         $resolver
             ->setDefaults(array('query_builder' => null, 'multiple' => false))
             ->setRequired(array('class'))
-            ->setDefined(array('choices', 'property', 'empty_value', 'group_by', 'attr', 'choice_label'));
+            ->setDefined(array('choices', 'property', 'empty_value', 'group_by', 'attr', 'choice_label', 'choice_translation_domain'));
     }
 
     /**
@@ -41,22 +41,12 @@ class EntityFilterType extends AbstractFilterType
             'required' => false,
             'multiple' => $options['multiple']
         );
-        if (isset($options['choices'])) {
-            $formOptions['choices'] = $options['choices'];
-        }
-        if (isset($options['choice_label'])) {
-            $formOptions['choice_label'] = $options['choice_label'];
-        } else if (isset($options['property'])) {
-            $formOptions['choice_label'] = $options['property'];
-        }
-        if (isset($options['empty_value'])) {
-            $formOptions['empty_value'] = $options['empty_value'];
-        }
-        if (isset($options['group_by'])) {
-            $formOptions['group_by'] = $options['group_by'];
-        }
-        if (isset($options['attr'])) {
-            $formOptions['attr'] = $options['attr'];
+
+        $otherOptions = array('choices', 'property', 'empty_value', 'group_by', 'attr', 'choice_label', 'choice_translation_domain');
+        foreach ($otherOptions as $option) {
+            if (isset($options[$option])) {
+                $formOptions[$option] = $options[$option];
+            }
         }
 
         $builder->add($filter->getName(), 'entity', $formOptions);
