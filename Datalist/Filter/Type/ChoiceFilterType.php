@@ -23,7 +23,7 @@ class ChoiceFilterType extends AbstractFilterType
 
         $resolver
             ->setRequired(array('choices'))
-            ->setDefined(array('empty_value', 'preferred_choices'));
+            ->setDefined($this->getDefinedOptions());
     }
 
     /**
@@ -38,11 +38,11 @@ class ChoiceFilterType extends AbstractFilterType
             'label' => $options['label'],
             'required' => false
         );
-        if(isset($options['empty_value'])) {
-            $formOptions['empty_value'] = $options['empty_value'];
-        }
-        if(isset($options['preferred_choices'])) {
-            $formOptions['preferred_choices'] = $options['preferred_choices'];
+
+        foreach ($this->getDefinedOptions() as $option) {
+            if (isset($options[$option])) {
+                $formOptions[$option] = $options[$option];
+            }
         }
 
         $builder->add($filter->getName(), 'choice', $formOptions);
@@ -73,5 +73,17 @@ class ChoiceFilterType extends AbstractFilterType
     public function getBlockName()
     {
         return 'choice';
+    }
+
+    /**
+     * @return array
+     */
+    private function getDefinedOptions()
+    {
+        return array(
+            'empty_value',
+            'preferred_choices',
+            'choice_translation_domain'
+        );
     }
 }

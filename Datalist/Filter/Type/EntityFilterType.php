@@ -24,7 +24,7 @@ class EntityFilterType extends AbstractFilterType
         $resolver
             ->setDefaults(array('query_builder' => null, 'multiple' => false))
             ->setRequired(array('class'))
-            ->setDefined(array('choices', 'property', 'empty_value', 'group_by', 'attr', 'choice_label', 'choice_translation_domain'));
+            ->setDefined($this->getDefinedOptions());
     }
 
     /**
@@ -42,8 +42,7 @@ class EntityFilterType extends AbstractFilterType
             'multiple' => $options['multiple']
         );
 
-        $otherOptions = array('choices', 'property', 'empty_value', 'group_by', 'attr', 'choice_label', 'choice_translation_domain');
-        foreach ($otherOptions as $option) {
+        foreach ($this->getDefinedOptions() as $option) {
             if (isset($options[$option])) {
                 $formOptions[$option] = $options[$option];
             }
@@ -78,5 +77,16 @@ class EntityFilterType extends AbstractFilterType
     public function getBlockName()
     {
         return 'entity';
+    }
+
+    /**
+     * @return array
+     */
+    private function getDefinedOptions()
+    {
+        return array(
+            'choices', 'property', 'empty_value', 'group_by', 'attr',
+            'choice_label', 'choice_translation_domain'
+        );
     }
 }
