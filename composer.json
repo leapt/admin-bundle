@@ -27,9 +27,9 @@
     "require": {
         "php": "~5.4",
         "symfony/framework-bundle": ">=2.7",
-        "leapt/core-bundle": "~1.0",
-        "leapt/bootstrap-bundle": "~1.0",
-        "leapt/im-bundle": "~1.0",
+        "leapt/core-bundle": "~0.9",
+        "leapt/bootstrap-bundle": "~0.9",
+        "leapt/im-bundle": "~0.9",
         "leafo/lessphp": "v0.4.0"
 
     },
