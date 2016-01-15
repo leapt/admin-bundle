@@ -9,6 +9,7 @@ use Leapt\AdminBundle\Datalist\Field\DatalistFieldConfig;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilter;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilterConfig;
 use Leapt\AdminBundle\Datalist\Type\DatalistTypeInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormFactory;
 
@@ -21,17 +22,17 @@ class DatalistBuilder extends DatalistConfig
     /**
      * @var array
      */
-    private $fields = array();
+    private $fields = [];
 
     /**
      * @var array
      */
-    private $filters = array();
+    private $filters = [];
 
     /**
      * @var array
      */
-    private $actions = array();
+    private $actions = [];
 
     /**
      * @var DatalistFactory
@@ -64,12 +65,12 @@ class DatalistBuilder extends DatalistConfig
      * @param array $options
      * @return DatalistBuilder
      */
-    public function addField($field, $type = null, array $options = array())
+    public function addField($field, $type = null, array $options = [])
     {
-        $this->fields[$field] = array(
-            'type' => $type,
+        $this->fields[$field] = [
+            'type'    => $type,
             'options' => $options
-        );
+        ];
 
         return $this;
     }
@@ -101,12 +102,12 @@ class DatalistBuilder extends DatalistConfig
      * @param array $options
      * @return DatalistBuilder
      */
-    public function addFilter($filter, $type = null, array $options = array())
+    public function addFilter($filter, $type = null, array $options = [])
     {
-        $this->filters[$filter] = array(
-            'type' => $type,
+        $this->filters[$filter] = [
+            'type'    => $type,
             'options' => $options
-        );
+        ];
 
         return $this;
     }
@@ -130,12 +131,12 @@ class DatalistBuilder extends DatalistConfig
      * @param array $options
      * @return $this
      */
-    public function addAction($action, $type = null, array $options = array())
+    public function addAction($action, $type = null, array $options = [])
     {
-        $this->actions[$action] = array(
-            'type' => $type,
+        $this->actions[$action] = [
+            'type'    => $type,
             'options' => $options
-        );
+        ];
 
         return $this;
     }
@@ -168,16 +169,16 @@ class DatalistBuilder extends DatalistConfig
         }
 
         // Add search form
-        if(null !== $this->getOption('search')) {
-            $searchFormBuilder = $this->formFactory->createNamedBuilder('', 'form', null, array(
+        if (null !== $this->getOption('search')) {
+            $searchFormBuilder = $this->formFactory->createNamedBuilder('', FormType::class, null, [
                 'csrf_protection' => false
-            ));
-            $searchFilter = $this->createFilter('search', array(
-                'type' => 'search',
-                'options' => array(
+            ]);
+            $searchFilter = $this->createFilter('search', [
+                'type'    => 'search',
+                'options' => [
                     'search_fields' => $datalist->getOption('search')
-                )
-            ));
+                ]
+            ]);
             $searchFilter->getType()->buildForm($searchFormBuilder, $searchFilter, $searchFilter->getOptions());
 
             $searchFilter->setDatalist($datalist);
@@ -186,10 +187,10 @@ class DatalistBuilder extends DatalistConfig
         }
 
         // Add filters and filter form
-        $filterFormBuilder = $this->formFactory->createNamedBuilder('', 'form', null, array(
+        $filterFormBuilder = $this->formFactory->createNamedBuilder('', FormType::class, null, [
             'translation_domain' => $datalist->getOption('translation_domain'),
-            'csrf_protection' => false
-        ));
+            'csrf_protection'    => false
+        ]);
         foreach ($this->filters as $filterName => $filterConfig) {
             $filter = $this->createFilter($filterName, $filterConfig);
             $filter->setDatalist($datalist);
@@ -199,7 +200,7 @@ class DatalistBuilder extends DatalistConfig
         $datalist->setFilterForm($filterFormBuilder->getForm());
 
         // Add actions
-        foreach($this->actions as $actionName => $actionConfig) {
+        foreach ($this->actions as $actionName => $actionConfig) {
             $action = $this->createAction($actionName, $actionConfig);
             $action->setDatalist($datalist);
             $datalist->addAction($action);
@@ -219,7 +220,7 @@ class DatalistBuilder extends DatalistConfig
 
         // Handle field options
         $resolver = new OptionsResolver();
-        $resolver->setDefaults(array('label' => ucfirst($fieldName)));
+        $resolver->setDefaults(['label' => ucfirst($fieldName)]);
         $type->configureOptions($resolver);
         $resolvedOptions = $resolver->resolve($fieldConfig['options']);
 
@@ -239,7 +240,7 @@ class DatalistBuilder extends DatalistConfig
 
         // Handle filter options
         $resolver = new OptionsResolver();
-        $resolver->setDefaults(array('label' => ucfirst($filterName)));
+        $resolver->setDefaults(['label' => ucfirst($filterName)]);
         $type->configureOptions($resolver);
         $resolvedOptions = $resolver->resolve($filterConfig['options']);
 
@@ -259,7 +260,7 @@ class DatalistBuilder extends DatalistConfig
 
         // Handle action options
         $resolver = new OptionsResolver();
-        $resolver->setDefaults(array('label' => ucfirst($actionName)));
+        $resolver->setDefaults(['label' => ucfirst($actionName)]);
         $type->configureOptions($resolver);
         $resolvedOptions = $resolver->resolve($actionConfig['options']);
 

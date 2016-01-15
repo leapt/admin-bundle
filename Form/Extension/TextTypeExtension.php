@@ -3,10 +3,10 @@
 namespace Leapt\AdminBundle\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class TextTypeExtension
@@ -19,7 +19,7 @@ class TextTypeExtension extends AbstractTypeExtension
      */
     public function getExtendedType()
     {
-        return 'text';
+        return TextType::class;
     }
 
     /**
@@ -27,8 +27,7 @@ class TextTypeExtension extends AbstractTypeExtension
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver
-            ->setDefined(array('list_url'));
+        $resolver->setDefined(['list_url']);
     }
 
     /**
@@ -38,11 +37,10 @@ class TextTypeExtension extends AbstractTypeExtension
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if(isset($options['list_url'])) {
+        if (isset($options['list_url'])) {
             $view->vars['text_autocomplete'] = true;
             $view->vars['list_url'] = $options['list_url'];
-        }
-        else {
+        } else {
             $view->vars['text_autocomplete'] = false;
         }
     }

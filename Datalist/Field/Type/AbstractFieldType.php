@@ -17,14 +17,14 @@ abstract class AbstractFieldType implements FieldTypeInterface
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
                 'property_path' => null,
                 'default' => null,
                 'escape' => true,
                 'sortable' => false,
                 'sort_property_path' => null
-            ))
-            ->setDefined(array('callback', 'order'))
+            ])
+            ->setDefined(['callback', 'order'])
             ->setAllowedTypes('callback', 'callable');
     }
 
@@ -36,10 +36,9 @@ abstract class AbstractFieldType implements FieldTypeInterface
      */
     public function buildViewContext(ViewContext $viewContext, DatalistFieldInterface $field, $row, array $options)
     {
-        if(isset($options['callback'])) {
+        if (isset($options['callback'])) {
             $viewContext['value'] = call_user_func($options['callback'], $row);
-        }
-        else {
+        } else {
             $viewContext['value'] = $field->getData($row);
         }
 

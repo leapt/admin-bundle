@@ -5,6 +5,7 @@ namespace Leapt\AdminBundle\Datalist\Filter\Type;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
 use Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,7 +23,7 @@ class ChoiceFilterType extends AbstractFilterType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setRequired(array('choices'))
+            ->setRequired(['choices'])
             ->setDefined($this->getDefinedOptions());
     }
 
@@ -33,11 +34,12 @@ class ChoiceFilterType extends AbstractFilterType
      */
     public function buildForm(FormBuilderInterface $builder, DatalistFilterInterface $filter, array $options)
     {
-        $formOptions = array(
-            'choices' => $options['choices'],
-            'label' => $options['label'],
-            'required' => false
-        );
+        $formOptions = [
+            'choices'  => $options['choices'],
+            'label'    => $options['label'],
+            'required' => false,
+            'choices_as_values' => true
+        ];
 
         foreach ($this->getDefinedOptions() as $option) {
             if (isset($options[$option])) {
@@ -45,7 +47,7 @@ class ChoiceFilterType extends AbstractFilterType
             }
         }
 
-        $builder->add($filter->getName(), 'choice', $formOptions);
+        $builder->add($filter->getName(), ChoiceType::class, $formOptions);
     }
 
     /**
@@ -80,10 +82,10 @@ class ChoiceFilterType extends AbstractFilterType
      */
     private function getDefinedOptions()
     {
-        return array(
-            'empty_value',
+        return [
+            'placeholder',
             'preferred_choices',
             'choice_translation_domain'
-        );
+        ];
     }
 }

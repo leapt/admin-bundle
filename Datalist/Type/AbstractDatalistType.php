@@ -19,7 +19,7 @@ abstract class AbstractDatalistType implements DatalistTypeInterface
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'data_class' => null,
                 'layout' => 'grid',
                 'filter_on_top' => false, //TODO: should be removed if confirmed that not used
@@ -31,10 +31,10 @@ abstract class AbstractDatalistType implements DatalistTypeInterface
                 'filter_submit' => 'datalist.filter.submit',
                 'filter_reset' => 'datalist.filter.reset',
                 'translation_domain' => 'messages'
-            ))
-            ->setDefined(array(
+            ])
+            ->setDefined([
                 'search'
-            ));
+            ]);
     }
 
     /**

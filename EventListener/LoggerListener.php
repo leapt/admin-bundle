@@ -2,13 +2,18 @@
 
 namespace Leapt\AdminBundle\EventListener;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-
-use Leapt\AdminBundle\Logger\Logger;
 use Leapt\AdminBundle\Event\AdminEvents;
 use Leapt\AdminBundle\Event\ContentAdminEvent;
+use Leapt\AdminBundle\Logger\Logger;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class LoggerListener implements EventSubscriberInterface{
+/**
+ * Class LoggerListener
+ * @package Leapt\AdminBundle\EventListener
+ */
+class LoggerListener implements EventSubscriberInterface
+{
     /**
      * @var \Leapt\AdminBundle\Logger\Logger
      */
@@ -27,19 +32,24 @@ class LoggerListener implements EventSubscriberInterface{
      */
     public static function getSubscribedEvents()
     {
-        return array(
+        return [
             AdminEvents::CONTENT_CREATE => 'onContentAction',
             AdminEvents::CONTENT_UPDATE => 'onContentAction',
             AdminEvents::CONTENT_DELETE => 'onContentAction',
-        );
+        ];
     }
 
-    public function onContentAction(ContentAdminEvent $event)
+    /**
+     * @param ContentAdminEvent $event
+     * @param string $eventName
+     * @param EventDispatcherInterface $dispatcher
+     */
+    public function onContentAction(ContentAdminEvent $event, $eventName, EventDispatcherInterface $dispatcher)
     {
         $entity = $event->getEntity();
         $admin = $event->getAdmin();
 
-        $this->logger->log('content', $this->getAction($event->getName()), $admin->getEntityName($entity), $admin->getAlias(), $entity->getId());
+        $this->logger->log('content', $this->getAction($eventName), $admin->getEntityName($entity), $admin->getAlias(), $entity->getId());
     }
 
     /**
@@ -49,16 +59,16 @@ class LoggerListener implements EventSubscriberInterface{
      */
     private function getAction($eventName)
     {
-        switch($eventName) {
+        switch ($eventName) {
             case AdminEvents::CONTENT_CREATE:
                 return 'content_create';
-            break;
+                break;
             case AdminEvents::CONTENT_UPDATE:
                 return 'content_update';
-            break;
+                break;
             case AdminEvents::CONTENT_DELETE:
                 return 'content_delete';
-            break;
+                break;
             default:
                 throw new \InvalidArgumentException(sprintf('Cannot process event "%s"', $eventName));
                 break;

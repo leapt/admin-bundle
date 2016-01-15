@@ -5,6 +5,7 @@ namespace Leapt\AdminBundle\Datalist\Filter\Type;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
 use Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,8 +23,8 @@ class EntityFilterType extends AbstractFilterType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefaults(array('query_builder' => null, 'multiple' => false))
-            ->setRequired(array('class'))
+            ->setDefaults(['query_builder' => null, 'multiple' => false])
+            ->setRequired(['class'])
             ->setDefined($this->getDefinedOptions());
     }
 
@@ -34,13 +35,13 @@ class EntityFilterType extends AbstractFilterType
      */
     public function buildForm(FormBuilderInterface $builder, DatalistFilterInterface $filter, array $options)
     {
-        $formOptions = array(
+        $formOptions = [
             'class' => $options['class'],
             'label' => $options['label'],
             'query_builder' => $options['query_builder'],
             'required' => false,
             'multiple' => $options['multiple']
-        );
+        ];
 
         foreach ($this->getDefinedOptions() as $option) {
             if (isset($options[$option])) {
@@ -48,7 +49,7 @@ class EntityFilterType extends AbstractFilterType
             }
         }
 
-        $builder->add($filter->getName(), 'entity', $formOptions);
+        $builder->add($filter->getName(), EntityType::class, $formOptions);
     }
 
     /**
@@ -84,9 +85,9 @@ class EntityFilterType extends AbstractFilterType
      */
     private function getDefinedOptions()
     {
-        return array(
-            'choices', 'property', 'empty_value', 'group_by', 'attr',
+        return [
+            'choices', 'property', 'placeholder', 'group_by', 'attr',
             'choice_label', 'choice_translation_domain'
-        );
+        ];
     }
 }

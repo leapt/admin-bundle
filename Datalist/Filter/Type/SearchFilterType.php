@@ -6,6 +6,7 @@ use Leapt\AdminBundle\Datalist\Filter\DatalistFilterExpressionBuilder;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
 use Leapt\AdminBundle\Datalist\Filter\Expression\CombinedExpression;
 use Leapt\AdminBundle\Datalist\Filter\Expression\ComparisonExpression;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -22,8 +23,7 @@ class SearchFilterType extends AbstractFilterType
     {
         parent::configureOptions($resolver);
 
-        $resolver
-            ->setRequired(array('search_fields'));
+        $resolver->setRequired(['search_fields']);
     }
 
     /**
@@ -33,9 +33,9 @@ class SearchFilterType extends AbstractFilterType
      */
     public function buildForm(FormBuilderInterface $builder, DatalistFilterInterface $filter, array $options)
     {
-        $builder->add($filter->getName(), 'search', array(
+        $builder->add($filter->getName(), SearchType::class, [
             'label' => $options['label']
-        ));
+        ]);
     }
 
     /**
@@ -46,14 +46,13 @@ class SearchFilterType extends AbstractFilterType
      */
     public function buildExpression(DatalistFilterExpressionBuilder $builder, DatalistFilterInterface $filter, $value, array $options)
     {
-        if(is_array($options['search_fields'])) {
+        if (is_array($options['search_fields'])) {
             $expression = new CombinedExpression(CombinedExpression::OPERATOR_OR);
             foreach($options['search_fields'] as $searchField) {
                 $comparisonExpression = new ComparisonExpression($searchField, ComparisonExpression::OPERATOR_LIKE, $value);
                 $expression->addExpression($comparisonExpression);
             }
-        }
-        else {
+        } else {
             $expression = new ComparisonExpression($options['search_fields'], ComparisonExpression::OPERATOR_LIKE, $value);
         }
         $builder->add($expression);

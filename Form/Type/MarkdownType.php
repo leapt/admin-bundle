@@ -3,6 +3,7 @@
 namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Class MarkdownType
@@ -13,7 +14,7 @@ class MarkdownType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'leapt_admin_markdown';
     }
@@ -23,6 +24,6 @@ class MarkdownType extends AbstractType
      */
     public function getParent()
     {
-        return 'textarea';
+        return TextareaType::class;
     }
 }

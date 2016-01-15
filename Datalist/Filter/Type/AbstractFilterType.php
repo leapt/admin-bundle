@@ -16,7 +16,7 @@ abstract class AbstractFilterType implements FilterTypeInterface
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array('property_path' => null))
-            ->setDefined(array('default'));
+            ->setDefaults(['property_path' => null])
+            ->setDefined(['default']);
     }
 }

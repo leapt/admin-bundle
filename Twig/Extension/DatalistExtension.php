@@ -8,25 +8,16 @@ use Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface;
 use Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface;
 use Leapt\AdminBundle\Datalist\ViewContext;
 use Leapt\AdminBundle\Twig\TokenParser\DatalistThemeTokenParser;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Form\FormFactory;
 
 /**
  * Class DatalistExtension
  * @package Leapt\AdminBundle\Twig\Extension
  */
-class DatalistExtension extends \Twig_Extension implements ContainerAwareInterface
+class DatalistExtension extends \Twig_Extension
 {
-    /**
-     * @var \Twig_Environment
-     */
-    private $environment;
-
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    use ContainerAwareTrait;
 
     /**
      * @var \Symfony\Component\Form\FormFactory
@@ -53,33 +44,17 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
-     * @param \Twig_Environment $environment
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    /**
      * @return array
      */
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('datalist_widget', [$this, 'renderDatalistWidget'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('datalist_field', [$this, 'renderDatalistField'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('datalist_search', [$this, 'renderDatalistSearch'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('datalist_filters', [$this, 'renderDatalistFilters'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('datalist_filter', [$this, 'renderDatalistFilter'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('datalist_action', [$this, 'renderDatalistAction'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('datalist_widget', [$this, 'renderDatalistWidget'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('datalist_field', [$this, 'renderDatalistField'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('datalist_search', [$this, 'renderDatalistSearch'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('datalist_filters', [$this, 'renderDatalistFilters'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('datalist_filter', [$this, 'renderDatalistFilter'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('datalist_action', [$this, 'renderDatalistAction'], ['is_safe' => ['html'], 'needs_environment' => true]),
         ];
     }
 
@@ -88,120 +63,131 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
      */
     public function getTokenParsers()
     {
-        return array(new DatalistThemeTokenParser());
+        return [new DatalistThemeTokenParser()];
     }
 
     /**
+     * @param \Twig_Environment $env
      * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return string
+     * @throws \Exception
      */
-    public function renderDatalistWidget(DatalistInterface $datalist)
+    public function renderDatalistWidget(\Twig_Environment $env, DatalistInterface $datalist)
     {
-        $blockNames = array(
+        $blockNames = [
             $datalist->getType()->getBlockName(),
             '_' . $datalist->getName() . '_datalist'
-        );
+        ];
 
         $viewContext = new ViewContext();
         $datalist->getType()->buildViewContext($viewContext, $datalist, $datalist->getOptions());
 
-        return $this->renderBlock($datalist, $blockNames, $viewContext->all());
+        return $this->renderBlock($env, $datalist, $blockNames, $viewContext->all());
     }
 
     /**
+     * @param \Twig_Environment $env
      * @param \Leapt\AdminBundle\Datalist\Field\DatalistFieldInterface $field
      * @param mixed $row
      * @return string
+     * @throws \Exception
      */
-    public function renderDatalistField(DatalistFieldInterface $field, $row)
+    public function renderDatalistField(\Twig_Environment $env, DatalistFieldInterface $field, $row)
     {
-        $blockNames = array(
+        $blockNames = [
             $field->getType()->getBlockName() . '_field',
             '_' . $field->getDatalist()->getName() . '_' . $field->getName() . '_field',
-        );
-
-
+        ];
 
         $viewContext = new ViewContext();
         $field->getType()->buildViewContext($viewContext, $field, $row, $field->getOptions());
 
-        return $this->renderBlock($field->getDatalist(), $blockNames, $viewContext->all());
+        return $this->renderBlock($env, $field->getDatalist(), $blockNames, $viewContext->all());
     }
 
     /**
+     * @param \Twig_Environment $env
      * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return string
+     * @throws \Exception
      */
-    public function renderDatalistSearch(DatalistInterface $datalist)
+    public function renderDatalistSearch(\Twig_Environment $env, DatalistInterface $datalist)
     {
-        $blockNames = array(
+        $blockNames = [
             'datalist_search',
             '_' . $datalist->getName() . '_search',
-        );
+        ];
 
-        return $this->renderblock($datalist, $blockNames, array(
+        return $this->renderBlock($env, $datalist, $blockNames, [
             'form' => $datalist->getSearchForm()->createView(),
             'placeholder' => $datalist->getOption('search_placeholder'),
             'submit' => $datalist->getOption('search_submit'),
             'translation_domain' => $datalist->getOption('translation_domain')
-        ));
+        ]);
     }
 
     /**
+     * @param \Twig_Environment $env
      * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @return string
+     * @throws \Exception
      */
-    public function renderDatalistFilters(DatalistInterface $datalist)
+    public function renderDatalistFilters(\Twig_Environment $env, DatalistInterface $datalist)
     {
-        $blockNames = array(
+        $blockNames = [
             'datalist_filters',
             '_' . $datalist->getName() . '_filters'
-        );
+        ];
 
-        return $this->renderblock($datalist, $blockNames, array(
+        return $this->renderBlock($env, $datalist, $blockNames, [
             'filters' => $datalist->getFilters(),
             'datalist' => $datalist,
             'submit' => $datalist->getOption('filter_submit'),
             'reset' => $datalist->getOption('filter_reset'),
             'url' => $this->container->get('request')->getPathInfo()
-        ));
+        ]);
     }
 
     /**
+     * @param \Twig_Environment $env
      * @param \Leapt\AdminBundle\Datalist\Filter\DatalistFilterInterface $filter
      * @return string
+     * @throws \Exception
      */
-    public function renderDatalistFilter(DatalistFilterInterface $filter)
+    public function renderDatalistFilter(\Twig_Environment $env, DatalistFilterInterface $filter)
     {
-        $blockNames = array(
+        $blockNames = [
             $filter->getType()->getBlockName() . '_filter',
             '_' . $filter->getDatalist()->getName() . '_' . $filter->getName() . '_filter'
-        );
+        ];
         $childForm = $filter->getDatalist()->getFilterForm()->get($filter->getName());
 
-        return $this->renderblock($filter->getDatalist(), $blockNames, array(
+        return $this->renderBlock($env, $filter->getDatalist(), $blockNames, [
             'form' => $childForm->createView(),
             'filter' => $filter,
             'datalist' => $filter->getDatalist()
-        ));
+        ]);
     }
 
     /**
+     * @param \Twig_Environment $env
      * @param \Leapt\AdminBundle\Datalist\Action\DatalistActionInterface $action
      * @param mixed $item
      * @return string
+     * @throws \Exception
      */
-    public function renderDatalistAction(DatalistActionInterface $action, $item)
+    public function renderDatalistAction(\Twig_Environment $env, DatalistActionInterface $action, $item)
     {
-        $blockNames = array(
+        $blockNames = [
             $action->getType()->getBlockName() . '_action',
             '_' . $action->getDatalist()->getName() . '_' . $action->getName() . '_action'
-        );
+        ];
 
         $viewContext = new ViewContext();
         $action->getType()->buildViewContext($viewContext, $action, $item, $action->getOptions());
 
-        return $this->renderblock(
+        return $this->renderBlock(
+            $env,
             $action->getDatalist(),
             $blockNames,
             $viewContext->all()
@@ -209,18 +195,20 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
     }
 
     /**
+     * @param \Twig_Environment $env
      * @param \Leapt\AdminBundle\Datalist\DatalistInterface $datalist
      * @param array $blockNames
      * @param array $context
      * @return string
      * @throws \Exception
+     * @throws \Twig_Error_Loader
      */
-    private function renderblock(DatalistInterface $datalist, array $blockNames, array $context = array())
+    private function renderBlock(\Twig_Environment $env, DatalistInterface $datalist, array $blockNames, array $context = [])
     {
         $datalistTemplates = $this->getTemplatesForDatalist($datalist);
         foreach($datalistTemplates as $template) {
             if (!$template instanceof \Twig_Template) {
-                $template = $this->environment->loadTemplate($template);
+                $template = $env->loadTemplate($template);
             }
             do {
                 foreach($blockNames as $blockName) {
@@ -245,7 +233,7 @@ class DatalistExtension extends \Twig_Extension implements ContainerAwareInterfa
             return $this->themes[$datalist];
         }
 
-        return array($this->defaultTheme);
+        return [$this->defaultTheme];
     }
 
     /**

@@ -14,7 +14,7 @@ services:
         class: Leapt\AdminBundle\Admin\AbstractAdmin
         abstract: true
         calls:
-            - [ setContainer, [@service_container]]
+            - [ setContainer, [ "@service_container" ]]
 
     leapt_admin.admin_content:
         class: Leapt\AdminBundle\Admin\ContentAdmin
@@ -24,79 +24,64 @@ services:
     # Routing
     leapt_admin.routing_loader:
         class: Leapt\AdminBundle\Routing\Loader\AdminLoader
-        arguments: [@leapt_admin]
+        arguments: [ "@leapt_admin" ]
         tags:
             - { name: routing.loader }
 
     leapt_admin.routing_helper_content:
         class: Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
-        arguments: [@router, @controller_name_converter, "", ""]
+        arguments: [ "@router", "@controller_name_converter", "", "" ]
 
     # Param converters
     leapt_admin.param_converter:
         class: Leapt\AdminBundle\Request\ParamConverter\AdminParamConverter
-        arguments: [@leapt_admin, @leapt_core.navigation]
+        arguments: [ "@leapt_admin", "@leapt_core.navigation" ]
         tags:
             - { name: request.param_converter }
 
     # Event listeners
     leapt_admin.listener_logger:
         class: Leapt\AdminBundle\EventListener\LoggerListener
-        arguments: [@leapt_admin.logger]
+        arguments: [ "@leapt_admin.logger" ]
         tags:
             - { name: kernel.event_subscriber }
 
     # Twig extensions and loaders
     leapt_admin.twig_admin:
         class: Leapt\AdminBundle\Twig\Extension\AdminExtension
-        arguments: [@leapt_admin, @leapt_admin.routing_helper_content, @translator]
+        arguments: [ "@leapt_admin", "@leapt_admin.routing_helper_content", "@translator" ]
         tags:
             -  { name: twig.extension }
 
     leapt_admin.twig_datalist:
         class: Leapt\AdminBundle\Twig\Extension\DatalistExtension
-        arguments: [@form.factory]
+        arguments: [ "@form.factory" ]
         calls:
-            - [ setContainer, [@service_container]]
+            - [ setContainer, [ "@service_container" ]]
         tags:
             -  { name: twig.extension }
     leapt_admin.twig_loader:
         class: Leapt\AdminBundle\Twig\Loader\AdminLoader
-        arguments: [@templating.locator, @templating.name_parser]
+        arguments: [ "@templating.locator", "@templating.name_parser" ]
         tags:
             - { name: twig.loader }
 
     # Form types
-    leapt_admin.form_type_slug:
-        class: Leapt\AdminBundle\Form\Type\SlugType
-        tags:
-            -  { name: form.type, alias: leapt_admin_slug }
-
-    leapt_admin.form_type_markdown:
-        class: Leapt\AdminBundle\Form\Type\MarkdownType
-        tags:
-            -  { name: form.type, alias: leapt_admin_markdown }
-
-    leapt_admin.form_type_wysiwyg:
-        class: Leapt\AdminBundle\Form\Type\WysiwygType
-        tags:
-            -  { name: form.type, alias: leapt_admin_wysiwyg }
-
     leapt_admin.form_type_entity:
         class: Leapt\AdminBundle\Form\Type\EntityType
-        arguments: [@leapt_admin, @leapt_admin.routing_helper_content]
+        arguments: [ "@leapt_admin", "@leapt_admin.routing_helper_content" ]
         tags:
             - { name: form.type, alias: leapt_admin_entity }
 
     leapt_admin.form_type_autocomplete:
         class: Leapt\AdminBundle\Form\Type\AutocompleteType
-        arguments: [@leapt_admin, @leapt_admin.routing_helper_content]
+        arguments: [ "@leapt_admin", "@leapt_admin.routing_helper_content" ]
         tags:
-            -  { name: form.type, alias: leapt_admin_autocomplete }
+            -  { name: form.type }
 
     leapt_admin.form_type_multiupload:
         class: Leapt\AdminBundle\Form\Type\MultiUploadType
-        arguments: [%kernel.root_dir%]
+        arguments: [ %kernel.root_dir% ]
         tags:
             -  { name: form.type, alias: leapt_admin_multiupload }
 
@@ -113,18 +98,19 @@ services:
     # Form type extensions
     leapt_admin.form_extension_collection:
         class: Leapt\AdminBundle\Form\Extension\CollectionTypeExtension
-        arguments: [@router]
+        arguments: [ "@router" ]
         tags:
-            - { name: form.type_extension, alias: collection }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\CollectionType }
+
     leapt_admin.form_extension_text:
         class: Leapt\AdminBundle\Form\Extension\TextTypeExtension
         tags:
-            - { name: form.type_extension, alias: text }
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
 
     # Datalists
     leapt_admin.datalist_factory:
         class: Leapt\AdminBundle\Datalist\DatalistFactory
-        arguments: [@form.factory]
+        arguments: [ "@form.factory" ]
 
     leapt_admin.datalist_type.datalist:
         class: Leapt\AdminBundle\Datalist\Type\DatalistType
@@ -184,29 +170,29 @@ services:
 
     leapt_admin.datalist_action_simple:
         class: Leapt\AdminBundle\Datalist\Action\Type\SimpleActionType
-        arguments: [@router]
+        arguments: [ "@router" ]
         tags:
             - { name: leapt_admin.datalist_actiontype, alias: simple }
 
     leapt_admin.datalist_action_content_admin:
         class: Leapt\AdminBundle\Datalist\Action\Type\ContentAdminActionType
-        arguments: [@leapt_admin, @leapt_admin.routing_helper_content]
+        arguments: [ "@leapt_admin", "@leapt_admin.routing_helper_content" ]
         tags:
             - { name: leapt_admin.datalist_actiontype, alias: content_admin }
 
     # Admin logger
     leapt_admin.logger:
         class: Leapt\AdminBundle\Logger\Logger
-        arguments: [@leapt_admin, @doctrine.orm.entity_manager, @security.token_storage, @security.authorization_checker, %leapt_admin.logger_entity.class%]
+        arguments: [ "@leapt_admin", "@doctrine.orm.entity_manager", "@security.token_storage", "@security.authorization_checker", %leapt_admin.logger_entity.class% ]
 
     # Security
     leapt_admin.security.user_manager:
         class: Leapt\AdminBundle\Security\UserManager
-        arguments: [%leapt_admin.security.user_class%, @security.encoder_factory, @doctrine.orm.entity_manager]
+        arguments: [ %leapt_admin.security.user_class%, "@security.encoder_factory", "@doctrine.orm.entity_manager" ]
 
     leapt_admin.content_voter:
         class: Leapt\AdminBundle\Security\Voter\ContentAdminVoter
         public: false
-        arguments: [@leapt_admin]
+        arguments: [ "@leapt_admin" ]
         tags:
             - { name: security.voter }

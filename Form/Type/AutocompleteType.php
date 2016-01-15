@@ -8,6 +8,8 @@ use Leapt\AdminBundle\Form\DataTransformer\EntityToIdTransformer;
 use Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\EventListener\ResizeFormListener;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -51,7 +53,7 @@ class AutocompleteType extends AbstractType
         $adminManager = $this->adminManager;
 
         $resolver
-            ->setDefaults(array(
+            ->setDefaults([
                 'allow_add' => false,
                 'add_label' => 'Add new',
                 'multiple' => false,
@@ -60,11 +62,11 @@ class AutocompleteType extends AbstractType
                 },
                 'id_property' => 'id',
                 'property' => '__toString',
-            ))
-            ->setRequired(array('admin', 'where'))
-            ->setDefined(array('row_id_property', 'row_property'))
+            ])
+            ->setRequired(['admin', 'where'])
+            ->setDefined(['row_id_property', 'row_property'])
             ->setNormalizer('admin', function (Options $options, $adminOption) use ($adminManager) {
-                if(!$adminOption instanceof ContentAdmin) {
+                if (!$adminOption instanceof ContentAdmin) {
                     return $adminManager->getAdmin($adminOption);
                 }
 
@@ -80,13 +82,13 @@ class AutocompleteType extends AbstractType
     {
         $builder->addModelTransformer(new EntityToIdTransformer($options['admin'], $options['multiple']));
 
-        if($options['multiple']) {
-            $prototype = $builder->create('__name__', 'hidden');
+        if ($options['multiple']) {
+            $prototype = $builder->create('__name__', HiddenType::class);
             $builder->setAttribute('prototype', $prototype->getForm());
 
             $resizeListener = new ResizeFormListener(
-                'hidden',
-                array(),
+                HiddenType::class,
+                [],
                 true,
                 true
             );
@@ -108,11 +110,11 @@ class AutocompleteType extends AbstractType
         if($options['multiple']) {
             // Fix: If $value is null we must cast it as an array
             if (null === $value) {
-                $value = array();
+                $value = [];
             }
 
-            $textValues = array();
-            foreach($value as $entity) {
+            $textValues = [];
+            foreach ($value as $entity) {
                 $textValues[$entity->getId()]= $this->buildTextValue($entity, $options);
             }
             $view->vars['text_values'] = $textValues;
@@ -137,17 +139,9 @@ class AutocompleteType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
-    {
-        return 'leapt_admin_autocomplete';
-    }
-
-    /**
-     * @return string
-     */
     public function getParent()
     {
-        return 'form';
+        return FormType::class;
     }
 
     /**
@@ -158,19 +152,17 @@ class AutocompleteType extends AbstractType
      */
     private function buildTextValue($value, array $options)
     {
-        if(null === $value) {
-            $textValue = "";
-        }
-        else {
+        if (null === $value) {
+            $textValue = '';
+        } else {
             try {
                 $accessor = PropertyAccess::createPropertyAccessor();
                 $textValue = $accessor->getValue($value, $options['property']);
             }
-            catch(NoSuchPropertyException $e) {
-                if('__toString' === $options['property']) {
+            catch (NoSuchPropertyException $e) {
+                if ('__toString' === $options['property']) {
                     $message = 'You must provide a "property" option (or your class must implement the "__toString" method';
-                }
-                else {
+                } else {
                     $message = sprintf('The "%s" is not a valid property option', $options['property']);
                 }
                 throw new MissingOptionsException($message);
@@ -197,12 +189,12 @@ class AutocompleteType extends AbstractType
         return $this->routingHelper->generateUrl(
             $options['admin'],
             'autocompleteList',
-            array(
+            [
                 'query' => '__query__',
                 'where' => base64_encode($options['where']),
                 'id_property' => $rowIdProperty,
                 'property' => $rowProperty,
-            )
+            ]
         );
     }
 
@@ -213,5 +205,13 @@ class AutocompleteType extends AbstractType
     private function generateAddUrl(array $options)
     {
         return $this->routingHelper->generateUrl($options['admin'], 'modalCreate');
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
+    {
+        return 'leapt_admin_autocomplete';
     }
 }

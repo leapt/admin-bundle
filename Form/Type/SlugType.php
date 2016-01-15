@@ -3,6 +3,7 @@
 namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,7 @@ class SlugType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'leapt_admin_slug';
     }
@@ -28,7 +29,7 @@ class SlugType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setRequired(array('target'))
+            ->setRequired(['target'])
             ->setAllowedTypes('target', 'string');
     }
 
@@ -47,6 +48,6 @@ class SlugType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 }
