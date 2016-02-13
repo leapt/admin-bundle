@@ -4,11 +4,11 @@ namespace Leapt\AdminBundle\Command;
 
 use Leapt\AdminBundle\Security\UserManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Helper\DialogHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 /**
  * Class GenerateUserCommand
@@ -21,12 +21,12 @@ class GenerateUserCommand extends ContainerAwareCommand
         $this
             ->setName('leapt:admin:generate:user')
             ->setDescription('Create a new user in the database')
-            ->setDefinition(array(
-                    new InputArgument('username', InputArgument::OPTIONAL),
-                    new InputArgument('email', InputArgument::OPTIONAL),
-                    new InputArgument('password', InputArgument::OPTIONAL),
-                    new InputOption('roles', 'r', InputOption::VALUE_OPTIONAL)
-                ))
+            ->setDefinition([
+                new InputArgument('username', InputArgument::OPTIONAL),
+                new InputArgument('email', InputArgument::OPTIONAL),
+                new InputArgument('password', InputArgument::OPTIONAL),
+                new InputOption('roles', 'r', InputOption::VALUE_OPTIONAL)
+            ])
             ->setHelp(<<<EOT
 The <info>leapt:admin:generate:user</info> command creates a user:
 
@@ -48,6 +48,7 @@ EOT
     /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -63,6 +64,8 @@ EOT
         $userManager->createUser($username, $email, $password, $roles);
 
         $output->writeln(sprintf('Created user <comment>%s</comment>', $username));
+
+        return 0;
     }
 
     /**
@@ -76,20 +79,14 @@ EOT
      */
     protected function getOptionalInteractiveArgument(InputInterface $input, OutputInterface $output, $argument, $question, $hidden = false)
     {
-        $dialog = $this->getDialogHelper();
-        if(null !== $input->getArgument($argument)) {
+        $dialog = $this->getHelper('question');
+        if (null !== $input->getArgument($argument)) {
             $value = $input->getArgument($argument);
-        }
-        elseif ($input->isInteractive()) {
-            $formattedQuestion = sprintf('%s: ', $question);
-            if($hidden) {
-                $value = $dialog->askHiddenResponse($output, $formattedQuestion, true);
-            }
-            else {
-                $value = $dialog->ask($output, $formattedQuestion);
-            }
-        }
-        else {
+        } elseif ($input->isInteractive()) {
+            $question = new Question(sprintf('%s: ', $question));
+            $question->setHidden($hidden);
+            $value = $dialog->ask($input, $output, $question);
+        } else {
             throw new \Exception(sprintf('No argument named "%s"', $argument));
         }
 
@@ -107,32 +104,18 @@ EOT
      */
     protected function getOptionalInteractiveOption(InputInterface $input, OutputInterface $output, $option, $question, $hidden = false)
     {
-        $dialog = $this->getDialogHelper();
-        if(null !== $input->getOption($option)) {
+        $dialog = $this->getHelper('question');
+        if (null !== $input->getOption($option)) {
             $value = $input->getOption($option);
-        }
-        elseif ($input->isInteractive()) {
-            $formattedQuestion = sprintf('%s: ', $question);
-            if($hidden) {
-                $value = $dialog->askHiddenResponse($output, $formattedQuestion, true);
-            }
-            else {
-                $value = $dialog->ask($output, $formattedQuestion);
-            }
-        }
-        else {
+        } elseif ($input->isInteractive()) {
+            $question = new Question(sprintf('%s: ', $question));
+            $question->setHidden($hidden);
+            $value = $dialog->ask($input, $output, $question);
+        } else {
             throw new \Exception(sprintf('No option named "%s"', $option));
         }
 
         return $value;
-    }
-
-    /**
-     * @return DialogHelper
-     */
-    protected function getDialogHelper()
-    {
-        return new DialogHelper();
     }
 
     /**
