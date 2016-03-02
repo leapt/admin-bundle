@@ -140,11 +140,11 @@ class DatalistExtension extends \Twig_Extension
         ];
 
         return $this->renderBlock($env, $datalist, $blockNames, [
-            'filters' => $datalist->getFilters(),
-            'datalist' => $datalist,
-            'submit' => $datalist->getOption('filter_submit'),
-            'reset' => $datalist->getOption('filter_reset'),
-            'url' => $this->container->get('request')->getPathInfo()
+            'filters'   => $datalist->getFilters(),
+            'datalist'  => $datalist,
+            'submit'    => $datalist->getOption('filter_submit'),
+            'reset'     => $datalist->getOption('filter_reset'),
+            'url'       => $this->container->get('request_stack')->getCurrentRequest()->getPathInfo()
         ]);
     }
 

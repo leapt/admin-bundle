@@ -6,9 +6,6 @@ use Leapt\AdminBundle\Datalist\Datalist;
 use Leapt\AdminBundle\Datalist\Datasource\DoctrineORMDatasource;
 use Leapt\AdminBundle\Entity\File;
 use Leapt\AdminBundle\Form\Type\FileType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -18,37 +15,30 @@ use Symfony\Component\HttpFoundation\Request;
 class WysiwygController extends BaseController
 {
     /**
-     * @return array
-     *
-     * @Template()
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function browserAction()
+    public function browserAction(Request $request)
     {
-        /** @var $request Request */
-        $request = $this->get('request');
-
-        parse_str($this->getRequest()->getQueryString(), $arguments);
+        parse_str($request->getQueryString(), $arguments);
 
         $file = new File();
-        $uploadForm = $this->createForm(new FileType(), $file);
-        $extraParameters = array();
+        $uploadForm = $this->createForm(FileType::class, $file);
+        $extraParameters = [];
 
         /** @var $datalistBuilder \Leapt\AdminBundle\Datalist\DatalistBuilder */
-        $datalistBuilder = $this
-            ->get('leapt_admin.datalist_factory')
-            ->createBuilder(
-                'datalist',
-                array(
-                    'translation_domain' => 'admin',
-                    'data_class' => 'Leapt\AdminBundle\Entity\File'
-                )
-            );
+        $datalistBuilder = $this->get('leapt_admin.datalist_factory')
+            ->createBuilder('datalist', [
+                'translation_domain' => 'admin',
+                'data_class'         => 'Leapt\AdminBundle\Entity\File'
+            ]);
+
         /** @var $datalist Datalist */
         $datalist = $datalistBuilder
             ->addField('path', 'image')
             ->addField('name', 'text')
             ->addField('tags', 'text')
-            ->addFilter('name', 'search', array('search_fields' => array('f.name', 'f.tags'), 'label' => 'search'))
+            ->addFilter('name', 'search', ['search_fields' => ['f.name', 'f.tags'], 'label' => 'search'])
             ->getDatalist();
 
         /** @var $em \Doctrine\ORM\EntityManager */
@@ -68,11 +58,14 @@ class WysiwygController extends BaseController
                     $em->persist($file);
                     $em->flush();
 
-                    $extraParameters = array('url' => $file->getPath());
+                    $extraParameters = ['url' => $file->getPath()];
                 }
             }
         }
 
-        return array_merge(array('uploadForm' => $uploadForm->createView(), 'datalist' => $datalist, 'arguments' => $arguments), $extraParameters);
+        return $this->render('LeaptAdminBundle:Wysiwyg:browser.html.twig', array_merge(
+            ['uploadForm' => $uploadForm->createView(), 'datalist' => $datalist, 'arguments' => $arguments],
+            $extraParameters
+        ));
     }
 }

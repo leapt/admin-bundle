@@ -3,6 +3,7 @@
 namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +19,7 @@ class FileType extends AbstractType
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'admin_leapt_file';
     }
@@ -30,9 +31,9 @@ class FileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file', 'file')
-            ->add('name', 'text')
-            ->add('tags')
+            ->add('file', \Symfony\Component\Form\Extension\Core\Type\FileType::class)
+            ->add('name', TextType::class)
+            ->add('tags', TextType::class)
         ;
     }
 
@@ -41,6 +42,8 @@ class FileType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Leapt\AdminBundle\Entity\File'));
+        $resolver->setDefaults([
+            'data_class' => 'Leapt\AdminBundle\Entity\File'
+        ]);
     }
 }
