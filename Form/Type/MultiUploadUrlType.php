@@ -3,6 +3,7 @@
 namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * Represent an Url field type for the multi upload form type
@@ -13,11 +14,9 @@ use Symfony\Component\Form\AbstractType;
 class MultiUploadUrlType extends AbstractType
 {
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'leapt_admin_multiupload_url';
     }
@@ -27,6 +26,6 @@ class MultiUploadUrlType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 }

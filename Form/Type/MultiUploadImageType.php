@@ -3,6 +3,7 @@
 namespace Leapt\AdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,11 +15,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class MultiUploadImageType extends AbstractType
 {
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'leapt_admin_multiupload_image';
     }
@@ -30,7 +29,7 @@ class MultiUploadImageType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-       $view->vars['im_resize'] = $options['im_resize'];
+        $view->vars['im_resize'] = $options['im_resize'];
     }
 
 
@@ -39,9 +38,9 @@ class MultiUploadImageType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'im_resize' => '200x',
-        ));
+        ]);
     }
 
     /**
@@ -49,6 +48,6 @@ class MultiUploadImageType extends AbstractType
      */
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 }

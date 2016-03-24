@@ -4,6 +4,7 @@ namespace Leapt\AdminBundle\Form\Type;
 
 use Leapt\AdminBundle\Form\EventListener\MultiUploadSubscriber;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -41,7 +42,7 @@ class MultiUploadType extends AbstractType
 
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['type'] = $options['type'];
+        $view->vars['entry_type'] = $options['entry_type'];
     }
 
     /**
@@ -50,31 +51,27 @@ class MultiUploadType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setRequired(array('dst_dir'))
-            ->setAllowedTypes('dst_dir', array('string', 'callable'))
-            ->setDefaults(array(
-                'type' => 'leapt_admin_multiupload_url',
-            )
-        );
+            ->setRequired(['dst_dir'])
+            ->setAllowedTypes('dst_dir', ['string', 'callable'])
+            ->setDefaults([
+                    'entry_type' => MultiUploadUrlType::class,
+                ]
+            );
     }
 
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'leapt_admin_multiupload';
     }
 
     /**
-     * Returns the name of the parent type
-     *
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string
      */
     public function getParent()
     {
-        return 'collection';
+        return CollectionType::class;
     }
 }

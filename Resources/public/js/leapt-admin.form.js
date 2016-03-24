@@ -386,10 +386,10 @@ LeaptAdmin.Form = (function ($) {
             });
 
             switch (this.$el.data('type')) {
-                case 'leapt_admin_multiupload_url':
+                case 'Leapt\\AdminBundle\\Form\\Type\\MultiUploadUrlType':
                     $link.text(url);
                     break;
-                case 'leapt_admin_multiupload_image':
+                case 'Leapt\\AdminBundle\\Form\\Type\\MultiUploadImageType':
                     $file.find('img').attr('src', function () {
                         var src = this.src.split('?'); // managing basic asset versions
                         return src[0] + url + (src[1] ?  '?' + src[1] : '');

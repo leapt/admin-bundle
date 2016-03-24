@@ -161,7 +161,7 @@
         {% if prototype is defined %}
             {% set attr = attr|merge({'data-prototype': form_widget(prototype)|trim }) %}
         {% endif %}
-        <div {{ block('widget_attributes') }} data-type="{{ type }}">
+        <div {{ block('widget_attributes') }} data-type="{{ entry_type }}">
             <ul class="file-list">
                 {% for child in form.children %}
                     {{ form_widget(child) }}
