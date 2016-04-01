@@ -412,33 +412,6 @@ class ContentController extends BaseController
     }
 
     /**
-     * Generate a flash message for the provided admin and entity
-     *
-     * @param string $type
-     * @param string $message
-     * @param ContentAdmin $admin
-     * @param object $entity
-     * @param string $domain
-     * @return array
-     * @deprecated Use buildEntityFlash instead
-     */
-    protected function buildModalEntityFlash($type, $message, ContentAdmin $admin, $entity, $domain = 'LeaptAdminBundle')
-    {
-        return [
-            $type => [$this->get('translator')->trans(
-                $message,
-                [
-                    '%type%' => $this->get('translator')->transChoice(
-                        $admin->getOption('label'), 1, [], $this->get('leapt_admin')->getDefaultTranslationDomain()
-                    ),
-                    '%name%' => $admin->getEntityName($entity))
-                ],
-                $domain
-            ]
-        ];
-    }
-
-    /**
      * @return \Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
      */
     protected function getRoutingHelper()
