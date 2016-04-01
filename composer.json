@@ -28,7 +28,7 @@
         "php": "~5.4",
         "symfony/framework-bundle": ">=2.7",
         "leapt/core-bundle": "~1.0",
-        "leapt/bootstrap-bundle": "v4.0.0-alpha.1",
+        "leapt/bootstrap-bundle": "v2.0.0-alpha.1",
         "leapt/im-bundle": "~1.0"
     },
     "autoload": {
