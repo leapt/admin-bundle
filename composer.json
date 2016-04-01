@@ -29,9 +29,7 @@
         "symfony/framework-bundle": ">=2.7",
         "leapt/core-bundle": "~1.0",
         "leapt/bootstrap-bundle": "~1.0",
-        "leapt/im-bundle": "~1.0",
-        "leafo/lessphp": "v0.4.0"
-
+        "leapt/im-bundle": "~1.0"
     },
     "autoload": {
         "psr-4": { "Leapt\\AdminBundle\\": "" }

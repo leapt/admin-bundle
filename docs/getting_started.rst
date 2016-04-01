@@ -1,5 +1,5 @@
 Getting started with LeaptAdminBundle
-=======================================
+=====================================
 
 LeaptAdminBundle provides a few useful features for your backoffice applications. The goal of this bundle is to provide a
 series of tools and helpers to facilitate your work, but also to get out of your way when you want to add totally custom
@@ -35,23 +35,9 @@ Installation is a 7 step process:
 7. Additional configuration steps
 
 Step 1: Download LeaptAdminBundle using composer
---------------------------------------------------
+------------------------------------------------
 
 Add LeaptAdminBundle in your composer.json:
-
-For Symfony < 2.7
-~~~~~~~~~~~~~~~~~
-
-.. code-block:: javascript
-
-    {
-        "require": {
-            "leapt/admin-bundle": "~1.0"
-        }
-    }
-
-For Symfony >= 2.7
-~~~~~~~~~~~~~~~~~~
 
 .. code-block:: javascript
 
@@ -101,7 +87,7 @@ In order to be able to use the Leapt Admin Bundle, you need to create your own A
 
 .. code-block:: bash
 
-    php ./app/console generate:bundle
+    php ./bin/console generate:bundle
 
 Your bundle must extend LeaptAdminBundle in order for it to work.
 
@@ -131,19 +117,11 @@ Step 4: Enable admin routing
 Step 5: Configure Assetic
 -------------------------
 
-LeaptAdminBundle uses assetic in order to speed up the display of the admin pages. You must add LeaptAdminBundle to the list of configured assetic bundles. Additionally, the lessphp and cssrewrite filters must be enabled for the AdminBundle to work.
+LeaptAdminBundle needs your assets to be installed.
 
-.. code-block:: yaml
+.. code-block:: console
 
-    # app/config/config.yml
-
-    assetic:
-        debug:          "%kernel.debug%"
-        use_controller: false
-        bundles: ["AcmeAdminBundle", "LeaptAdminBundle"]
-        filters:
-            cssrewrite: ~
-            lessphp: ~
+    bin/console assets:install --symlink web
 
 
 Step 6: Configure security
@@ -205,6 +183,10 @@ You can then change your security.yml config file:
                     check_path:  leapt_admin_login_check
                 logout:
                     path: leapt_admin_logout
+                remember_me:
+                    secret:   '%secret%'
+                    lifetime: 604800
+                    path:     /
 
         access_control:
             - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -215,13 +197,13 @@ Don't forget to update your database schema, using schema:update or migrations:d
 
 .. code-block:: bash
 
-    php ./app/console doctrine:schema:update --force
+    php ./bin/console doctrine:schema:update --force
 
 When this is done, you can create admin users through the command line:
 
 .. code-block:: bash
 
-    php ./app/console leapt:admin:generate:user
+    php ./bin/console leapt:admin:generate:user
 
 Make sure to give to your user at least one admin role as configured in your security.yml file.
 
