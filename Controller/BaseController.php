@@ -35,7 +35,7 @@ class BaseController extends Controller
      */
     public function buildModalFlash($name, $value, $parameters = [], $domain = 'LeaptAdminBundle')
     {
-        return [$name => [$this->get('translator')->trans($value, $parameters, $domain)];
+        return [$name => [$this->get('translator')->trans($value, $parameters, $domain)]];
     }
 
     /**
