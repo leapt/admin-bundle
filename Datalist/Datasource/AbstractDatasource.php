@@ -110,7 +110,7 @@ abstract class AbstractDatasource implements DatasourceInterface
      */
     public function setSort($field, $direction)
     {
-        if (!in_array($direction, array('asc', 'desc'))) {
+        if (!in_array($direction, ['asc', 'desc'])) {
             throw new \InvalidArgumentException('Datasource->setSort(): Argument "direction" must be "asc" or "desc".');
         }
 

@@ -111,10 +111,10 @@ class Logger
     public function logCatalogTranslation($catalogue, $locale, $diff)
     {
         $log = $this->initLog(Log::TYPE_CATALOG_TRANSLATION, 'update');
-        $log->setParams( array(
+        $log->setParams([
             'catalogue' => $catalogue,
             'locale'    => $locale,
-        ));
+        ]);
         $log->setDescription($catalogue . ' (' . $locale . ')');
         $log->setDiff($diff);
 
@@ -132,7 +132,7 @@ class Logger
     public function getLogsForEntity($entity, $action = null)
     {
         if (null !== $action && !is_array($action)) {
-            $action = array($action);
+            $action = [$action];
         }
 
         $admin = $this->admin->getAdminForEntity($entity);

@@ -3,27 +3,31 @@
 {# navigation block #}
 {% block navigation %}
 
-    <div id="navbar-main" class="navbar navbar-fixed-top navbar-inverse">
-        <div class="navbar-inner">
+    <header class="main-header">
+        <nav class="navbar navbar-static-top">
             <div class="container">
+                <div class="navbar-header">
+                    {# brand block #}
+                    {% block brand %}
+                        <a href="{{ path('leapt_admin_default_index') }}" class="navbar-brand">{{ 'admin'|trans({}, admin_translation_domain()) }}</a>
+                    {% endblock brand %}
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
 
-                {# brand block #}
-                {% block brand %}
-                    <a class="brand" href="{{ path('leapt_admin_default_index') }}">
-                        {{ "admin"|trans({}, admin_translation_domain()) }}
-                    </a>
-                {% endblock brand %}
-
-                {# admins block #}
-                {% block admins %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <ul class="nav">
-                            {% for admin in admins %}
-                                {{ macros.menu_item(admin) }}
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-                {% endblock admins %}
+                <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                    {# admins block #}
+                    {% block admins %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <ul class="nav navbar-nav">
+                                {% for admin in admins %}
+                                    {{ macros.menu_item(admin) }}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endblock admins %}
+                </div>
 
                 {# block context #}
                 {% block context %}{% endblock context %}
@@ -31,21 +35,24 @@
                 {# security #}
                 {% block security %}
                     {% if is_granted('ROLE_ADMIN') %}
-                    <ul class="nav pull-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user icon-white"></i> {{ app.user.username }}
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('leapt_admin_logout') }}">{{ "security.logout"|trans({}, 'LeaptAdminBundle') }}</a></li>
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-user"></i>
+                                        <span class="hidden-xs">{{ app.user.username }}</span>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ path('leapt_admin_logout') }}">{{ 'security.logout'|trans({}, 'LeaptAdminBundle') }}</a></li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
-                    </ul>
+                        </div>
                     {% endif %}
                 {% endblock security %}
             </div>
-        </div>
-    </div>
+        </nav>
+    </header>
 
 {% endblock navigation %}

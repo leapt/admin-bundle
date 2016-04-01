@@ -67,7 +67,7 @@ abstract class AbstractAdmin implements AdminInterface, ContainerAwareInterface
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setRequired(array('label'))
+            ->setRequired(['label'])
             ->setAllowedTypes('label', 'string');
     }
 

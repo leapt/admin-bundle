@@ -21,14 +21,14 @@ abstract class Config
     /**
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * @param $name
      * @param TypeInterface $type
      * @param array $options
      */
-    public function __construct($name, TypeInterface $type, array $options = array())
+    public function __construct($name, TypeInterface $type, array $options = [])
     {
         $this->name = $name;
         $this->type = $type;

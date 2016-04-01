@@ -20,10 +20,10 @@
     {% block actions %}
         <div class="btn-toolbar">
             <a href="{{ admin_content_path(admin, 'update', {'id': entity.id}) }}" class="btn">
-                <i class="icon-pencil"></i> {{ "content.actions.edit"|trans }}
+                <i class="fa fa-pencil"></i> {{ "content.actions.edit"|trans }}
             </a>
             <a href="{{ admin_content_path(admin, 'delete', {'id': entity.id}) }}" class="btn btn-danger">
-                <i class="icon-trash"></i> {{ "content.actions.delete.label"|trans }}
+                <i class="fa fa-trash"></i> {{ "content.actions.delete.label"|trans }}
             </a>
         </div>
     {% endblock actions %}

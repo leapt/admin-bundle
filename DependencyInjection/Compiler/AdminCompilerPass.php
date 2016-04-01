@@ -31,7 +31,7 @@ class AdminCompilerPass implements CompilerPassInterface
 
             unset($adminTag['alias']);
 
-            $definition->addMethodCall('registerAdmin', array($alias, new Reference($serviceId), $adminTag));
+            $definition->addMethodCall('registerAdmin', [$alias, new Reference($serviceId), $adminTag]);
         }
     }
 }

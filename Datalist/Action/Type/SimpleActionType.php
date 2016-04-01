@@ -34,10 +34,10 @@ class SimpleActionType extends AbstractActionType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefaults(array(
-                'params' => array(),
-            ))
-            ->setRequired(array('route'));
+            ->setDefaults([
+                'params' => [],
+            ])
+            ->setRequired(['route']);
     }
 
     /**
@@ -46,9 +46,9 @@ class SimpleActionType extends AbstractActionType
      * @param array $options
      * @return string
      */
-    public function getUrl(DatalistActionInterface $action, $item, array $options = array())
+    public function getUrl(DatalistActionInterface $action, $item, array $options = [])
     {
-        $parameters = array();
+        $parameters = [];
         $accessor = PropertyAccess::createPropertyAccessor();
         foreach($options['params'] as $paramName => $paramPath) {
             $paramValue = $accessor->getValue($item, $paramPath);

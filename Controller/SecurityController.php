@@ -30,13 +30,10 @@ class SecurityController extends Controller
             $session->remove(Security::AUTHENTICATION_ERROR);
         }
 
-        return $this->render(
-            'LeaptAdminBundle:Security:login.html.twig',
-            array(
-                // last username entered by the user
-                'last_username' => $session->get(Security::LAST_USERNAME),
-                'error'         => $error,
-            )
-        );
+        return $this->render('LeaptAdminBundle:Security:login.html.twig', [
+            // last username entered by the user
+            'last_username' => $session->get(Security::LAST_USERNAME),
+            'error'         => $error,
+        ]);
     }
 }

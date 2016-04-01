@@ -60,19 +60,19 @@ class Configuration implements ConfigurationInterface
         $builder = new TreeBuilder();
         $node = $builder->root('im_formats');
 
-        $defaultAdminThumbConfig = array(
-            'thumbnail' => '180x120>',
+        $defaultAdminThumbConfig = [
+            'thumbnail'  => '180x120>',
             'background' => 'transparent',
-            'gravity' => 'center',
-            'extent' => '180x120'
-        );
+            'gravity'    => 'center',
+            'extent'     => '180x120'
+        ];
 
-        $defaultAdminSmallthumbConfig = array(
-            'thumbnail' => '50x30>',
+        $defaultAdminSmallthumbConfig = [
+            'thumbnail'  => '50x30>',
             'background' => 'transparent',
-            'gravity' => 'center',
-            'extent' => '50x30'
-        );
+            'gravity'    => 'center',
+            'extent'     => '50x30'
+        ];
 
         $node
             ->addDefaultsIfNotSet()

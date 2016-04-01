@@ -20,12 +20,12 @@ class BooleanFieldType extends AbstractFieldType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefaults(array(
-                'true_label' => null,
+            ->setDefaults([
+                'true_label'  => null,
                 'false_label' => null
-            ))
-            ->setAllowedTypes('true_label', array('null', 'string'))
-            ->setAllowedTypes('false_label', array('null', 'string'))
+            ])
+            ->setAllowedTypes('true_label', ['null', 'string'])
+            ->setAllowedTypes('false_label', ['null', 'string'])
         ;
     }
 

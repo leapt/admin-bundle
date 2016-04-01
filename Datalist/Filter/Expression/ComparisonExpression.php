@@ -73,11 +73,12 @@ class ComparisonExpression implements ExpressionInterface {
     /**
      * @return array
      */
-    static private function getValidOperators(){
-        return array(
+    static private function getValidOperators()
+    {
+        return [
             self::OPERATOR_EQ, self::OPERATOR_NEQ, self::OPERATOR_GT, self::OPERATOR_GTE,
             self::OPERATOR_LT, self::OPERATOR_LTE, self::OPERATOR_LIKE, self::OPERATOR_IN,
             self::OPERATOR_NIN, self::OPERATOR_IS_NULL, self::OPERATOR_IS_NOT_NULL
-        );
+        ];
     }
 }

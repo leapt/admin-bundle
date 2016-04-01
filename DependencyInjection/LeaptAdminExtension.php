@@ -34,10 +34,10 @@ class LeaptAdminExtension extends Extension
 
         $container->findDefinition('leapt_admin')->addMethodCall(
             'setDefaultTranslationDomain',
-            array($config['default_translation_domain'])
+            [$config['default_translation_domain']]
         );
 
-        foreach (array('user_class') as $option) {
+        foreach (['user_class'] as $option) {
             if (isset($config['security'][$option])) {
                 $container->setParameter('leapt_admin.security.' . $option, $config['security'][$option]);
             }

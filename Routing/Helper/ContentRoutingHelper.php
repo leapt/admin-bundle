@@ -65,9 +65,9 @@ class ContentRoutingHelper
      * @param bool $defaultRoute
      * @return \Symfony\Component\Routing\Route
      */
-    public function getRoute(AdminInterface $admin, $action, $params = array(), $defaultRoute = false)
+    public function getRoute(AdminInterface $admin, $action, $params = [], $defaultRoute = false)
     {
-        $defaults = array();
+        $defaults = [];
         $pattern = '/' . $admin->getAlias();
         if(!$defaultRoute) {
             $pattern .= '/' . $action;
@@ -96,7 +96,7 @@ class ContentRoutingHelper
         }
 
         $defaults = array_merge(
-            array('_controller' => $controller, 'alias' => $admin->getAlias()),
+            ['_controller' => $controller, 'alias' => $admin->getAlias()],
             $defaults
         );
         return new Route($pattern, $defaults);
@@ -108,7 +108,7 @@ class ContentRoutingHelper
      * @param array $params
      * @return string
      */
-    public function generateUrl(AdminInterface $admin, $action, $params = array())
+    public function generateUrl(AdminInterface $admin, $action, $params = [])
     {
         $routeName = $this->getRouteName($admin, $action);
 

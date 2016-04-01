@@ -129,7 +129,7 @@ class DoctrineORMDatasource extends AbstractDatasource
      * @throws \UnexpectedValueException
      */
     private function buildQueryBuilderCombinedExpression(CombinedExpression $expression) {
-        $queryBuilderSubExpressions = array();
+        $queryBuilderSubExpressions = [];
         foreach ($expression->getExpressions() as $subExpression) {
             $queryBuilderSubExpressions [] = $this->buildQueryBuilderExpression($subExpression);
         }
@@ -199,7 +199,7 @@ class DoctrineORMDatasource extends AbstractDatasource
                 break;
         }
 
-        if (!in_array($operator, array(ComparisonExpression::OPERATOR_IS_NULL, ComparisonExpression::OPERATOR_IS_NOT_NULL))) {
+        if (!in_array($operator, [ComparisonExpression::OPERATOR_IS_NULL, ComparisonExpression::OPERATOR_IS_NOT_NULL])) {
             $this->queryBuilder->setParameter($placeholder, $comparisonValue);
         }
 

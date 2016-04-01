@@ -18,22 +18,22 @@ class DatalistFactory
     /**
      * @var array
      */
-    private $types = array();
+    private $types = [];
 
     /**
      * @var array
      */
-    private $fieldTypes = array();
+    private $fieldTypes = [];
 
     /**
      * @var array
      */
-    private $filterTypes = array();
+    private $filterTypes = [];
 
     /**
      * @var array
      */
-    private $actionTypes = array();
+    private $actionTypes = [];
 
     /**
      * @var FormFactory
@@ -53,7 +53,7 @@ class DatalistFactory
      * @param array $options
      * @return DatalistInterface
      */
-    public function create($type = 'datalist', array $options = array())
+    public function create($type = 'datalist', array $options = [])
     {
         return $this->createBuilder($type, $options)->getDatalist();
     }
@@ -64,7 +64,7 @@ class DatalistFactory
      * @param array $options
      * @return Datalist
      */
-    public function createNamed($name, $type = 'datalist', array $options = array())
+    public function createNamed($name, $type = 'datalist', array $options = [])
     {
         return $this->createNamedBuilder($name, $type, $options)->getDatalist();
     }
@@ -74,7 +74,7 @@ class DatalistFactory
      * @param array $options
      * @return DatalistBuilder
      */
-    public function createBuilder($type = 'datalist', array $options = array())
+    public function createBuilder($type = 'datalist', array $options = [])
     {
         $name = $type instanceof DatalistTypeInterface
             ? $type->getName()
@@ -90,7 +90,7 @@ class DatalistFactory
      * @return DatalistBuilder
      * @throws \InvalidArgumentException
      */
-    public function createNamedBuilder($name, $type = 'datalist', array $options = array())
+    public function createNamedBuilder($name, $type = 'datalist', array $options = [])
     {
         // Determine datalist type
         if (is_string($type)) {

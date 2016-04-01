@@ -18,11 +18,11 @@ abstract class AbstractActionType implements ActionTypeInterface
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setDefaults(array(
-                'attr' => array(),
+            ->setDefaults([
+                'attr' => [],
                 'enabled' => true,
-            ))
-            ->setAllowedTypes('enabled', array('bool', 'callable'))
+            ])
+            ->setAllowedTypes('enabled', ['bool', 'callable'])
         ;
     }
 

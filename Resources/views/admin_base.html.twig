@@ -2,70 +2,60 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		<title>{% block title %}{{ "admin"|trans({}, admin_translation_domain()) }}{% endblock %}</title>
 
-        {# stylesheets block #}
         {% block stylesheets %}
-            {% stylesheets
-                'bundles/leaptadmin/vendor/bootstrap/less/bootstrap.less'
-                'bundles/leaptadmin/less/main.less'
-                'bundles/leaptadmin/vendor/bootstrap/less/responsive.less'
-                filter="lessphp,cssrewrite"
-                output='cache/assetic/css/leaptadmin.css'
-            %}
-                <link rel="stylesheet" href="{{ asset_url }}" />
-            {% endstylesheets %}
+            {% if app.environment == 'dev' %}
+                <link rel="stylesheet" href="{{ asset('bundles/leaptadmin/build/styles/vendor.css') }}">
+            {% else %}
+                <link rel="stylesheet" href="{{ asset('bundles/leaptadmin/build/styles/vendor.min.css') }}">
+            {% endif %}
         {% endblock stylesheets %}
 
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 	</head>
-	<body>
-        {% block main_nav %}
-            {{ render(controller('LeaptAdminBundle:Navigation:main')) }}
-        {% endblock main_nav %}
-        <div class="container">
-            {% block alerts %}
-                {% include 'LeaptAdminBundle:Widget:alerts.html.twig' %}
-            {% endblock alerts %}
+	<body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            {% block main_nav %}
+                {{ render(controller('LeaptAdminBundle:Navigation:main')) }}
+            {% endblock main_nav %}
 
-            {% block body %}{% endblock body %}
+            <div class="content-wrapper">
+                <div class="container">
+                    {% block alerts %}
+                        {% include 'LeaptAdminBundle:Widget:alerts.html.twig' %}
+                    {% endblock alerts %}
+
+                    {% block body %}{% endblock body %}
+                </div>
+            </div>
         </div>
+
         <div class="modal fade" id="modal" style="display: none"></div>
         {% block javascripts %}
             <script type="text/javascript">
-                var CKEDITOR_BASEPATH = '{{ app.request.basePath ~ '/bundles/leaptadmin/vendor/ckeditor/' }}';
                 var LEAPT_ADMIN_CONTENT_CHANGE_URL = '{{ path('leapt_admin_widget_content_changed') }}';
             </script>
-            {% javascripts
-                'bundles/leaptadmin/vendor/jquery.js'
-                'bundles/leaptadmin/vendor/underscore.js'
-                'bundles/leaptadmin/vendor/backbone.js'
-                'bundles/leaptcore/js/leapt-core.js'
-                'bundles/leaptcore/js/leapt-core.form.js'
-                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-affix.js'
-                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-modal.js'
-                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-tooltip.js'
-                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-typeahead.js'
-                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-dropdown.js'
-                'bundles/leaptadmin/vendor/bootstrap/js/bootstrap-tab.js'
-                'bundles/leaptadmin/js/all.js'
-                'bundles/leaptbootstrap/js/leapt-bootstrap.js'
-                'bundles/leaptadmin/vendor/ckeditor/ckeditor.js'
-                'bundles/leaptadmin/vendor/autosize/jquery.autosize-min.js'
-                'bundles/leaptadmin/vendor/jquery.ui.widget.js'
-                'bundles/leaptadmin/vendor/jquery-file-upload/jquery.iframe-transport.js'
-                'bundles/leaptadmin/vendor/jquery-file-upload/jquery.fileupload.js'
-                'bundles/leaptadmin/js/all.js'
-                'bundles/leaptadmin/js/ckeditor.js'
-                'bundles/leaptadmin/js/leapt-admin.js'
-                'bundles/leaptadmin/js/leapt-admin.ui.js'
-                'bundles/leaptadmin/js/leapt-admin.form.js'
-                output='cache/assetic/js/leaptadmin.js'
-            %}
-                <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
+            {% if app.environment == 'dev' %}
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/build/scripts/vendor.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/vendor/ckeditor/ckeditor.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/js/ckeditor.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptcore/js/leapt-core.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptcore/js/leapt-core.form.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptbootstrap/js/leapt-bootstrap3.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/build/scripts/admin.js') }}"></script>
+            {% else %}
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/build/scripts/vendor.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/vendor/ckeditor/ckeditor.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/js/ckeditor.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptcore/js/leapt-core.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptcore/js/leapt-core.form.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptbootstrap/js/leapt-bootstrap3.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('bundles/leaptadmin/build/scripts/admin.min.js') }}"></script>
+            {% endif %}
         {% endblock %}
 	</body>
 </html>

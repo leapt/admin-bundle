@@ -15,7 +15,7 @@ class DatalistThemeNode extends \Twig_Node
      */
     public function __construct(\Twig_NodeInterface $datalist, \Twig_NodeInterface $resources, $lineno, $tag = null)
     {
-        parent::__construct(array('datalist' => $datalist, 'resources' => $resources), array(), $lineno, $tag);
+        parent::__construct(['datalist' => $datalist, 'resources' => $resources], [], $lineno, $tag);
     }
 
     /**

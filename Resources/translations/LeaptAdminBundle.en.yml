@@ -132,10 +132,12 @@ cataloguetranslation:
 
 dashboard:
     title: Dashboard
-    introduction: |
-        Welcome on the administration module of your website.<br/>
-        This interface allows you to create, edit, and delete content.<br/>
-        For any question or problem, you can create a ticket on the <a href="http://redmine.leapt.be">Leapt ticketing platform</a>,<br/>or you can contact us at <a href="mailto:shoot@leapt.be">shoot@leapt.be</a>
+    introduction:
+        title: Welcome on the administration module of your website.
+        description: |
+            This interface allows you to create, edit, and delete content.<br />
+            For any question or problem, you can create an issue on <a href="https://github.com/leapt/admin-bundle">Github</a>,
+            or you can contact us at <a href="mailto:contact@leapt.io">contact@leapt.io</a>.
 
 logger:
     title: Recent activity
@@ -166,6 +168,7 @@ security:
         title: Log in
         username: Your username
         password: Your password
+        remember_me: Remember Me
         login: Log in
     logout: Log out
 

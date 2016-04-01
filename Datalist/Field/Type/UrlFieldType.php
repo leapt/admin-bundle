@@ -21,8 +21,8 @@ class UrlFieldType extends TextFieldType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefined(array('url'))
-            ->setAllowedTypes('url', array('callable', 'string'))
+            ->setDefined(['url'])
+            ->setAllowedTypes('url', ['callable', 'string'])
         ;
     }
 

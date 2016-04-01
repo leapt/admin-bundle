@@ -37,10 +37,10 @@ class EntityToIdTransformer implements DataTransformerInterface
     {
         if ($this->multiple) {
             if (null === $value) {
-                return array();
+                return [];
             }
 
-            $transformedValue = array();
+            $transformedValue = [];
             foreach ($value as $entity) {
                 $transformedValue []= $this->transformSingle($entity);
             }

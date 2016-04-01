@@ -1,0 +1,65 @@
+dest: "Resources/public/build"
+productionSuffix: ".min"
+
+assets:
+    -
+        type: "fonts"
+        src: "bower_components/font-awesome"
+        files:
+            - "fonts/**/*"
+        watch: false
+    -
+        type: "scripts"
+        output: "vendor.js"
+        src: "bower_components"
+        files:
+            - "jquery/dist/jquery.js"
+            - "underscore/underscore.js"
+            - "backbone/backbone.js"
+            - "adminlte/bootstrap/js/bootstrap.js"
+            - "adminlte/plugins/slimScroll/jquery.slimscroll.min.js"
+            - "adminlte/plugins/fastclick/fastclick.js"
+            - "adminlte/dist/js/app.min.js"
+            - "autosize/dist/autosize.js"
+            - "typeahead.js/dist/typeahead.bundle.js"
+            - "blueimp-file-upload/js/vendor/jquery.ui.widget.js"
+            - "blueimp-file-upload/js/jquery.iframe-transport.js"
+            - "blueimp-file-upload/js/jquery.fileupload.js"
+        lint: false
+        watch: false
+    -
+        type: "scripts"
+        output: "admin.js"
+        src: "Resources/public/js"
+        files:
+            - "leapt-admin.js"
+            - "leapt-admin.ui.js"
+            - "leapt-admin.form.js"
+        lint: false
+        watch: false
+    -
+        type: "styles"
+        output: "vendor.css"
+        src: "bower_components"
+        files:
+            - "adminlte/bootstrap/css/bootstrap.css"
+            - "adminlte/dist/css/AdminLTE.css"
+            - "adminlte/dist/css/skins/skin-blue.css"
+            - "font-awesome/css/font-awesome.css"
+            - "../Resources/public/less/main.less"
+            - "../Resources/public/less/typeahead.less"
+        lint: false
+        watch: false
+#    -
+#        type: "images"
+#        src: "bower_components"
+#        files:
+#            - "adminlte/plugins/iCheck/square/blue.png"
+#            - "adminlte/plugins/iCheck/square/blue@2x.png"
+
+server:
+    plugin: "livereload"
+    src: "./"
+    watch:
+        - "app/Resources/views/**/*.html.twig"
+        - "src/AdminBundle/Resources/views/**/*.html.twig"

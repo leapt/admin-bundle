@@ -27,7 +27,7 @@ abstract class ContentAdmin extends AbstractAdmin
         parent::configureOptions($resolver);
 
         $resolver
-            ->setDefined(array('entity_class', 'entity_name'))
+            ->setDefined(['entity_class', 'entity_name'])
             ->setAllowedTypes('entity_class', 'string')
             ->setAllowedTypes('entity_name', 'string')
         ;
@@ -111,12 +111,12 @@ abstract class ContentAdmin extends AbstractAdmin
         // Add index route
         $routeCollection->add(
             $this->getRoutingHelper()->getRouteName($this, 'index'),
-            $this->getRoutingHelper()->getRoute($this, 'index', array(), true)
+            $this->getRoutingHelper()->getRoute($this, 'index', [], true)
         );
         // Add view route
         $routeCollection->add(
             $this->getRoutingHelper()->getRouteName($this, 'view'),
-            $this->getRoutingHelper()->getRoute($this, 'view', array('id'))
+            $this->getRoutingHelper()->getRoute($this, 'view', ['id'])
         );
         // Add create route
         $routeCollection->add(
@@ -131,22 +131,22 @@ abstract class ContentAdmin extends AbstractAdmin
         // Add autocomplete list route
         $routeCollection->add(
             $this->getRoutingHelper()->getRouteName($this, 'autocompleteList'),
-            $this->getRoutingHelper()->getRoute($this, 'autocompleteList', array('where', 'id_property', 'property', 'query'))
+            $this->getRoutingHelper()->getRoute($this, 'autocompleteList', ['where', 'id_property', 'property', 'query'])
         );
         // Add update route
         $routeCollection->add(
             $this->getRoutingHelper()->getRouteName($this, 'update'),
-            $this->getRoutingHelper()->getRoute($this, 'update', array('id'))
+            $this->getRoutingHelper()->getRoute($this, 'update', ['id'])
         );
         // Add modal update route
         $routeCollection->add(
             $this->getRoutingHelper()->getRouteName($this, 'modalUpdate'),
-            $this->getRoutingHelper()->getRoute($this, 'modalUpdate', array('id'))
+            $this->getRoutingHelper()->getRoute($this, 'modalUpdate', ['id'])
         );
         // Add delete route
         $routeCollection->add(
             $this->getRoutingHelper()->getRouteName($this, 'delete'),
-            $this->getRoutingHelper()->getRoute($this, 'delete', array('id'))
+            $this->getRoutingHelper()->getRoute($this, 'delete', ['id'])
         );
     }
 

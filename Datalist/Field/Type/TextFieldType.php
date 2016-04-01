@@ -27,7 +27,7 @@ class TextFieldType extends AbstractFieldType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefined(array('truncate'));
+        $resolver->setDefined(['truncate']);
     }
 
     /**

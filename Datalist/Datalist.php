@@ -30,7 +30,7 @@ class Datalist implements DatalistInterface, \Countable
     /**
      * @var array
      */
-    private $fields = array();
+    private $fields = [];
 
     /**
      * @var array
@@ -40,7 +40,7 @@ class Datalist implements DatalistInterface, \Countable
     /**
      * @var array
      */
-    private $filters = array();
+    private $filters = [];
 
     /**
      * @var DatalistFilterInterface
@@ -50,7 +50,7 @@ class Datalist implements DatalistInterface, \Countable
     /**
      * @var array
      */
-    private $actions = array();
+    private $actions = [];
 
     /**
      * @var int
@@ -65,7 +65,7 @@ class Datalist implements DatalistInterface, \Countable
     /**
      * @var array
      */
-    private $filterData = array();
+    private $filterData = [];
 
     /**
      * @var Form
@@ -95,7 +95,7 @@ class Datalist implements DatalistInterface, \Countable
     /**
      * @var array
      */
-    private $routeParams = array();
+    private $routeParams = [];
 
     /**
      * @param DatalistConfig $config
@@ -368,7 +368,7 @@ class Datalist implements DatalistInterface, \Countable
         // Handle search
         if (isset($data['search'])) {
             $this->searchQuery = $data['search'];
-            $this->searchForm->submit(array('search' => $data['search']));
+            $this->searchForm->submit(['search' => $data['search']]);
         }
 
         // Handle filters

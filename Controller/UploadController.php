@@ -32,8 +32,8 @@ class UploadController extends BaseController
 
         $fileUrl = rtrim($tmpDir, '/') . '/' . $filename;
 
-        return new JsonResponse(array('url' => $fileUrl), 200, array(
+        return new JsonResponse(['url' => $fileUrl], 200, [
             'Content-Type' => 'text/plain', // IE compatibility issue
-        ));
+        ]);
     }
 }

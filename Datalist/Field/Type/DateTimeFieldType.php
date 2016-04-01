@@ -17,9 +17,9 @@ class DateTimeFieldType extends AbstractFieldType
     {
         parent::configureOptions($resolver);
 
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'format' => 'd/m/Y'
-        ));
+        ]);
     }
 
     /**

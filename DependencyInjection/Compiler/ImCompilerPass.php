@@ -13,10 +13,10 @@ class ImCompilerPass implements CompilerPassInterface {
      */
     public function process(ContainerBuilder $container)
     {
-        if($container->hasDefinition('leapt_im.manager')) {
+        if ($container->hasDefinition('leapt_im.manager')) {
             $imFormats = $container->getParameter('leapt_admin.im_formats');
-            foreach($imFormats as $name => $config) {
-                $container->getDefinition('leapt_im.manager')->addMethodCall('addFormat', array($name, $config));
+            foreach ($imFormats as $name => $config) {
+                $container->getDefinition('leapt_im.manager')->addMethodCall('addFormat', [$name, $config]);
             }
         }
     }

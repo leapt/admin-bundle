@@ -54,14 +54,14 @@ class ContentAdminActionType extends AbstractActionType
         };
 
         $resolver
-            ->setDefaults(array(
-                'params' => array('id' => 'id'),
+            ->setDefaults([
+                'params' => ['id' => 'id'],
                 'modal' => false,
-            ))
-            ->setDefined(array('icon'))
-            ->setRequired(array('admin', 'action'))
+            ])
+            ->setDefined(['icon'])
+            ->setRequired(['admin', 'action'])
             ->setAllowedTypes('params', 'array')
-            ->setAllowedTypes('admin', array('string', 'Leapt\AdminBundle\Admin\ContentAdmin'))
+            ->setAllowedTypes('admin', ['string', 'Leapt\AdminBundle\Admin\ContentAdmin'])
             ->setAllowedTypes('action', 'string')
             ->setNormalizer('admin', $adminNormalizer)
         ;
@@ -73,7 +73,7 @@ class ContentAdminActionType extends AbstractActionType
      * @param array $options
      * @return string
      */
-    public function getUrl(DatalistActionInterface $action, $item, array $options = array())
+    public function getUrl(DatalistActionInterface $action, $item, array $options = [])
     {
         $parameters = $this->getUrlParameters($item, $options);
 
@@ -87,7 +87,7 @@ class ContentAdminActionType extends AbstractActionType
      */
     protected function getUrlParameters($item, array $options)
     {
-        $parameters = array();
+        $parameters = [];
         $accessor = PropertyAccess::createPropertyAccessor();
         foreach($options['params'] as $paramName => $paramPath) {
             $paramValue = $accessor->getValue($item, $paramPath);

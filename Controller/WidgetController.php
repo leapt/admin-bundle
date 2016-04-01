@@ -2,7 +2,6 @@
 
 namespace Leapt\AdminBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -13,18 +12,18 @@ class WidgetController extends BaseController
 {
     public function deleteItemAction()
     {
-        $responseData = array(
+        $responseData = [
             'content' => $this->renderView('LeaptAdminBundle:Widget:deleteItem.html.twig')
-        );
+        ];
 
         return new JsonResponse($responseData);
     }
 
     /**
-     * @Template
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contentChangedAction()
     {
-        return array();
+        return $this->render('LeaptAdminBundle:Widget:contentChanged.html.twig');
     }
 }

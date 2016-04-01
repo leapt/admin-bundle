@@ -14,7 +14,7 @@ class CombinedExpression implements ExpressionInterface {
     /**
      * @var array
      */
-    private $expressions = array();
+    private $expressions = [];
 
     /**
      * @param string $operator
@@ -56,9 +56,10 @@ class CombinedExpression implements ExpressionInterface {
     /**
      * @return array
      */
-    static private function getValidOperators(){
-        return array(
+    static private function getValidOperators()
+    {
+        return [
             self::OPERATOR_AND, self::OPERATOR_OR
-        );
+        ];
     }
 }

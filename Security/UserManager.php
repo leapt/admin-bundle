@@ -54,7 +54,7 @@ class UserManager
      * @param array $extraFields
      * @return \Leapt\AdminBundle\Entity\User
      */
-    public function createUser($userName, $email, $password, array $roles, array $extraFields = array())
+    public function createUser($userName, $email, $password, array $roles, array $extraFields = [])
     {
         $user = new $this->userClass;
         $encoder = $this->encoderFactory->getEncoder($user);

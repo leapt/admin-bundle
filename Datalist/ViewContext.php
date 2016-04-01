@@ -11,7 +11,7 @@ class ViewContext implements \ArrayAccess
     /**
      * @var array
      */
-    private $vars = array();
+    private $vars = [];
 
     /**
      * @param mixed $offset

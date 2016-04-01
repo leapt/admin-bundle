@@ -15,7 +15,8 @@ LeaptAdmin.Form = (function ($) {
          * Initialize
          *
          */
-        initialize: function () {
+        initialize: function(options) {
+            this.options = options || {};
             LeaptCore.Form.Collection.prototype.initialize.apply(this);
         },
         /**
@@ -83,7 +84,7 @@ LeaptAdmin.Form = (function ($) {
     var TextAutocomplete = Backbone.View.extend({
         $textInput: null,
         listUrl: null,
-        labels: [],
+        $typeahead: null,
         /**
          * Initialize
          *
@@ -100,28 +101,25 @@ LeaptAdmin.Form = (function ($) {
          *
          */
         initializeTypeahead: function () {
-            // Initialize typeahead
-            this.$textInput.typeahead({
-                source: _.bind(this.source, this),
-                minLength: 3,
-                items: 10
+            // Initialize Bloodhound
+            var dataSource = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: this.listUrl,
+                    wildcard: '__query__'
+                }
             });
-        },
-        /**
-         * Bootstrap typeahead source implementation
-         *
-         * @param query
-         * @param process
-         */
-        source: function (query, process) {
-            var replacedUrl = this.listUrl.replace('__query__', query);
-            $.getJSON(replacedUrl, _.bind(function (data) {
-                this.labels = [];
-                $.each(data.result, _.bind(function (i, item) {
-                    this.labels.push(item);
-                }, this));
-                process(this.labels);
-            }, this));
+
+            // Initialize typeahead
+            this.$typeahead = this.$textInput.typeahead({
+                minLength: 3,
+                items: 10,
+                highlight: true
+            }, {
+                display: 'value',
+                source: dataSource
+            });
         }
     });
 
@@ -142,14 +140,12 @@ LeaptAdmin.Form = (function ($) {
      * Used to handle leapt_admin_autocomplete form type
      *
      */
-        var Autocomplete = TextAutocomplete.extend({
-        $textInput: null,
-        listUrl: null,
+    var Autocomplete = TextAutocomplete.extend({
         mode: null,
-        mapped: {},
         events: {
             'click a[data-admin=content-add]': 'add',
-            'click a[data-admin=form-autocomplete-clear]': 'clear'
+            'click a[data-admin=form-autocomplete-clear]': 'clear',
+            'typeahead:select input[type=text]': 'updater'
         },
         /**
          * Initialize
@@ -177,6 +173,7 @@ LeaptAdmin.Form = (function ($) {
                 }
             }
         },
+
         /**
          * Append a close button
          *
@@ -187,39 +184,6 @@ LeaptAdmin.Form = (function ($) {
                 this.$textInput.after(this.$close);
             }
         },
-        /**
-         * Initialize typeahead widget
-         *
-         */
-        initializeTypeahead: function () {
-            // Initialize typeahead
-            this.$textInput.typeahead({
-                source: _.bind(_.debounce(this.source, 400), this),
-                minLength: 3,
-                items: 10,
-                matcher: _.bind(this.matcher, this),
-                updater: _.bind(this.updater, this)
-            });
-        },
-        /**
-         * Bootstrap typeahead source implementation
-         *
-         * @param query
-         * @param process
-         */
-        source: function (query, process) {
-            this.invalidate();
-            var replacedUrl = this.listUrl.replace('__query__', query);
-            $.getJSON(replacedUrl, _.bind(function (data) {
-                this.mapped = {};
-                this.labels = [];
-                $.each(data.result, _.bind(function (i, item) {
-                    this.mapped[item[1]] = item[0];
-                    this.labels.push(item[1]);
-                }, this));
-                process(this.labels);
-            }, this));
-        },
 
         invalidate: function () {
             if ('single' === this.mode) {
@@ -227,46 +191,30 @@ LeaptAdmin.Form = (function ($) {
             }
             this.$el.closest('.control-group').addClass('warning');
         },
-
-        /**
-         * Bootstrap typeahed matcher implementation
-         *
-         * @param item
-         * @returns {boolean}
-         */
-        matcher: function (item) {
-            var existingTokens = this.$el.find('.token span').map(function () {
-                return $(this).html();
-            });
-
-            return -1 === $.inArray(item, existingTokens);
-        },
         /**
          * Bootstrap typeahed updater implementation
          *
-         * @param item
-         * @returns {*}
+         * @param event
+         * @param datum
          */
-        updater: function (item) {
+        updater: function (event, datum) {
             if ('single' === this.mode) {
-                this.$el.find('input[type=hidden]').val(this.mapped[item]).trigger('change');
+                this.$el.find('input[type=hidden]').val(datum.id).trigger('change');
                 this.$el.parents('.control-group').removeClass('warning');
                 this.appendClearButton();
-                return item;
             }
             else {
                 var prototype = $.trim(this.$el.data('prototype'));
                 var $prototype = $(prototype.replace(/__name__/g, this.$el.find('input[type=hidden]').length));
-                $prototype.val(this.mapped[item]);
+                $prototype.val(datum.id);
                 this.$el.append($prototype);
 
-                var $token = $('<li>').addClass('token').data('value', this.mapped[item]).html($('<span>').html(item)).append($('<a>').html('&times;').addClass('close').attr('rel', 'remove'));
+                var $token = $('<li>').addClass('token').data('value', datum.id).html($('<span>').html(datum.value)).append($('<a>').html('&times;').addClass('close').attr('rel', 'remove'));
                 this.$el.find('.tokens').append($token);
 
                 $prototype.trigger('change');
                 this.$el.parents('.control-group').removeClass('warning');
-
-                return "";
+                this.$typeahead.typeahead('val', '');
             }
         },
         /**
@@ -474,7 +422,7 @@ LeaptAdmin.Form = (function ($) {
          */
         unlock: function () {
             this.locked = false;
-            this.lockButton.find('i').toggleClass('icon-pencil icon-magnet');
+            this.lockButton.find('i').toggleClass('fa-pencil fa-magnet');
             this.$el.removeAttr('readonly');
 
         },
@@ -483,7 +431,7 @@ LeaptAdmin.Form = (function ($) {
              * Lock the widget input (auto mode)
              */
             this.locked = true;
-            this.lockButton.find('i').toggleClass('icon-pencil icon-magnet');
+            this.lockButton.find('i').toggleClass('fa-pencil fa-magnet');
 
             if (this.currentSlug !== '') {
                 this.$el.val(this.currentSlug);
@@ -650,9 +598,9 @@ LeaptAdmin.Form = (function ($) {
     var Manager = LeaptCore.Form.Manager.extend({
         initialize: function() {
             LeaptCore.Form.Manager.prototype.initialize.apply(this);
-            this.$('.catalogue-translation textarea').autosize();
+            autosize(this.$('.catalogue-translation textarea'));
             this.addErrorClasses();
-            $('a:not([href^=#])').not('[data-admin]').on('click', _.bind(this.onExternalLinkClick, this));
+            $('a:not([href^="#"])').not('[data-admin]').on('click', _.bind(this.onExternalLinkClick, this));
         },
         addErrorClasses: function() {
             // Look for errors in fieldsets

@@ -36,7 +36,7 @@ class CatalogueTranslationController extends BaseController
         $catalogueReferences = $this->container->getParameter('leapt_admin.translation_catalogues');
 
         /** Getting all source catalogues */
-        $catalogues = array();
+        $catalogues = [];
         foreach ($catalogueReferences as $catalogueReference) {
             $explodedCatalog = explode('\\', $catalogueReference);
             $cat = array_pop($explodedCatalog);
@@ -59,7 +59,7 @@ class CatalogueTranslationController extends BaseController
         if($activeLocale !== $fallbackLocale) {
             $fallbackCatalogue = $this->mergeSourceAndGenerated($catalogue, $catalogues[$catalogue][$fallbackLocale], $fallbackLocale);
         } else {
-            $fallbackCatalogue = array();
+            $fallbackCatalogue = [];
         }
 
         /** (re)Generating a yaml with the computed differences from the source catalogue */
@@ -83,14 +83,14 @@ class CatalogueTranslationController extends BaseController
         /** merging after the post to prevent persisting source values in the generated one */
         $activeCatalogue = $this->mergeSourceAndGenerated($catalogue, $activeCatalogue, $activeLocale);
 
-        return $this->render('LeaptAdminBundle:CatalogueTranslation:index.html.twig', array(
-            'activeCatalogue' => $activeCatalogue,
-            'activeCatalogueName' => $catalogue,
+        return $this->render('LeaptAdminBundle:CatalogueTranslation:index.html.twig', [
+            'activeCatalogue'       => $activeCatalogue,
+            'activeCatalogueName'   => $catalogue,
             'activeCatalogueLocale' => $activeLocale,
-            'catalogues' => $catalogues,
-            'fallbackCatalogue' => $fallbackCatalogue,
-            'locales' => $locales,
-        ));
+            'catalogues'            => $catalogues,
+            'fallbackCatalogue'     => $fallbackCatalogue,
+            'locales'               => $locales,
+        ]);
     }
 
     /**
@@ -122,7 +122,7 @@ class CatalogueTranslationController extends BaseController
      */
     private function compare($a, $b)
     {
-        $diff = array();
+        $diff = [];
         foreach ($a as $keyA => $valueA) {
             if ($valueA !== $b[$keyA]) {
                 if (is_array($valueA)) {

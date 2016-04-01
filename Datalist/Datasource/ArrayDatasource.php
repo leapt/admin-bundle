@@ -22,7 +22,7 @@ class ArrayDatasource extends AbstractDatasource
     /**
      * @var array
      */
-    private $items = array();
+    private $items = [];
 
     /**
      * @param array $items
@@ -119,7 +119,7 @@ class ArrayDatasource extends AbstractDatasource
      */
     private function buildCombinedExpressionCallback(CombinedExpression $expression)
     {
-        $tests = array();
+        $tests = [];
         foreach ($expression->getExpressions() as $subExpression) {
             $tests [] = $this->buildExpressionCallback($subExpression);
         }

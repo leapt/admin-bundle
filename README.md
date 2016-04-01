@@ -1,7 +1,7 @@
 LeaptAdminBundle
 ================
 
-The LeaptAdminBundle provides backoffice capabilities for your Symfony2 application.
+The LeaptAdminBundle provides backoffice capabilities for your Symfony3 application.
 
 Features include:
 
@@ -14,12 +14,12 @@ Features include:
 Documentation
 -------------
 
-[Read the Documentation for master](http://docs.snowcap.be/admin-bundle/)
+[Read the Documentation for master](https://github.com/leapt/admin-bundle/tree/master/docs)
 
 Installation
 ------------
 
-All the installation instructions are located in [documentation](http://docs.snowcap.be/admin-bundle/).
+All the installation instructions are located in [documentation](https://github.com/leapt/admin-bundle/tree/master/docs).
 
 License
 -------

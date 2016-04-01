@@ -39,10 +39,10 @@ class ContentController extends BaseController
         $datalist->setDatasource($datasource);
         $datalist->bind($request);
 
-        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':index.html.twig', array(
-            'admin' => $admin,
-            'datalist' => $datalist
-        ));
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':index.html.twig', [
+            'admin'     => $admin,
+            'datalist'  => $datalist
+        ]);
     }
 
     /**
@@ -57,10 +57,10 @@ class ContentController extends BaseController
         $entity = $admin->findEntity($request->attributes->get('id'));
         $this->secure($admin, 'ADMIN_CONTENT_VIEW', $entity);
 
-        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':view.html.twig', array(
-            'admin' => $admin,
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':view.html.twig', [
+            'admin'  => $admin,
             'entity' => $entity
-        ));
+        ]);
     }
 
     /**
@@ -80,7 +80,7 @@ class ContentController extends BaseController
                 $this->save($request, $admin, $form, $entity);
                 $this->buildEntityFlash('success', 'content.create.flash.success', $admin, $entity);
                 $redirectUrl = $request->get('saveMode') === ContentAdmin::SAVEMODE_CONTINUE ?
-                    $this->getRoutingHelper()->generateUrl($admin, 'update', array('id' => $entity->getId())) :
+                    $this->getRoutingHelper()->generateUrl($admin, 'update', ['id' => $entity->getId()]) :
                     $this->getRoutingHelper()->generateUrl($admin, 'index');
 
                 return $this->redirect($redirectUrl);
@@ -91,11 +91,11 @@ class ContentController extends BaseController
             }
         }
 
-        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':create.html.twig', array(
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':create.html.twig', [
             'admin' => $admin,
             'entity' => $entity,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -114,12 +114,12 @@ class ContentController extends BaseController
         if ('POST' === $request->getMethod()) {
             try {
                 $this->save($request, $admin, $form, $entity);
-                $result = array(
-                    'entity_id' => $entity->getId(),
+                $result = [
+                    'entity_id'   => $entity->getId(),
                     'entity_name' => $admin->getEntityName($entity)
-                );
+                ];
 
-                return new JsonResponse(array('result' => $result), 201);
+                return new JsonResponse(['result' => $result], 201);
             }
             catch(ValidationException $e) {
                 $status = 400;
@@ -128,13 +128,13 @@ class ContentController extends BaseController
             }
         }
 
-        $responseData = array(
-            'content' =>   $this->renderView('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalCreate.html.twig', array(
-                'admin' => $admin,
+        $responseData = [
+            'content' => $this->renderView('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalCreate.html.twig', [
+                'admin'  => $admin,
                 'entity' => $entity,
-                'form' => $form->createView(),
-            ))
-        );
+                'form'   => $form->createView(),
+            ])
+        ];
 
         return new JsonResponse($responseData, $status);
     }
@@ -159,7 +159,7 @@ class ContentController extends BaseController
                 $this->save($request, $admin, $form, $entity);
                 $this->buildEntityFlash('success', 'content.update.flash.success', $admin, $entity);
                 $redirectUrl = $request->get('saveMode') === ContentAdmin::SAVEMODE_CONTINUE ?
-                    $this->getRoutingHelper()->generateUrl($admin, 'update', array('id' => $entity->getId())) :
+                    $this->getRoutingHelper()->generateUrl($admin, 'update', ['id' => $entity->getId()]) :
                     $this->getRoutingHelper()->generateUrl($admin, 'index');
 
                 return $this->redirect($redirectUrl);
@@ -170,11 +170,11 @@ class ContentController extends BaseController
             }
         }
 
-        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':update.html.twig', array(
-            'admin' => $admin,
+        return $this->render('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':update.html.twig', [
+            'admin'  => $admin,
             'entity' => $entity,
-            'form' => $form->createView(),
-        ));
+            'form'   => $form->createView(),
+        ]);
     }
 
     /**
@@ -198,30 +198,29 @@ class ContentController extends BaseController
             try {
                 $this->save($request, $admin, $form, $entity);
 
-                $result = array(
-                    'entity_id' => $entity->getId(),
+                $result = [
+                    'entity_id'   => $entity->getId(),
                     'entity_name' => $admin->getEntityName($entity),
-                );
+                ];
 
-                return new JsonResponse(array(
-                    'result' => $result,
+                return new JsonResponse([
+                    'result'  => $result,
                     'flashes' => $this->buildEntityFlash('success', 'content.update.flash.success', $admin, $entity)
-                ), 201);
-            }
-            catch(ValidationException $e) {
+                ], 201);
+            } catch (ValidationException $e) {
                 $status = 400;
                 $this->buildEntityFlash('error', 'content.update.flash.error', $admin, $entity);
                 $this->get('logger')->addError($e->getMessage());
             }
         }
 
-        $responseData = array(
-            'content' => $this->renderView('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalUpdate.html.twig', array(
-                'admin' => $admin,
+        $responseData = [
+            'content' => $this->renderView('LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalUpdate.html.twig', [
+                'admin'  => $admin,
                 'entity' => $entity,
-                'form' => $form->createView(),
-            ))
-        );
+                'form'   => $form->createView(),
+            ])
+        ];
 
         return new JsonResponse($responseData, $status);
     }
@@ -264,13 +263,13 @@ class ContentController extends BaseController
                 try {
                     $admin->deleteEntity($entity);
                     $this->buildEntityFlash('success', 'content.delete.flash.success', $admin, $entity);
-                    $result = array(
-                        'entity_id' => $entity->getId(),
+                    $result = [
+                        'entity_id'   => $entity->getId(),
                         'entity_name' => $admin->getEntityName($entity)
-                    );
+                    ];
                     $redirectUrl = $request->headers->get('referer');
 
-                    return new JsonResponse(array('result' => $result, 'redirect_url' => $redirectUrl), 301);
+                    return new JsonResponse(['result' => $result, 'redirect_url' => $redirectUrl], 301);
 
                 } catch (\Exception $e) {
                     $status = 400;
@@ -281,14 +280,14 @@ class ContentController extends BaseController
 
             $content = $this->renderView(
                 'LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalDelete.html.twig',
-                array(
-                    'admin' => $admin,
+                [
+                    'admin'  => $admin,
                     'entity' => $entity,
-                )
+                ]
             );
         }
 
-        return new JsonResponse(array('content' => $content), $status);
+        return new JsonResponse(['content' => $content], $status);
     }
 
     /**
@@ -320,10 +319,10 @@ class ContentController extends BaseController
 
         return $this->render(
             'LeaptAdminBundle:' . StringUtil::camelize($admin->getAlias()) . ':modalDelete.html.twig',
-            array(
+            [
                 'admin' => $admin,
                 'entity' => $entity,
-            )
+            ]
         );
     }
 
@@ -339,15 +338,15 @@ class ContentController extends BaseController
             ->getQuery()
             ->getResult();
 
-        $flattenedResults = array();
+        $flattenedResults = [];
         $accessor = PropertyAccess::createPropertyAccessor();
-        foreach($results as $result) {
+        foreach ($results as $result) {
             $id = $accessor->getValue($result, $id_property);
             $value = $accessor->getValue($result, $property);
-            $flattenedResults[] = array($id, $value);
+            $flattenedResults[] = ['id' => $id, 'value' => $value];
         }
 
-        return new JsonResponse(array('result' => $flattenedResults));
+        return new JsonResponse($flattenedResults);
     }
 
     /**
@@ -378,10 +377,10 @@ class ContentController extends BaseController
      */
     protected function secure(AdminInterface $admin, $attributes, $object = null)
     {
-        if(!is_array($attributes)) {
-            $attributes = array($attributes);
+        if (!is_array($attributes)) {
+            $attributes = [$attributes];
         }
-        $suffixedAttributes = array_map(function($attribute) use($admin) {
+        $suffixedAttributes = array_map(function ($attribute) use ($admin) {
             return $attribute . '__' . strtoupper($admin->getAlias());
         }, $attributes);
         if (!$this->getAuthorizationChecker()->isGranted($suffixedAttributes, $object)) {
@@ -400,14 +399,14 @@ class ContentController extends BaseController
      */
     protected function buildEntityFlash($type, $message, ContentAdmin $admin, $entity, $domain = 'LeaptAdminBundle')
     {
-        $this->get('session')->getFlashBag()->add($type, $this->get('translator')->trans(
+        $this->addFlash($type, $this->get('translator')->trans(
             $message,
-            array(
+            [
                 '%type%' => $this->get('translator')->transChoice(
-                    $admin->getOption('label'), 1, array(), $this->get('leapt_admin')->getDefaultTranslationDomain()
+                    $admin->getOption('label'), 1, [], $this->get('leapt_admin')->getDefaultTranslationDomain()
                 ),
                 '%name%' => $admin->getEntityName($entity)
-            ),
+            ],
             $domain
         ));
     }
@@ -425,18 +424,18 @@ class ContentController extends BaseController
      */
     protected function buildModalEntityFlash($type, $message, ContentAdmin $admin, $entity, $domain = 'LeaptAdminBundle')
     {
-        return array(
-            $type => array($this->get('translator')->trans(
+        return [
+            $type => [$this->get('translator')->trans(
                 $message,
-                array(
+                [
                     '%type%' => $this->get('translator')->transChoice(
-                        $admin->getOption('label'), 1, array(), $this->get('leapt_admin')->getDefaultTranslationDomain()
+                        $admin->getOption('label'), 1, [], $this->get('leapt_admin')->getDefaultTranslationDomain()
                     ),
                     '%name%' => $admin->getEntityName($entity))
-                ),
+                ],
                 $domain
-            )
-        );
+            ]
+        ];
     }
 
     /**

@@ -11,3 +11,7 @@ autoload.php
 docs/Makefile
 docs/*.py
 docs/_*
+
+# Bower packages
+/bower_components
+/node_modules

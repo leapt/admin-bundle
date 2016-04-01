@@ -29,7 +29,7 @@ class DatalistCompilerPass implements CompilerPassInterface
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;
-            $definition->addMethodCall('registerType', array($alias, new Reference($serviceId)));
+            $definition->addMethodCall('registerType', [$alias, new Reference($serviceId)]);
         }
 
         // Field types
@@ -37,7 +37,7 @@ class DatalistCompilerPass implements CompilerPassInterface
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;
-            $definition->addMethodCall('registerFieldType', array($alias, new Reference($serviceId)));
+            $definition->addMethodCall('registerFieldType', [$alias, new Reference($serviceId)]);
         }
 
         // Filter types
@@ -45,7 +45,7 @@ class DatalistCompilerPass implements CompilerPassInterface
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;
-            $definition->addMethodCall('registerFilterType', array($alias, new Reference($serviceId)));
+            $definition->addMethodCall('registerFilterType', [$alias, new Reference($serviceId)]);
         }
 
         // Action types
@@ -53,7 +53,7 @@ class DatalistCompilerPass implements CompilerPassInterface
             $alias = isset($tag[0]['alias'])
                 ? $tag[0]['alias']
                 : $serviceId;
-            $definition->addMethodCall('registerActionType', array($alias, new Reference($serviceId)));
+            $definition->addMethodCall('registerActionType', [$alias, new Reference($serviceId)]);
         }
     }
 

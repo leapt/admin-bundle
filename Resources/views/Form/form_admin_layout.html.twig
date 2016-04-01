@@ -1,4 +1,4 @@
-{% extends 'LeaptBootstrapBundle:Form:form_bootstrap_layout.html.twig' %}
+{% extends 'LeaptBootstrapBundle:Form:form_bootstrap_layout3.html.twig' %}
 
 {# entity widget #}
 {% block leapt_admin_entity_widget %}
@@ -21,19 +21,17 @@
 
 {% block leapt_admin_autocomplete_single_widget %}
 {% spaceless %}
-    <div class="form-autocomplete form-autocomplete-single" data-admin="form-autocomplete" data-options-mode="single" data-options-url="{{ list_url }}">
+    <div class="form-autocomplete form-autocomplete-single form-group" data-admin="form-autocomplete" data-options-mode="single" data-options-url="{{ list_url }}">
         {{ form_widget(form, {'type': 'hidden'}) }}
         {% set text_widget %}
-            <div class="text-input">
-                <input type="text"{% if text_value is not empty %} value="{{ text_value }}"{% endif %}  {{ block('leapt_admin_autocomplete_widget_attributes') }}/>
-            </div>
+            <input type="text"{% if text_value is not empty %} value="{{ text_value }}"{% endif %} class="form-control" {{ block('leapt_admin_autocomplete_widget_attributes') }}/>
         {% endset %}
         {% if allow_add %}
-            <div class="input-append">
+            <div class="input-group">
                 {{ text_widget }}
-                <div class="add-on with-btn">
-                    <a href="{{ add_url }}" class="btn" data-admin="content-add">
-                        <i class="icon-plus"></i> {{ add_label|trans({}, translation_domain) }}
+                <div class="input-group-btn">
+                    <a href="{{ add_url }}" class="btn btn-default" data-admin="content-add">
+                        <i class="fa fa-plus"></i> {{ add_label|trans({}, translation_domain) }}
                     </a>
                 </div>
             </div>
@@ -59,14 +57,14 @@
             </ul>
             {% set text_widget %}
                 {% set attr = attr|merge({'class': (attr.class|default('') ~ ' token-input')|trim }) %}
-                <input type="text" {{ block('leapt_admin_autocomplete_widget_attributes') }}/>
+                <input type="text" class="form-control" {{ block('leapt_admin_autocomplete_widget_attributes') }}/>
             {% endset %}
             {% if allow_add %}
                 <div class="input-append">
                     {{ text_widget }}
                     <div class="add-on with-btn">
-                        <a href="{{ add_url }}" class="btn" data-admin="content-add">
-                            <i class="icon-plus"></i> {{ add_label|trans({}, translation_domain) }}
+                        <a href="{{ add_url }}" class="btn btn-default" data-admin="content-add">
+                            <i class="fa fa-plus"></i> {{ add_label|trans({}, translation_domain) }}
                         </a>
                     </div>
                 </div>
@@ -87,9 +85,9 @@
 {# slug widget #}
 {% block leapt_admin_slug_widget %}
     {% set attr = attr|merge({ 'data-admin': 'form-slugger', 'data-target': target, 'data-modal': '#modal-' ~ id }) %}
-    <div class="input-append">
+    <div class="input-group">
         {{ block('form_widget') }}
-        <span class="add-on"><a href="#locked"><i class="icon-pencil icon"></i></a></span>
+        <span class="input-group-addon"><a href="#locked"><i class="fa fa-pencil"></i></a></span>
     </div>
     {% from 'LeaptBootstrapBundle::macros.html.twig' import modal %}
     {{ modal('modal-' ~ id, 'slug_alert.title'|trans({}, 'LeaptAdminBundle'), 'slug_alert.message'|trans({}, 'LeaptAdminBundle')) }}
@@ -136,8 +134,8 @@
             {{ block('form_widget') }}
             {% if allow_add %}
                 <div class="btn-group">
-                    <a href="#" class="btn" data-admin="form-collection-add">
-                        <i class="icon-plus-sign"></i> {{ add_label|trans({}, translation_domain) }}
+                    <a href="#" class="btn btn-default" data-admin="form-collection-add">
+                        <i class="fa fa-plus"></i> {{ add_label|trans({}, translation_domain) }}
                     </a>
                 </div>
             {% endif %}
@@ -186,7 +184,7 @@
 {% block leapt_admin_multiupload_url_widget %}
     {% spaceless %}
         <li class="multiupload-file-preview">
-            <button class="btn btn-mini remove">{{ 'multiupload_widget.remove'|trans({}, 'LeaptAdminBundle') }}</button>&nbsp;
+            <button class="btn btn-default btn-xs remove">{{ 'multiupload_widget.remove'|trans({}, 'LeaptAdminBundle') }}</button>&nbsp;
 
             <a href="{{ asset(value) }}" target="_blank">
                 {{ value }}
@@ -200,10 +198,10 @@
 {% block leapt_admin_multiupload_image_widget %}
     {% spaceless %}
         <li class="multiupload-file-preview">
-            <button class="btn btn-mini remove remove-image">{{ 'multiupload_widget.remove'|trans({}, 'LeaptAdminBundle') }}</button>
+            <button class="btn btn-default btn-xs remove remove-image">{{ 'multiupload_widget.remove'|trans({}, 'LeaptAdminBundle') }}</button>
 
             <a href="{{ asset(value) }}" target="_blank">
-                <img src="{{ asset(value)|imresize(im_resize) }}" alt="{{ value }}" />
+                <img src="{{ asset(value)|imresize(im_resize) }}" alt="{{ value }}">
             </a>
 
             {{ block('hidden_widget') }}

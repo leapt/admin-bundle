@@ -20,7 +20,7 @@ class LabelFieldType extends AbstractFieldType
         parent::configureOptions($resolver);
 
         $resolver
-            ->setRequired(array('mappings'))
+            ->setRequired(['mappings'])
             ->setAllowedTypes('mappings', 'array')
         ;
     }
@@ -52,7 +52,7 @@ class LabelFieldType extends AbstractFieldType
             throw new \Exception('mappings for the label field type must be specified as an associative array');
         }
 
-        $viewContext['attr'] = isset($mapping['attr']) ? $mapping['attr'] : array();
+        $viewContext['attr'] = isset($mapping['attr']) ? $mapping['attr'] : [];
         $viewContext['value'] = $mapping['label'];
     }
 

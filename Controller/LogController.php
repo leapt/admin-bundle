@@ -22,8 +22,8 @@ class LogController extends BaseController
             ->setPage($this->getRequest()->get('page'))
             ->setLimitPerPage(25);
 
-        return $this->render('LeaptAdminBundle:Log:list.html.twig', array(
+        return $this->render('LeaptAdminBundle:Log:list.html.twig', [
             'paginator' => $paginator,
-        ));
+        ]);
     }
 }

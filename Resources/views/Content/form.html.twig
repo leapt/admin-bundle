@@ -35,20 +35,20 @@
 
             {# formactions block #}
             {% block form_actions %}
-                <div class="form-actions">
+                <p>
                     <button type="submit" name="saveMode" class="btn btn-primary" value="{{ constant('Leapt\\AdminBundle\\Admin\\ContentAdmin::SAVEMODE_NORMAL') }}">
-                        <i class="icon-ok-sign icon-white"></i>
+                        <i class="fa fa-check"></i>
                         {{ "content.actions.save"|trans({}, 'LeaptAdminBundle') }}
                     </button>
-                    <button type="submit" name="saveMode" class="btn" value="{{ constant('Leapt\\AdminBundle\\Admin\\ContentAdmin::SAVEMODE_CONTINUE') }}">
-                        <i class="icon-edit"></i>
+                    <button type="submit" name="saveMode" class="btn btn-default" value="{{ constant('Leapt\\AdminBundle\\Admin\\ContentAdmin::SAVEMODE_CONTINUE') }}">
+                        <i class="fa fa-pencil"></i>
                         {{ "content.actions.saveandcontinue"|trans({}, 'LeaptAdminBundle') }}
                     </button>
-                    <a href="{{ admin_content_path(admin, 'index') }}" class="btn">
-                        <i class="icon-arrow-left"></i>
+                    <a href="{{ admin_content_path(admin, 'index') }}" class="btn btn-default">
+                        <i class="fa fa-arrow-left"></i>
                         {{ "content.actions.back"|trans({}, 'LeaptAdminBundle') }}
                     </a>
-                </div>
+                </p>
             {% endblock form_actions %}
 
         {{ form_end(form) }}

@@ -29,7 +29,7 @@ class DatalistThemeTokenParser extends \Twig_TokenParser
             $this->parser->getStream()->next();
             $resources = $this->parser->getExpressionParser()->parseExpression();
         } else {
-            $resources = new \Twig_Node_Expression_Array(array(), $stream->getCurrent()->getLine());
+            $resources = new \Twig_Node_Expression_Array([], $stream->getCurrent()->getLine());
             do {
                 $resources->addElement($this->parser->getExpressionParser()->parseExpression());
             } while (!$stream->test(\Twig_Token::BLOCK_END_TYPE));

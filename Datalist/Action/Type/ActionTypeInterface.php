@@ -18,7 +18,7 @@ interface ActionTypeInterface extends TypeInterface
      * @param array $options
      * @return string
      */
-    public function getUrl(DatalistActionInterface $action, $item, array $options = array());
+    public function getUrl(DatalistActionInterface $action, $item, array $options = []);
 
     /**
      * @param \Leapt\AdminBundle\Datalist\ViewContext $viewContext

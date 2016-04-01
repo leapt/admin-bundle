@@ -1,39 +1,13 @@
 @import "../vendor/bootstrap/less/variables.less";
 @import "../vendor/bootstrap/less/mixins.less";
 
-body {
-    padding-top: 60px;
-}
-
-section {
-    padding-top: 30px;
-}
-
-/* Navigation */
-.subnav {
-
-    padding: 8px 0;
-
-    &.affix {
-        top: 80px;
-        width: 218px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .subnav {
-        &.affix {
-            width: 268px;
-        }
-    }
-}
-
 /* Custom form widgets */
 .form-autocomplete-multiple {
     ul.tokens {
         list-style: none;
         overflow: hidden;
-        margin-left: 0;
+        margin: 0 0 10px;
+        padding: 0;
         font-size: 14px;
 
         li.token {
@@ -48,7 +22,7 @@ section {
             .box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
 
             .close {
-               margin: -2px 0 0 4px;
+                margin: 0 0 0 4px;
             }
         }
     }
@@ -58,11 +32,12 @@ section {
     input {
         margin: 0;
     }
-    .close {
+    .twitter-typeahead .close {
         float: none;
-        position: relative;
-        top: 3px;
-        margin-left: -20px;
+        position: absolute;
+        top: 7px;
+        right: 8px;
+        z-index: 3;
     }
 }
 
@@ -111,8 +86,8 @@ section {
 }
 
 /* Datalist */
-.datalist {
-    td, th {
+.datalist .table > thead > tr, .datalist .table > tbody > tr {
+    > td, > th {
         vertical-align: middle;
 
         &.actions {
@@ -152,7 +127,8 @@ section {
     }
     ul {
         overflow: hidden;
-        margin: 0 -10px;
+        margin: 0 0 10px;
+        padding: 0;
     }
     li {
         display: block;
@@ -160,7 +136,7 @@ section {
         width: 20%;
         padding: 10px;
         &.multiupload-file-preview  {
-            .btn.btn-mini.remove-image {
+            .btn.btn-xs.remove-image {
                 position: absolute;
                 margin: 5px 0 0 5px;
             }
@@ -178,7 +154,6 @@ section {
                 padding-top: 62.5%;
                 width: 100%;
                 border-radius: 4px;
-                overflow: hidden;
                 box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
                 background-color:  rgba(0, 0, 0, 0.1);
             }
@@ -221,16 +196,16 @@ section {
 
 /* Adding red color on labels, legends and help-blocks when error occurred on fields */
 label.error {
-  color: #b94a48;
+    color: #b94a48;
 }
 
 div.error p.help-block {
-  color: #b94a48;
+    color: #b94a48;
 }
 
 legend.error {
-  color: #b94a48;
-  border-bottom-color: #b94a48;
+    color: #b94a48;
+    border-bottom-color: #b94a48;
 }
 
 .nav-tabs li.error:not(.active) a {
@@ -243,16 +218,16 @@ legend.error {
 
 /* Getting smaller legend on sub-fieldsets */
 fieldset fieldset {
-  legend {
-    font-size: 17px;
-    line-height: 30px;
-  }
-  fieldset {
     legend {
-      font-size: 15px;
-      line-height: 20px;
+        font-size: 17px;
+        line-height: 30px;
     }
-  }
+    fieldset {
+        legend {
+            font-size: 15px;
+            line-height: 20px;
+        }
+    }
 }
 
 /* Collapsible fieldset styles */
@@ -278,50 +253,4 @@ fieldset[data-admin=form-collapsible-fieldset] {
       }
     }
   }
-}
-
-.input-append, .input-prepend {
-    display: table !important;
-    width: 100% !important;
-
-    &>.text-input,
-    &>input,
-    .add-on {
-        display: table-cell !important;
-    }
-
-    &>.text-input
-    input,
-    &>input,
-    .add-on {
-        -webkit-box-sizing: border-box !important;
-        -moz-box-sizing: border-box !important;
-        box-sizing: border-box !important;
-        height: 30px;
-    }
-
-    &>.text-input,
-    input {
-        width: 100% !important;
-    }
-
-    .add-on {
-        padding-left: 8px !important;
-        padding-right: 8px !important;
-        width: 1% !important;
-
-        &.with-btn {
-            padding: 0 !important;
-            background: none;
-            border-style: none;
-        }
-    }
-}
-
-.input-append .add-on {
-    border-left: none !important;
-}
-
-.input-prepend .add-on {
-    border-right: none !important;
 }

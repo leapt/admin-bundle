@@ -84,7 +84,7 @@ class AdminExtension extends \Twig_Extension
      * @param array $params
      * @return string
      */
-    public function getAdminContentPath($admin, $action, array $params = array())
+    public function getAdminContentPath($admin, $action, array $params = [])
     {
         if(!$admin instanceof ContentAdmin) {
             $admin = $this->getAdminByCode($admin);
@@ -103,7 +103,7 @@ class AdminExtension extends \Twig_Extension
         $number = $plural ? 10 : 1;
         $label = $admin->getOption('label');
 
-        return $this->translator->transChoice($label, $number, array(), $this->adminManager->getDefaultTranslationDomain());
+        return $this->translator->transChoice($label, $number, [], $this->adminManager->getDefaultTranslationDomain());
     }
 
     /**

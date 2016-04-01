@@ -14,15 +14,14 @@ class BaseController extends Controller
     /**
      * Set a translated flash message
      *
-     * @param $name
-     * @param $value
+     * @param string $name
+     * @param string $value
      * @param array $parameters
      * @param string $domain
-     * @return mixed
      */
-    public function setFlash($name, $value, $parameters = array(), $domain = 'LeaptAdminBundle') //TODO: replace by getSession() usage
+    public function setFlash($name, $value, $parameters = [], $domain = 'LeaptAdminBundle')
     {
-        return $this->get('session')->getFlashBag()->add($name, $this->get('translator')->trans($value, $parameters, $domain));
+        $this->addFlash($name, $this->get('translator')->trans($value, $parameters, $domain));
     }
 
     /**
@@ -34,22 +33,22 @@ class BaseController extends Controller
      * @param string $domain
      * @return array
      */
-    public function buildModalFlash($name, $value, $parameters = array(), $domain = 'LeaptAdminBundle')
+    public function buildModalFlash($name, $value, $parameters = [], $domain = 'LeaptAdminBundle')
     {
-        return array($name => array($this->get('translator')->trans($value, $parameters, $domain)));
+        return [$name => [$this->get('translator')->trans($value, $parameters, $domain)];
     }
 
     /**
-     * @param $type
-     * @param $code
+     * @param string $type
+     * @param int $code
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function renderError($type, $code) //TODO: check if still relevant
     {
-        $translatedTitle = $this->get('translator')->trans($type . '.title', array(), 'LeaptAdminBundle');
-        $translatedMessages = $this->get('translator')->trans($type . '.message', array(), 'LeaptAdminBundle');
+        $translatedTitle = $this->get('translator')->trans($type . '.title', [], 'LeaptAdminBundle');
+        $translatedMessages = $this->get('translator')->trans($type . '.message', [], 'LeaptAdminBundle');
 
-        return new Response($this->renderView('LeaptAdminBundle:Error:' . $code . '.html.twig', array('title' => $translatedTitle, 'message' => $translatedMessages)), $code);
+        return new Response($this->renderView('LeaptAdminBundle:Error:' . $code . '.html.twig', ['title' => $translatedTitle, 'message' => $translatedMessages]), $code);
     }
 }

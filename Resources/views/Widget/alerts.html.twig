@@ -1,9 +1,12 @@
 {% from 'LeaptBootstrapBundle::macros.html.twig' import alert %}
 
 <div data-admin="ui-alerts">
-    {% for type, flashMessages in app.session.flashbag.all() %}
-        {% for flashMessage in flashMessages %}
-            {{ alert(flashMessage, type, null, true) }}
+    {% if app.session.flashbag.peekAll()|length > 0 %}
+        <br />
+        {% for type, flashMessages in app.session.flashbag.all() %}
+            {% for flashMessage in flashMessages %}
+                {{ alert(flashMessage, type, null, true) }}
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    {% endif %}
 </div>

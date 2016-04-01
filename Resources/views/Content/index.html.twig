@@ -6,37 +6,37 @@
 
     {# pageheader block #}
     {% block pageheader %}
-        <div class="page-header">
-            <h1>
-                {{ "content.list.title"|trans({'%content_name%': admin_label(admin, true)}, 'LeaptAdminBundle') }}
-            </h1>
-        </div>
+        <section class="content-header">
+            <h1>{{ 'content.list.title'|trans({ '%content_name%': admin_label(admin, true) }, 'LeaptAdminBundle') }}</h1>
+        </section>
     {% endblock pageheader %}
 
-    {# above block #}
-    {% block above %}{% endblock %}
+    <section class="content">
+        {# above block #}
+        {% block above %}{% endblock %}
 
-    {# list block #}
-    {% block list %}
+        {# list block #}
+        {% block list %}
 
-        {% if datalist is empty %}
-            {{ bootstrap.alert("content.list.empty"|trans({'%content_name%': admin_label(admin)}, 'LeaptAdminBundle')) }}
-        {% endif %}
-        {{ datalist_widget(datalist) }}
-        <hr/>
-    {% endblock list %}
+            {% if datalist is empty %}
+                {{ bootstrap.alert('content.list.empty'|trans({ '%content_name%': admin_label(admin) }, 'LeaptAdminBundle')) }}
+            {% endif %}
+            {{ datalist_widget(datalist) }}
+            <hr />
+        {% endblock list %}
 
-    {# below block #}
-    {% block below %}{% endblock %}
+        {# below block #}
+        {% block below %}{% endblock %}
 
-    {# actions block #}
-    {% block actions %}
-        <p>
-            <a class="btn btn-primary" href="{{ admin_content_path(admin, 'create') }}">
-                <i class="icon-plus icon-white"></i>
-                {{ "content.actions.create"|trans({}, 'LeaptAdminBundle') }}
-            </a>
-        </p>
-    {% endblock actions %}
+        {# actions block #}
+        {% block actions %}
+            <p>
+                <a class="btn btn-primary" href="{{ admin_content_path(admin, 'create') }}">
+                    <i class="fa fa-plus"></i>
+                    {{ "content.actions.create"|trans({}, 'LeaptAdminBundle') }}
+                </a>
+            </p>
+        {% endblock actions %}
+    </section>
 
 {% endblock body %}

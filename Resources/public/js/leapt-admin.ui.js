@@ -5,7 +5,7 @@ LeaptAdmin.Ui = (function() {
      */
     var Modal = LeaptBootstrap.Modal.extend({
         initialize: function() {
-            LeaptBootstrap.Modal.prototype.initialize.apply(this);
+            LeaptBootstrap.Modal.prototype.initialize.apply(this, arguments);
             this.off('ui:modal:render');
             this.on('ui:modal:render', _.partial(LeaptAdmin.Form.factories.collectionFactory, this.$el));
             this.on('ui:modal:render', _.partial(LeaptAdmin.Form.factories.textAutocompleteFactory, this.$el));
