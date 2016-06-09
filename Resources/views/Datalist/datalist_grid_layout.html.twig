@@ -34,6 +34,7 @@
     {% endif %}
 
     {% if datalist.paginator is not null %}
+        {% paginator_theme datalist.paginator 'LeaptBootstrapBundle:Paginator:paginator_bootstrap_layout3.html.twig' %}
         {{ paginator_widget(datalist.paginator) }}
     {% endif %}
 
@@ -202,8 +203,9 @@
                 {{ datalist_filter(filter) }}{% if datalist.option('filters_on_top') %}&nbsp;{% endif %}
             {% endfor %}
         </div>
+        <br />
         <button type="submit" class="btn btn-primary">{{ submit|trans({}, "LeaptAdminBundle") }}</button>
-        <a class="btn" href="{{ url }}">{{ reset|trans({}, "LeaptAdminBundle") }}</a>
+        <a class="btn btn-default" href="{{ url }}">{{ reset|trans({}, "LeaptAdminBundle") }}</a>
     </form>
 {% endblock datalist_filters %}
 
@@ -242,8 +244,8 @@
             </div>
         </div>
     {% else %}
-        {{ form_label(form, null, {'label_attr': {'class': 'control-label'}}) }}
-        {{ form_widget(form, {'attr': {'class': 'input-medium'}}) }}
+        {{ form_label(form, null, { 'label_attr': { 'class': 'control-label' } }) }}
+        {{ form_widget(form, { 'attr': { 'class': 'form-control input-sm' } }) }}
     {% endif %}
 {% endblock simple_filter %}
 
