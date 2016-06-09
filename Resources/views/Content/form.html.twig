@@ -10,24 +10,25 @@
 
     {# pageheader block - to be provided by child templates  #}
     {% block page_header %}
-        <div class="page-header">
+        <section class="content-header">
             <h1>{{ title }}</h1>
-        </div>
+        </section>
     {% endblock page_header %}
 
-    {# form_before block - to be provided by child templates  #}
-    {% block form_before %}{% endblock form_before %}
+    <section class="content">
+        {# form_before block - to be provided by child templates  #}
+        {% block form_before %}{% endblock form_before %}
 
-    {# main block #}
-    {% block form %}
+        {# main block #}
+        {% block form %}
 
-        {{ form_start(form, { 'attr': {
-            'method': 'POST',
-            'action': form_action,
-            'novalidate': 'novalidate',
-            'data-admin': 'form-manager',
-            'class': ([form_class]|merge(extra_form_classes))|join(' ')
-        } }) }}
+            {{ form_start(form, { 'attr': {
+                'method': 'POST',
+                'action': form_action,
+                'novalidate': 'novalidate',
+                'data-admin': 'form-manager',
+                'class': ([form_class]|merge(extra_form_classes))|join(' ')
+            } }) }}
 
             {# formfields block #}
             {% block form_fields %}{% endblock form_fields %}
@@ -51,10 +52,11 @@
                 </p>
             {% endblock form_actions %}
 
-        {{ form_end(form) }}
-    {% endblock form %}
+            {{ form_end(form) }}
+        {% endblock form %}
 
-    {# postform block - to be provided by child templates  #}
-    {% block form_after %}{% endblock form_after %}
+        {# postform block - to be provided by child templates  #}
+        {% block form_after %}{% endblock form_after %}
+    </section>
 
 {% endblock body %}
