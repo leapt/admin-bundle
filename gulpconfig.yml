@@ -50,12 +50,6 @@ assets:
             - "../Resources/public/less/typeahead.less"
         lint: false
         watch: false
-#    -
-#        type: "images"
-#        src: "bower_components"
-#        files:
-#            - "adminlte/plugins/iCheck/square/blue.png"
-#            - "adminlte/plugins/iCheck/square/blue@2x.png"
 
 server:
     plugin: "livereload"
