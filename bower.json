@@ -16,13 +16,13 @@
         "tests"
     ],
     "dependencies": {
-        "jquery": "~2.2.2",
-        "backbone": "~1.3.2",
+        "jquery": "~2.2.4",
+        "backbone": "~1.3.3",
         "underscore": "~1.8.3",
-        "font-awesome": "~4.5.0",
-        "adminlte": "~2.3.3",
+        "font-awesome": "~4.6.3",
+        "adminlte": "~2.3.5",
         "autosize": "~3.0.15",
         "typeahead.js": "~0.11.1",
-        "blueimp-file-upload": "~9.12.1"
+        "blueimp-file-upload": "~9.12.5"
     }
 }
