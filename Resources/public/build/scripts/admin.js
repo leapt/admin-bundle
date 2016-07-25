@@ -157,7 +157,7 @@ LeaptAdmin.Form = (function ($) {
                 $target = $(event.currentTarget),
                 $collectionItem;
 
-            $collectionItem = $target.parents('[data-admin=form-collection-item]');
+            $collectionItem = $target.closest('[data-admin=form-collection-item]');
             if (0 === $collectionItem.length) {
                 $collectionItem = $target.parent();
             }
