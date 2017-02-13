@@ -70,14 +70,6 @@ wysiwyg:
             tags: Enter tags for further search
         submit: Submit
 
-inline_content:
-    create: Create new %content_name%
-    save: Save
-    create: New
-    search: Start typing the name of the content
-    empty: Nothing selected yet
-    noresult: No result
-
 reorderable_content:
     reorder: Reorder
     save: Save

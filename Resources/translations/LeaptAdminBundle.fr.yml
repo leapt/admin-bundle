@@ -70,14 +70,6 @@ wysiwyg:
             tags: Entrez des tags pour une recherche future
         submit: Envoyer
 
-inline_content:
-    create: Créer un nouvel élément %content_name%
-    save: Sauvegarder
-    create: Nouveau
-    search: Introduisez le nom du contenu recherché
-    empty: Aucun élément sélectionné
-    noresult: Pas de résultat
-
 reorderable_content:
     reorder: Réordonner
     save: Enregistrer
