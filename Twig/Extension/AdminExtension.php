@@ -113,12 +113,4 @@ class AdminExtension extends \Twig_Extension
     {
         return $this->adminManager->getDefaultTranslationDomain();
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'leapt_admin';
-    }
 }
