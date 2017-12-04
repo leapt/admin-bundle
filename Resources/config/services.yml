@@ -81,7 +81,7 @@ services:
 
     leapt_admin.form_type_multiupload:
         class: Leapt\AdminBundle\Form\Type\MultiUploadType
-        arguments: [ %kernel.root_dir% ]
+        arguments: [ "%kernel.root_dir%" ]
         tags:
             -  { name: form.type, alias: leapt_admin_multiupload }
 
@@ -183,12 +183,12 @@ services:
     # Admin logger
     leapt_admin.logger:
         class: Leapt\AdminBundle\Logger\Logger
-        arguments: [ "@leapt_admin", "@doctrine.orm.entity_manager", "@security.token_storage", "@security.authorization_checker", %leapt_admin.logger_entity.class% ]
+        arguments: [ "@leapt_admin", "@doctrine.orm.entity_manager", "@security.token_storage", "@security.authorization_checker", "%leapt_admin.logger_entity.class%" ]
 
     # Security
     leapt_admin.security.user_manager:
         class: Leapt\AdminBundle\Security\UserManager
-        arguments: [ %leapt_admin.security.user_class%, "@security.encoder_factory", "@doctrine.orm.entity_manager" ]
+        arguments: [ "%leapt_admin.security.user_class%", "@security.encoder_factory", "@doctrine.orm.entity_manager" ]
 
     leapt_admin.content_voter:
         class: Leapt\AdminBundle\Security\Voter\ContentAdminVoter
