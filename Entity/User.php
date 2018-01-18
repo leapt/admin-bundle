@@ -164,7 +164,12 @@ abstract class User implements UserInterface, \Serializable
      */
     public function serialize()
     {
-        return serialize([$this->id]);
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->salt,
+        ]);
     }
 
     /**
@@ -172,6 +177,11 @@ abstract class User implements UserInterface, \Serializable
      */
     public function unserialize($serialized)
     {
-        list ($this->id,) = unserialize($serialized);
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->salt
+        ) = unserialize($serialized);
     }
 }

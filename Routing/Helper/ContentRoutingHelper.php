@@ -84,15 +84,24 @@ class ContentRoutingHelper
             $pattern .= '/{' . $paramName . '}';
         }
 
-        preg_match('/(?:[A-Z](?:[A-Za-z0-9])+\\\)*(?:)[A-Z](?:[A-Za-z0-9])+Bundle/', get_class($admin), $matches);
-        $bundle = implode('', explode('\\', $matches[0]));
-        $section = StringUtil::camelize($admin->getAlias());
-        $controller = $bundle . ':' . $section . ':' . $action;
-        try {
-            $controller = $this->parser->parse($controller);
-        }
-        catch(\InvalidArgumentException $e) {
-            $controller = $this->parser->parse('LeaptAdminBundle:Content:' . $action);
+        if (false === strpos(get_class($admin), 'Bundle')) {
+            $controllerClass = preg_replace('#^(.+)\\\\Admin\\\\([A-Za-z]+)Admin$#isU', '$1\\Controller\\\\$2Controller', get_class($admin));
+            if (class_exists($controllerClass) && method_exists($controllerClass, $action . 'Action')) {
+                $controller = $controllerClass . ':' . $action . 'Action';
+            } else {
+                $controller = $this->parser->parse('LeaptAdminBundle:Content:' . $action);
+            }
+        } else {
+            preg_match('/(?:[A-Z](?:[A-Za-z0-9])+\\\)*(?:)[A-Z](?:[A-Za-z0-9])+Bundle/', get_class($admin), $matches);
+            $bundle = implode('', explode('\\', $matches[0]));
+            $section = StringUtil::camelize($admin->getAlias());
+            $controller = $bundle . ':' . $section . ':' . $action;
+
+            try {
+                $controller = $this->parser->parse($controller);
+            } catch(\InvalidArgumentException $e) {
+                $controller = $this->parser->parse('LeaptAdminBundle:Content:' . $action);
+            }
         }
 
         $defaults = array_merge(

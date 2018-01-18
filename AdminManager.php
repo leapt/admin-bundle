@@ -64,8 +64,8 @@ class AdminManager
     public function getAdminForEntity($entity) //TODO: remove ?
     {
         $class = get_class($entity);
-        foreach($this->admins as $adminCode => $admin) {
-            if($admin instanceof \Leapt\AdminBundle\Admin\ContentAdmin && $class === $admin->getEntityClass()) {
+        foreach ($this->admins as $adminCode => $admin) {
+            if ($admin instanceof \Leapt\AdminBundle\Admin\ContentAdmin && $class === $admin->getEntityClass()) {
                 return $admin;
             }
         }

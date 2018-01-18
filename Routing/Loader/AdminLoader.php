@@ -2,13 +2,12 @@
 
 namespace Leapt\AdminBundle\Routing\Loader;
 
-use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Config\Loader\LoaderResolverInterface;
-
 use Leapt\AdminBundle\AdminManager;
+use Symfony\Component\Config\Loader\Loader;
+use Symfony\Component\Routing\RouteCollection;
 
-class AdminLoader implements LoaderInterface {
+class AdminLoader extends Loader
+{
     /**
      * @var \Leapt\AdminBundle\AdminManager
      */
@@ -20,23 +19,6 @@ class AdminLoader implements LoaderInterface {
     public function __construct(AdminManager $adminManager)
     {
         $this->adminManager = $adminManager;
-    }
-
-    /**
-     * Loads a resource.
-     *
-     * @param mixed  $resource The resource
-     * @param string $type     The resource type
-     */
-    public function load($resource, $type = null)
-    {
-        $routes = new RouteCollection();
-
-        foreach($this->adminManager->getAdmins() as $alias => $admin) {
-            $admin->addRoutes($routes);
-        }
-
-        return $routes;
     }
 
     /**
@@ -53,22 +35,20 @@ class AdminLoader implements LoaderInterface {
     }
 
     /**
-     * Gets the loader resolver.
+     * Loads a resource.
      *
-     * @return LoaderResolverInterface A LoaderResolverInterface instance
+     * @param mixed  $resource The resource
+     * @param string $type     The resource type
+     * @return RouteCollection
      */
-    public function getResolver()
+    public function load($resource, $type = null)
     {
-        // TODO: Implement getResolver() method.
-    }
+        $routes = new RouteCollection();
 
-    /**
-     * Sets the loader resolver.
-     *
-     * @param LoaderResolverInterface $resolver A LoaderResolverInterface instance
-     */
-    public function setResolver(LoaderResolverInterface $resolver)
-    {
-        // TODO: Implement setResolver() method.
+        foreach ($this->adminManager->getAdmins() as $alias => $admin) {
+            $admin->addRoutes($routes);
+        }
+
+        return $routes;
     }
 }

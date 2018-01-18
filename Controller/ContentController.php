@@ -4,8 +4,8 @@ namespace Leapt\AdminBundle\Controller;
 
 use Leapt\AdminBundle\Admin\AdminInterface;
 use Leapt\AdminBundle\Admin\ContentAdmin;
-use Leapt\AdminBundle\Datalist\Datasource\DoctrineORMDatasource;
 use Leapt\AdminBundle\Exception\ValidationException;
+use Leapt\CoreBundle\Datalist\Datasource\DoctrineORMDatasource;
 use Leapt\CoreBundle\Util\StringUtil;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;

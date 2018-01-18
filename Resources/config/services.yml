@@ -8,6 +8,7 @@ services:
     # Main admin class
     leapt_admin:
         class: Leapt\AdminBundle\AdminManager
+        public: true
 
     # Base admin services
     leapt_admin.admin_abstract:
@@ -15,6 +16,7 @@ services:
         abstract: true
         calls:
             - [ setContainer, [ "@service_container" ]]
+            - [ setDatalistFactory, [ '@Leapt\CoreBundle\Datalist\DatalistFactory' ]]
 
     leapt_admin.admin_content:
         class: Leapt\AdminBundle\Admin\ContentAdmin
@@ -31,6 +33,7 @@ services:
     leapt_admin.routing_helper_content:
         class: Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper
         arguments: [ "@router", "@controller_name_converter", "", "" ]
+        public: true
 
     # Param converters
     leapt_admin.param_converter:
@@ -53,13 +56,6 @@ services:
         tags:
             -  { name: twig.extension }
 
-    leapt_admin.twig_datalist:
-        class: Leapt\AdminBundle\Twig\Extension\DatalistExtension
-        arguments: [ "@form.factory" ]
-        calls:
-            - [ setContainer, [ "@service_container" ]]
-        tags:
-            -  { name: twig.extension }
     leapt_admin.twig_loader:
         class: Leapt\AdminBundle\Twig\Loader\AdminLoader
         arguments: [ "@templating.locator", "@templating.name_parser" ]
@@ -108,77 +104,10 @@ services:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\TextType }
 
     # Datalists
-    leapt_admin.datalist_factory:
-        class: Leapt\AdminBundle\Datalist\DatalistFactory
-        arguments: [ "@form.factory" ]
-
-    leapt_admin.datalist_type.datalist:
-        class: Leapt\AdminBundle\Datalist\Type\DatalistType
-        tags:
-            - { name: leapt_admin.datalist_type, alias: datalist }
-
-    leapt_admin.datalist_field_datetime:
-        class: Leapt\AdminBundle\Datalist\Field\Type\DateTimeFieldType
-        tags:
-            - { name: leapt_admin.datalist_fieldtype, alias: datetime }
-
-    leapt_admin.datalist_field_heading:
-        class: Leapt\AdminBundle\Datalist\Field\Type\HeadingFieldType
-        tags:
-            - { name: leapt_admin.datalist_fieldtype, alias: heading }
-
-    leapt_admin.datalist_field_image:
-        class: Leapt\AdminBundle\Datalist\Field\Type\ImageFieldType
-        tags:
-            - { name: leapt_admin.datalist_fieldtype, alias: image }
-
-    leapt_admin.datalist_field_label:
-        class: Leapt\AdminBundle\Datalist\Field\Type\LabelFieldType
-        tags:
-            - { name: leapt_admin.datalist_fieldtype, alias: label }
-
-    leapt_admin.datalist_field_boolean:
-        class: Leapt\AdminBundle\Datalist\Field\Type\BooleanFieldType
-        tags:
-            - { name: leapt_admin.datalist_fieldtype, alias: boolean }
-
-    leapt_admin.datalist_field_text:
-        class: Leapt\AdminBundle\Datalist\Field\Type\TextFieldType
-        tags:
-            - { name: leapt_admin.datalist_fieldtype, alias: text }
-
-    leapt_admin.datalist_field_url:
-        class: Leapt\AdminBundle\Datalist\Field\Type\UrlFieldType
-        parent: leapt_admin.datalist_field_text
-        tags:
-            - { name: leapt_admin.datalist_fieldtype, alias: url }
-
-    leapt_admin.datalist_filter_choice:
-        class: Leapt\AdminBundle\Datalist\Filter\Type\ChoiceFilterType
-        tags:
-            - { name: leapt_admin.datalist_filtertype, alias: choice }
-
-    leapt_admin.datalist_filter_entity:
-        class: Leapt\AdminBundle\Datalist\Filter\Type\EntityFilterType
-        tags:
-            - { name: leapt_admin.datalist_filtertype, alias: entity }
-
-    leapt_admin.datalist_filter_search:
-        class: Leapt\AdminBundle\Datalist\Filter\Type\SearchFilterType
-        tags:
-            - { name: leapt_admin.datalist_filtertype, alias: search }
-
-    leapt_admin.datalist_action_simple:
-        class: Leapt\AdminBundle\Datalist\Action\Type\SimpleActionType
-        arguments: [ "@router" ]
-        tags:
-            - { name: leapt_admin.datalist_actiontype, alias: simple }
-
-    leapt_admin.datalist_action_content_admin:
-        class: Leapt\AdminBundle\Datalist\Action\Type\ContentAdminActionType
+    Leapt\AdminBundle\Datalist\Action\Type\ContentAdminActionType:
         arguments: [ "@leapt_admin", "@leapt_admin.routing_helper_content" ]
         tags:
-            - { name: leapt_admin.datalist_actiontype, alias: content_admin }
+            - { name: leapt_core.datalist.action_type, alias: content_admin }
 
     # Admin logger
     leapt_admin.logger:

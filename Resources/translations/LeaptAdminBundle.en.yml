@@ -77,15 +77,6 @@ reorderable_content:
 project:
     name: Admin
 
-datalist:
-    empty_value: ---
-    search:
-        submit: Search
-        placeholder: Enter your search terms
-    filter:
-        submit: Filter
-        reset: Reset
-
 cataloguetranslation:
     title: Interface content
     submit: Update

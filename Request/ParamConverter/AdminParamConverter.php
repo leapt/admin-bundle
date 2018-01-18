@@ -2,15 +2,15 @@
 
 namespace Leapt\AdminBundle\Request\ParamConverter;
 
+use Leapt\AdminBundle\AdminManager;
+use Leapt\CoreBundle\Navigation\NavigationRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
-use Leapt\CoreBundle\Navigation\NavigationRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-use Leapt\AdminBundle\AdminManager;
-
-class AdminParamConverter implements ParamConverterInterface {
+class AdminParamConverter implements ParamConverterInterface
+{
     /**
      * @var \Leapt\AdminBundle\AdminManager
      */
@@ -41,16 +41,14 @@ class AdminParamConverter implements ParamConverterInterface {
     {
         $param = $configuration->getName();
         $alias = $request->attributes->get('alias');
-        if(!$request->attributes->has('alias')) {
+        if (!$request->attributes->has('alias')) {
             throw new NotFoundHttpException('Cannot find admin without alias');
         }
         try {
             $admin = $this->adminManager->getAdmin($alias);
             $request->attributes->set($param, $admin);
             $this->registry->addActivePath($admin->getDefaultPath());
-        }
-        catch(\InvalidArgumentException $e)
-        {
+        } catch (\InvalidArgumentException $e) {
             throw new NotFoundHttpException(sprintf('Cannot find admin with alias "%s"', $alias));
         }
     }
@@ -61,6 +59,10 @@ class AdminParamConverter implements ParamConverterInterface {
      */
     public function supports(ParamConverter $configuration)
     {
+        if (null === $configuration->getClass()) {
+            return false;
+        }
+
         return in_array('Leapt\AdminBundle\Admin\AdminInterface', class_implements($configuration->getClass()));
     }
 }

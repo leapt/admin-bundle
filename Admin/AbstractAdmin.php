@@ -2,6 +2,7 @@
 
 namespace Leapt\AdminBundle\Admin;
 
+use Leapt\CoreBundle\Datalist\DatalistFactory;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,12 @@ abstract class AbstractAdmin implements AdminInterface, ContainerAwareInterface
      * @var ContainerInterface
      */
     protected $container;
+
+    /**
+     * @var DatalistFactory
+     */
+    protected $datalistFactory;
+
     /**
      * @var string
      */
@@ -124,11 +131,11 @@ abstract class AbstractAdmin implements AdminInterface, ContainerAwareInterface
     }
 
     /**
-     * @return \Leapt\AdminBundle\Datalist\DatalistFactory
+     * @param DatalistFactory $datalistFactory
      */
-    public function getDatalistFactory()
+    public function setDatalistFactory(DatalistFactory $datalistFactory)
     {
-        return $this->container->get('leapt_admin.datalist_factory');
+        $this->datalistFactory = $datalistFactory;
     }
 
     /**

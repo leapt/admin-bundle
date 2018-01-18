@@ -3,7 +3,6 @@
 namespace Leapt\AdminBundle;
 
 use Leapt\AdminBundle\DependencyInjection\Compiler\AdminCompilerPass;
-use Leapt\AdminBundle\DependencyInjection\Compiler\DatalistCompilerPass;
 use Leapt\AdminBundle\DependencyInjection\Compiler\ImCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -17,7 +16,6 @@ class LeaptAdminBundle extends Bundle
     {
         parent::build($container);
         $container->addCompilerPass(new AdminCompilerPass());
-        $container->addCompilerPass(new DatalistCompilerPass());
         $container->addCompilerPass(new ImCompilerPass());
     }
 }

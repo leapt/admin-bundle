@@ -4,9 +4,10 @@ namespace Leapt\AdminBundle\Datalist\Action\Type;
 
 use Leapt\AdminBundle\Admin\ContentAdmin;
 use Leapt\AdminBundle\AdminManager;
-use Leapt\AdminBundle\Datalist\Action\DatalistActionInterface;
-use Leapt\AdminBundle\Datalist\ViewContext;
 use Leapt\AdminBundle\Routing\Helper\ContentRoutingHelper;
+use Leapt\CoreBundle\Datalist\Action\DatalistActionInterface;
+use Leapt\CoreBundle\Datalist\Action\Type\AbstractActionType;
+use Leapt\CoreBundle\Datalist\ViewContext;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -45,8 +46,8 @@ class ContentAdminActionType extends AbstractActionType
         parent::configureOptions($resolver);
 
         $adminManager = $this->adminManager;
-        $adminNormalizer = function(Options $options, $admin) use($adminManager) {
-            if(!$admin instanceof ContentAdmin) { //TODO: deprecated notice ?
+        $adminNormalizer = function (Options $options, $admin) use ($adminManager) {
+            if (!$admin instanceof ContentAdmin) { //TODO: deprecated notice ?
                 $admin = $adminManager->getAdmin($admin);
             }
 
@@ -98,8 +99,8 @@ class ContentAdminActionType extends AbstractActionType
     }
 
     /**
-     * @param \Leapt\AdminBundle\Datalist\ViewContext $viewContext
-     * @param \Leapt\AdminBundle\Datalist\Action\DatalistActionInterface $action
+     * @param \Leapt\CoreBundle\Datalist\ViewContext $viewContext
+     * @param \Leapt\CoreBundle\Datalist\Action\DatalistActionInterface $action
      * @param $item
      * @param array $options
      */
@@ -107,13 +108,13 @@ class ContentAdminActionType extends AbstractActionType
     {
         parent::buildViewContext($viewContext, $action, $item, $options);
 
-        if(true === $options['modal']) {
+        if (true === $options['modal']) {
             $attr = $viewContext['attr'];
             $attr['data-admin'] = 'content-modal';
             $viewContext['attr'] = $attr;
         }
 
-        if(isset($options['icon'])) {
+        if (isset($options['icon'])) {
             $viewContext['icon'] = $options['icon'];
         }
     }

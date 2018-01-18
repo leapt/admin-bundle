@@ -188,7 +188,7 @@ abstract class ContentAdmin extends AbstractAdmin
     /**
      * Return the main admin list for this content
      *
-     * @return \Leapt\AdminBundle\Datalist\DatalistInterface
+     * @return \Leapt\CoreBundle\Datalist\DatalistInterface
      */
     abstract public function getDatalist();
 

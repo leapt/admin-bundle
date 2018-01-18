@@ -2,10 +2,11 @@
 
 namespace Leapt\AdminBundle\Controller;
 
-use Leapt\AdminBundle\Datalist\Datalist;
-use Leapt\AdminBundle\Datalist\Datasource\DoctrineORMDatasource;
 use Leapt\AdminBundle\Entity\File;
 use Leapt\AdminBundle\Form\Type\FileType;
+use Leapt\CoreBundle\Datalist\Datalist;
+use Leapt\CoreBundle\Datalist\DatalistFactory;
+use Leapt\CoreBundle\Datalist\Datasource\DoctrineORMDatasource;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -26,8 +27,8 @@ class WysiwygController extends BaseController
         $uploadForm = $this->createForm(FileType::class, $file);
         $extraParameters = [];
 
-        /** @var $datalistBuilder \Leapt\AdminBundle\Datalist\DatalistBuilder */
-        $datalistBuilder = $this->get('leapt_admin.datalist_factory')
+        /** @var $datalistBuilder \Leapt\CoreBundle\Datalist\DatalistBuilder */
+        $datalistBuilder = $this->get(DatalistFactory::class)
             ->createBuilder('datalist', [
                 'translation_domain' => 'admin',
                 'data_class'         => 'Leapt\AdminBundle\Entity\File'

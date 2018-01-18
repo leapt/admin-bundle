@@ -276,7 +276,7 @@ The first step is to create an Admin class that extends the abstract ContentAdmi
          */
         public function getDatalist()
         {
-            return $this->getDatalistFactory()
+            return $this->datalistFactory
                 ->createBuilder('datalist', array('data_class' => 'Acme\SiteBundle\Entity\Artist'))
                 ->addField('firstName', 'text')
                 ->addField('lastName', 'text')
