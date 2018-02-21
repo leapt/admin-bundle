@@ -1,6 +1,6 @@
 /*
-Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.md or http://ckeditor.com/license
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/terms-of-use/#open-source-licences
 */
 
 body
@@ -134,51 +134,75 @@ a > img {
 	outline: 1px solid #0782C1;
 }
 
-.videodetector {
-	position      : relative;
-	width         : 100%;
-	height        : 0;
-	padding-bottom: 60%;
+/* Widget Styles */
+.code-featured
+{
+	border: 5px solid red;
 }
 
-.videodetector iframe {
-	position: absolute;
-	top     : 0;
-	left    : 0;
-	width   : 100%;
-	height  : 100%;
+.math-featured
+{
+	padding: 20px;
+	box-shadow: 0 0 2px rgba(200, 0, 0, 1);
+	background-color: rgba(255, 0, 0, 0.05);
+	margin: 10px;
 }
 
-.remove-videodetector{
-	position: absolute;
-	top: 15px;
-	left: 15px;
-	z-index: 999;
-	cursor: pointer!important;
-	display: none;
-	outline: none;
-	padding: 10px 20px;
-	appearance: none;
-	-webkit-appearance: none;
-	box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
-	border-radius: 3px;
-	border: none;
-	background-color: #e74c3c;
-	color: #fff;
-	font-weight: bold;
-	font-size: 12px;
-	text-transform: uppercase;
-	-webkit-transition: 0.2s;
-	-moz-transition: 0.2s;
-	-ms-transition: 0.2s;
-	-o-transition: 0.2s;
-	transition: 0.2s;
+.image-clean
+{
+	border: 0;
+	background: none;
+	padding: 0;
 }
 
-.remove-videodetector:hover{
-	background-color: #c0392b;
+.image-clean > figcaption
+{
+	font-size: .9em;
+	text-align: right;
 }
 
-.videodetector:hover .remove-videodetector{
-	display: block;
+.image-grayscale
+{
+	background-color: white;
+	color: #666;
+}
+
+.image-grayscale img, img.image-grayscale
+{
+	filter: grayscale(100%);
+}
+
+.embed-240p
+{
+	max-width: 426px;
+	max-height: 240px;
+	margin:0 auto;
+}
+
+.embed-360p
+{
+	max-width: 640px;
+	max-height: 360px;
+	margin:0 auto;
+}
+
+.embed-480p
+{
+	max-width: 854px;
+	max-height: 480px;
+	margin:0 auto;
+}
+
+.embed-720p
+{
+	max-width: 1280px;
+	max-height: 720px;
+	margin:0 auto;
+}
+
+.embed-1080p
+{
+	max-width: 1920px;
+	max-height: 1080px;
+	margin:0 auto;
 }
