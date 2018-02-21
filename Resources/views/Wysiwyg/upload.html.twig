@@ -4,13 +4,17 @@
     {{ form_start(form, { 'attr': {
         'method': 'POST',
         'action': path('leapt_admin_wysiwyg_browser', arguments),
-        'class': 'well form-inline',
+        'class': 'well',
         'novalidate': 'novalidate'
     } }) }}
-        {{ form_widget(form.name, { 'attr': { 'placeholder': 'wysiwyg.upload.placeholder.name'|trans({}, 'LeaptAdminBundle') } }) }}
-        {{ form_widget(form.tags, { 'attr': { 'placeholder': 'wysiwyg.upload.placeholder.tags'|trans({}, 'LeaptAdminBundle') } }) }}
-        {{ form_widget(form.file) }}
-        <button type="submit" class="btn">{{ 'wysiwyg.upload.submit'|trans({}, 'LeaptAdminBundle') }}</button>
+        <div class="row">
+            <div class="col-xs-6 col-md-3">{{ form_widget(form.name, { 'attr': { 'class': 'form-control' } }) }}</div>
+            <div class="col-xs-6 col-md-3">{{ form_widget(form.tags, { 'attr': { 'class': 'form-control' } }) }}</div>
+            <div class="col-md-6">
+                {{ form_widget(form.file, { 'attr': { 'style': 'display: inline;' } }) }}
+                <button type="submit" class="btn btn-primary">{{ 'wysiwyg.upload.submit'|trans({}, 'LeaptAdminBundle') }}</button>
+            </div>
+        </div>
         {{ form_rest(form) }}
     {{ form_end(form) }}
 {% endif %}

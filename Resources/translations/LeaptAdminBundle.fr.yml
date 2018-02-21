@@ -63,6 +63,8 @@ wysiwyg:
     browse:
         title: Parcourir les images
         empty: Pas encore d'image
+        image: Image
+        search: Rechercher
     upload:
         title: Upload
         placeholder:

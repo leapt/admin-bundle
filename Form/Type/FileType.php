@@ -2,6 +2,7 @@
 
 namespace Leapt\AdminBundle\Form\Type;
 
+use Leapt\AdminBundle\Entity\File;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,8 +33,12 @@ class FileType extends AbstractType
     {
         $builder
             ->add('file', \Symfony\Component\Form\Extension\Core\Type\FileType::class)
-            ->add('name', TextType::class)
-            ->add('tags', TextType::class)
+            ->add('name', TextType::class, [
+                'attr' => ['placeholder' => 'wysiwyg.upload.placeholder.name'],
+            ])
+            ->add('tags', TextType::class, [
+                'attr' => ['placeholder' => 'wysiwyg.upload.placeholder.tags'],
+            ])
         ;
     }
 
@@ -43,7 +48,8 @@ class FileType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Leapt\AdminBundle\Entity\File'
+            'data_class' => File::class,
+            'translation_domain' => 'LeaptAdminBundle',
         ]);
     }
 }
